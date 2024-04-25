@@ -54,7 +54,6 @@ public static class Startup
         server.Start(socket =>
         {
             socket.OnOpen = () => WebSocketStateService.AddClient(socket.ConnectionInfo.Id, socket);
-            socket.OnClose = () => WebSocketStateService.RemoveClient(socket.ConnectionInfo.Id);
             socket.OnMessage = async message =>
             {
                 try

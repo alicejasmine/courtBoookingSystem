@@ -26,8 +26,4 @@ public static class WebSocketStateService
         _clients.TryAdd(clientId, new WsWithMetadata(connection));
     }
 
-    public static void RemoveClient(Guid connectionInfoId)
-    {
-        throw new NotImplementedException();
-    }
 }
