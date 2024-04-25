@@ -26,7 +26,18 @@ class ClientWantsToAuthenticateWithJwt extends ClientEvent
       _$ClientWantsToAuthenticateWithJwtFromJson(json);
 }
 
+@freezed
+class ClientWantsToRegister extends ClientEvent with _$ClientWantsToRegister {
+  static const String name = "ClientWantsToRegister";
+  const factory ClientWantsToRegister({
+    required String eventType,
+    required String email,
+    required String password,
+  }) = _ClientWantsToRegister;
 
+  factory ClientWantsToRegister.fromJson(Map<String, Object?> json) =>
+      _$ClientWantsToRegisterFromJson(json);
+}
 
 
 @freezed
@@ -85,18 +96,6 @@ class ServerSendsErrorMessageToClient extends ServerEvent
 
 
 
-@freezed
-class ServerPromptsPasswordChange extends ServerEvent
-    with _$ServerPromptsPasswordChange {
-  static const String name = "ServerPromptsPasswordChange";
 
-  const factory ServerPromptsPasswordChange({
-    required String eventType,
-  }) = _ServerPromptsPasswordChange;
-
-  factory ServerPromptsPasswordChange.fromJson(Map<String, Object?> json) =>
-      _$ServerPromptsPasswordChangeFromJson(json);
-
-}
 
 

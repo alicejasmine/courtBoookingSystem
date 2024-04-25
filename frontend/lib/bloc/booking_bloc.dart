@@ -26,7 +26,6 @@ class BookingBloc extends Bloc<BaseEvent, BookingState> {
     on<ServerAuthenticatesUser>(_onServerAuthenticatesUser);
     on<ServerSendsErrorMessageToClient>(_onServerSendsErrorMessageToClient);
 
-    on<ServerPromptsPasswordChange>(_onServerPromptsPasswordChange);
 
     // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
@@ -53,6 +52,14 @@ class BookingBloc extends Bloc<BaseEvent, BookingState> {
     ));
   }
 
+  /// Sends ClientWantsToRegister.cs event to server
+  void register({required String password, required String email}) {
+    add(ClientWantsToRegister(
+      eventType: ClientWantsToRegister.name,
+      email: email,
+      password: password,
+    ));
+  }
 
 
        FutureOr<void> _onClientEvent(ClientEvent event, Emitter<BookingState> emit) {
@@ -68,23 +75,13 @@ class BookingBloc extends Bloc<BaseEvent, BookingState> {
        headsUp: 'Authentication successful!',
      ));
    }
-
-   FutureOr<void> _onServerPromptsPasswordChange(
-       ServerPromptsPasswordChange event, Emitter<BookingState> emit) {
-     emit(state.copyWith(
-       promptChangePassword: true,
-       headsUp: 'Welcome! You are logged in for the first time. Please change your password.'));
-     }
-
-
-
-
+   
   FutureOr<void> _onServerSendsErrorMessageToClient(
      ServerSendsErrorMessageToClient event, Emitter<BookingState> emit) {
     emit(state.copyWith(headsUp: '⚠️ ${event.errorMessage}'));
   }
 
-  void changePassword({required String newPassword}) {}
+
  }
 
 

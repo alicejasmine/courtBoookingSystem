@@ -4,8 +4,8 @@ import 'package:frontend/bloc/booking_bloc.dart';
 import 'package:frontend/bloc/booking_state.dart';
 
 import 'authenticate_form.dart';
-import 'change_password_form.dart';
 import 'common.dart';
+import 'home_Screen.dart';
 
 
 class CourtBookingApp extends StatelessWidget {
@@ -26,32 +26,34 @@ class CourtBookingApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       home: Scaffold(
         body: BlocConsumer<BookingBloc, BookingState>(
-          listenWhen: (previous, current) =>
-          current.headsUp != null || current.promptChangePassword,
+          listenWhen: (previous, current) => current.headsUp != null,
           listener: (context, state) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.headsUp!)));
-            if (state.promptChangePassword) {
-              showDialog(
-                context: context,
-                builder: (context) => ChangePasswordForm(),
+            if (state.authenticated) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (_) => HomeScreen(),
+                ),
               );
             }
           },
-          builder: (context, state) => SingleChildScrollView(
-            child: Center(
-              child: Container(
-                constraints: const BoxConstraints(maxWidth: 400),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Header("Authenticate"),
-                    const AuthenticateForm()
-                  ],
+          builder: (context, state) =>
+              SingleChildScrollView(
+                child: Center(
+                  child: Container(
+                    constraints: const BoxConstraints(maxWidth: 400),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Header("Authenticate"),
+                        const AuthenticateForm(),
+
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
         ),
       ),
     );

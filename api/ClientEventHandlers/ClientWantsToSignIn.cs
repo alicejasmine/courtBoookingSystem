@@ -18,43 +18,21 @@ public class ClientWantsToSignInDto : BaseDto
 }
 
 public class ClientWantsToAuthenticate(
-        UserRepository userRepository,
-        TokenService tokenService,
-        CredentialService credentialService)
+    UserRepository userRepository,
+    TokenService tokenService,
+    CredentialService credentialService)
     : BaseEventHandler<ClientWantsToSignInDto>
 {
     public override Task Handle(ClientWantsToSignInDto request, IWebSocketConnection socket)
     {
+
         var user = userRepository.GetUser(new FindByEmailParams(request.email!));
 
-        if (user == null)
-        {
-            throw new AuthenticationException("User not found");
-        }
-
-        var expectedHash = credentialService.Hash(request.password!, user.Salt);
-
-        if (!expectedHash.Equals(user.Hash))
-        {
-            throw new AuthenticationException("Wrong credentials!");
-        }
-
-        if (user.FirstLogin)
-        {
-            user.FirstLogin = false;
-            string newPassword = request.password;
-            userRepository.ChangeUserPassword(user.Id, newPassword);
-            userRepository.UpdateFirstLoginStatus(user.Id, false);
-            socket.SendDto(new ServerPromptsPasswordChange());
-        }
-        else
-        {
-            // Proceed with regular authentication process
-            WebSocketStateService.GetClient(socket.ConnectionInfo.Id).IsAuthenticated = true;
-            WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
-            socket.SendDto(new ServerAuthenticatesUser { jwt = tokenService.IssueJwt(user) });
-        }
-
+        var expectedHash = credentialService.Hash(request.password!, user.Salt!);
+        if (!expectedHash.Equals(user.Hash)) throw new AuthenticationException("Wrong credentials!");
+        WebSocketStateService.GetClient(socket.ConnectionInfo.Id).IsAuthenticated = true;
+        WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
+        socket.SendDto(new ServerAuthenticatesUser { jwt = tokenService.IssueJwt(user) });
         return Task.CompletedTask;
     }
 }

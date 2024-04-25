@@ -11,13 +11,11 @@ class BookingState with _$BookingState {
   const factory BookingState({
     required bool authenticated,
     required String? headsUp,
-    required bool promptChangePassword, 
   }) = _BookingState;
 
   
   static BookingState empty() => BookingState(
     authenticated: false,
     headsUp: null,
-    promptChangePassword: false, 
   );
 }

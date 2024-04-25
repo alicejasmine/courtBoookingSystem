@@ -22,10 +22,8 @@ EndUser _$EndUserFromJson(Map<String, dynamic> json) {
 mixin _$EndUser {
   int get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  String? get fullName => throw _privateConstructorUsedError;
   String? get hash => throw _privateConstructorUsedError;
   String? get salt => throw _privateConstructorUsedError;
-  bool? get firstLogin => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,13 +35,7 @@ abstract class $EndUserCopyWith<$Res> {
   factory $EndUserCopyWith(EndUser value, $Res Function(EndUser) then) =
       _$EndUserCopyWithImpl<$Res, EndUser>;
   @useResult
-  $Res call(
-      {int id,
-      String email,
-      String? fullName,
-      String? hash,
-      String? salt,
-      bool? firstLogin});
+  $Res call({int id, String email, String? hash, String? salt});
 }
 
 /// @nodoc
@@ -61,10 +53,8 @@ class _$EndUserCopyWithImpl<$Res, $Val extends EndUser>
   $Res call({
     Object? id = null,
     Object? email = null,
-    Object? fullName = freezed,
     Object? hash = freezed,
     Object? salt = freezed,
-    Object? firstLogin = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -75,10 +65,6 @@ class _$EndUserCopyWithImpl<$Res, $Val extends EndUser>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      fullName: freezed == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String?,
       hash: freezed == hash
           ? _value.hash
           : hash // ignore: cast_nullable_to_non_nullable
@@ -87,10 +73,6 @@ class _$EndUserCopyWithImpl<$Res, $Val extends EndUser>
           ? _value.salt
           : salt // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstLogin: freezed == firstLogin
-          ? _value.firstLogin
-          : firstLogin // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ) as $Val);
   }
 }
@@ -102,13 +84,7 @@ abstract class _$$EndUserImplCopyWith<$Res> implements $EndUserCopyWith<$Res> {
       __$$EndUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id,
-      String email,
-      String? fullName,
-      String? hash,
-      String? salt,
-      bool? firstLogin});
+  $Res call({int id, String email, String? hash, String? salt});
 }
 
 /// @nodoc
@@ -124,10 +100,8 @@ class __$$EndUserImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? email = null,
-    Object? fullName = freezed,
     Object? hash = freezed,
     Object? salt = freezed,
-    Object? firstLogin = freezed,
   }) {
     return _then(_$EndUserImpl(
       id: null == id
@@ -138,10 +112,6 @@ class __$$EndUserImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      fullName: freezed == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String?,
       hash: freezed == hash
           ? _value.hash
           : hash // ignore: cast_nullable_to_non_nullable
@@ -150,10 +120,6 @@ class __$$EndUserImplCopyWithImpl<$Res>
           ? _value.salt
           : salt // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstLogin: freezed == firstLogin
-          ? _value.firstLogin
-          : firstLogin // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
@@ -162,12 +128,7 @@ class __$$EndUserImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$EndUserImpl with DiagnosticableTreeMixin implements _EndUser {
   const _$EndUserImpl(
-      {required this.id,
-      required this.email,
-      this.fullName,
-      this.hash,
-      this.salt,
-      this.firstLogin});
+      {required this.id, required this.email, this.hash, this.salt});
 
   factory _$EndUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$EndUserImplFromJson(json);
@@ -177,17 +138,13 @@ class _$EndUserImpl with DiagnosticableTreeMixin implements _EndUser {
   @override
   final String email;
   @override
-  final String? fullName;
-  @override
   final String? hash;
   @override
   final String? salt;
-  @override
-  final bool? firstLogin;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EndUser(id: $id, email: $email, fullName: $fullName, hash: $hash, salt: $salt, firstLogin: $firstLogin)';
+    return 'EndUser(id: $id, email: $email, hash: $hash, salt: $salt)';
   }
 
   @override
@@ -197,10 +154,8 @@ class _$EndUserImpl with DiagnosticableTreeMixin implements _EndUser {
       ..add(DiagnosticsProperty('type', 'EndUser'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('fullName', fullName))
       ..add(DiagnosticsProperty('hash', hash))
-      ..add(DiagnosticsProperty('salt', salt))
-      ..add(DiagnosticsProperty('firstLogin', firstLogin));
+      ..add(DiagnosticsProperty('salt', salt));
   }
 
   @override
@@ -210,18 +165,13 @@ class _$EndUserImpl with DiagnosticableTreeMixin implements _EndUser {
             other is _$EndUserImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
             (identical(other.hash, hash) || other.hash == hash) &&
-            (identical(other.salt, salt) || other.salt == salt) &&
-            (identical(other.firstLogin, firstLogin) ||
-                other.firstLogin == firstLogin));
+            (identical(other.salt, salt) || other.salt == salt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, email, fullName, hash, salt, firstLogin);
+  int get hashCode => Object.hash(runtimeType, id, email, hash, salt);
 
   @JsonKey(ignore: true)
   @override
@@ -241,10 +191,8 @@ abstract class _EndUser implements EndUser {
   const factory _EndUser(
       {required final int id,
       required final String email,
-      final String? fullName,
       final String? hash,
-      final String? salt,
-      final bool? firstLogin}) = _$EndUserImpl;
+      final String? salt}) = _$EndUserImpl;
 
   factory _EndUser.fromJson(Map<String, dynamic> json) = _$EndUserImpl.fromJson;
 
@@ -253,13 +201,9 @@ abstract class _EndUser implements EndUser {
   @override
   String get email;
   @override
-  String? get fullName;
-  @override
   String? get hash;
   @override
   String? get salt;
-  @override
-  bool? get firstLogin;
   @override
   @JsonKey(ignore: true)
   _$$EndUserImplCopyWith<_$EndUserImpl> get copyWith =>

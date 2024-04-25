@@ -194,6 +194,197 @@ abstract class _ClientWantsToAuthenticateWithJwt
       get copyWith => throw _privateConstructorUsedError;
 }
 
+ClientWantsToRegister _$ClientWantsToRegisterFromJson(
+    Map<String, dynamic> json) {
+  return _ClientWantsToRegister.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ClientWantsToRegister {
+  String get eventType => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ClientWantsToRegisterCopyWith<ClientWantsToRegister> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ClientWantsToRegisterCopyWith<$Res> {
+  factory $ClientWantsToRegisterCopyWith(ClientWantsToRegister value,
+          $Res Function(ClientWantsToRegister) then) =
+      _$ClientWantsToRegisterCopyWithImpl<$Res, ClientWantsToRegister>;
+  @useResult
+  $Res call({String eventType, String email, String password});
+}
+
+/// @nodoc
+class _$ClientWantsToRegisterCopyWithImpl<$Res,
+        $Val extends ClientWantsToRegister>
+    implements $ClientWantsToRegisterCopyWith<$Res> {
+  _$ClientWantsToRegisterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ClientWantsToRegisterImplCopyWith<$Res>
+    implements $ClientWantsToRegisterCopyWith<$Res> {
+  factory _$$ClientWantsToRegisterImplCopyWith(
+          _$ClientWantsToRegisterImpl value,
+          $Res Function(_$ClientWantsToRegisterImpl) then) =
+      __$$ClientWantsToRegisterImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String eventType, String email, String password});
+}
+
+/// @nodoc
+class __$$ClientWantsToRegisterImplCopyWithImpl<$Res>
+    extends _$ClientWantsToRegisterCopyWithImpl<$Res,
+        _$ClientWantsToRegisterImpl>
+    implements _$$ClientWantsToRegisterImplCopyWith<$Res> {
+  __$$ClientWantsToRegisterImplCopyWithImpl(_$ClientWantsToRegisterImpl _value,
+      $Res Function(_$ClientWantsToRegisterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_$ClientWantsToRegisterImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ClientWantsToRegisterImpl
+    with DiagnosticableTreeMixin
+    implements _ClientWantsToRegister {
+  const _$ClientWantsToRegisterImpl(
+      {required this.eventType, required this.email, required this.password});
+
+  factory _$ClientWantsToRegisterImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ClientWantsToRegisterImplFromJson(json);
+
+  @override
+  final String eventType;
+  @override
+  final String email;
+  @override
+  final String password;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ClientWantsToRegister(eventType: $eventType, email: $email, password: $password)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ClientWantsToRegister'))
+      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('password', password));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClientWantsToRegisterImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, eventType, email, password);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ClientWantsToRegisterImplCopyWith<_$ClientWantsToRegisterImpl>
+      get copyWith => __$$ClientWantsToRegisterImplCopyWithImpl<
+          _$ClientWantsToRegisterImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ClientWantsToRegisterImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ClientWantsToRegister implements ClientWantsToRegister {
+  const factory _ClientWantsToRegister(
+      {required final String eventType,
+      required final String email,
+      required final String password}) = _$ClientWantsToRegisterImpl;
+
+  factory _ClientWantsToRegister.fromJson(Map<String, dynamic> json) =
+      _$ClientWantsToRegisterImpl.fromJson;
+
+  @override
+  String get eventType;
+  @override
+  String get email;
+  @override
+  String get password;
+  @override
+  @JsonKey(ignore: true)
+  _$$ClientWantsToRegisterImplCopyWith<_$ClientWantsToRegisterImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 ClientWantsToSignIn _$ClientWantsToSignInFromJson(Map<String, dynamic> json) {
   return _ClientWantsToSignIn.fromJson(json);
 }
@@ -754,163 +945,5 @@ abstract class _ServerSendsErrorMessageToClient
   @JsonKey(ignore: true)
   _$$ServerSendsErrorMessageToClientImplCopyWith<
           _$ServerSendsErrorMessageToClientImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-ServerPromptsPasswordChange _$ServerPromptsPasswordChangeFromJson(
-    Map<String, dynamic> json) {
-  return _ServerPromptsPasswordChange.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ServerPromptsPasswordChange {
-  String get eventType => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ServerPromptsPasswordChangeCopyWith<ServerPromptsPasswordChange>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ServerPromptsPasswordChangeCopyWith<$Res> {
-  factory $ServerPromptsPasswordChangeCopyWith(
-          ServerPromptsPasswordChange value,
-          $Res Function(ServerPromptsPasswordChange) then) =
-      _$ServerPromptsPasswordChangeCopyWithImpl<$Res,
-          ServerPromptsPasswordChange>;
-  @useResult
-  $Res call({String eventType});
-}
-
-/// @nodoc
-class _$ServerPromptsPasswordChangeCopyWithImpl<$Res,
-        $Val extends ServerPromptsPasswordChange>
-    implements $ServerPromptsPasswordChangeCopyWith<$Res> {
-  _$ServerPromptsPasswordChangeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ServerPromptsPasswordChangeImplCopyWith<$Res>
-    implements $ServerPromptsPasswordChangeCopyWith<$Res> {
-  factory _$$ServerPromptsPasswordChangeImplCopyWith(
-          _$ServerPromptsPasswordChangeImpl value,
-          $Res Function(_$ServerPromptsPasswordChangeImpl) then) =
-      __$$ServerPromptsPasswordChangeImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String eventType});
-}
-
-/// @nodoc
-class __$$ServerPromptsPasswordChangeImplCopyWithImpl<$Res>
-    extends _$ServerPromptsPasswordChangeCopyWithImpl<$Res,
-        _$ServerPromptsPasswordChangeImpl>
-    implements _$$ServerPromptsPasswordChangeImplCopyWith<$Res> {
-  __$$ServerPromptsPasswordChangeImplCopyWithImpl(
-      _$ServerPromptsPasswordChangeImpl _value,
-      $Res Function(_$ServerPromptsPasswordChangeImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-  }) {
-    return _then(_$ServerPromptsPasswordChangeImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ServerPromptsPasswordChangeImpl
-    with DiagnosticableTreeMixin
-    implements _ServerPromptsPasswordChange {
-  const _$ServerPromptsPasswordChangeImpl({required this.eventType});
-
-  factory _$ServerPromptsPasswordChangeImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$ServerPromptsPasswordChangeImplFromJson(json);
-
-  @override
-  final String eventType;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerPromptsPasswordChange(eventType: $eventType)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ServerPromptsPasswordChange'))
-      ..add(DiagnosticsProperty('eventType', eventType));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ServerPromptsPasswordChangeImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, eventType);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ServerPromptsPasswordChangeImplCopyWith<_$ServerPromptsPasswordChangeImpl>
-      get copyWith => __$$ServerPromptsPasswordChangeImplCopyWithImpl<
-          _$ServerPromptsPasswordChangeImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ServerPromptsPasswordChangeImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _ServerPromptsPasswordChange
-    implements ServerPromptsPasswordChange {
-  const factory _ServerPromptsPasswordChange(
-      {required final String eventType}) = _$ServerPromptsPasswordChangeImpl;
-
-  factory _ServerPromptsPasswordChange.fromJson(Map<String, dynamic> json) =
-      _$ServerPromptsPasswordChangeImpl.fromJson;
-
-  @override
-  String get eventType;
-  @override
-  @JsonKey(ignore: true)
-  _$$ServerPromptsPasswordChangeImplCopyWith<_$ServerPromptsPasswordChangeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

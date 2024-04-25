@@ -21,6 +21,22 @@ Map<String, dynamic> _$$ClientWantsToAuthenticateWithJwtImplToJson(
       'jwt': instance.jwt,
     };
 
+_$ClientWantsToRegisterImpl _$$ClientWantsToRegisterImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ClientWantsToRegisterImpl(
+      eventType: json['eventType'] as String,
+      email: json['email'] as String,
+      password: json['password'] as String,
+    );
+
+Map<String, dynamic> _$$ClientWantsToRegisterImplToJson(
+        _$ClientWantsToRegisterImpl instance) =>
+    <String, dynamic>{
+      'eventType': instance.eventType,
+      'email': instance.email,
+      'password': instance.password,
+    };
+
 _$ClientWantsToSignInImpl _$$ClientWantsToSignInImplFromJson(
         Map<String, dynamic> json) =>
     _$ClientWantsToSignInImpl(
@@ -65,16 +81,4 @@ Map<String, dynamic> _$$ServerSendsErrorMessageToClientImplToJson(
       'eventType': instance.eventType,
       'errorMessage': instance.errorMessage,
       'receivedMessage': instance.receivedMessage,
-    };
-
-_$ServerPromptsPasswordChangeImpl _$$ServerPromptsPasswordChangeImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ServerPromptsPasswordChangeImpl(
-      eventType: json['eventType'] as String,
-    );
-
-Map<String, dynamic> _$$ServerPromptsPasswordChangeImplToJson(
-        _$ServerPromptsPasswordChangeImpl instance) =>
-    <String, dynamic>{
-      'eventType': instance.eventType,
     };

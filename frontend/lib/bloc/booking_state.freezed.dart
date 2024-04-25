@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BookingState {
   bool get authenticated => throw _privateConstructorUsedError;
   String? get headsUp => throw _privateConstructorUsedError;
-  bool get promptChangePassword => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BookingStateCopyWith<BookingState> get copyWith =>
@@ -31,7 +30,7 @@ abstract class $BookingStateCopyWith<$Res> {
           BookingState value, $Res Function(BookingState) then) =
       _$BookingStateCopyWithImpl<$Res, BookingState>;
   @useResult
-  $Res call({bool authenticated, String? headsUp, bool promptChangePassword});
+  $Res call({bool authenticated, String? headsUp});
 }
 
 /// @nodoc
@@ -49,7 +48,6 @@ class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
   $Res call({
     Object? authenticated = null,
     Object? headsUp = freezed,
-    Object? promptChangePassword = null,
   }) {
     return _then(_value.copyWith(
       authenticated: null == authenticated
@@ -60,10 +58,6 @@ class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
           ? _value.headsUp
           : headsUp // ignore: cast_nullable_to_non_nullable
               as String?,
-      promptChangePassword: null == promptChangePassword
-          ? _value.promptChangePassword
-          : promptChangePassword // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -76,7 +70,7 @@ abstract class _$$BookingStateImplCopyWith<$Res>
       __$$BookingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool authenticated, String? headsUp, bool promptChangePassword});
+  $Res call({bool authenticated, String? headsUp});
 }
 
 /// @nodoc
@@ -92,7 +86,6 @@ class __$$BookingStateImplCopyWithImpl<$Res>
   $Res call({
     Object? authenticated = null,
     Object? headsUp = freezed,
-    Object? promptChangePassword = null,
   }) {
     return _then(_$BookingStateImpl(
       authenticated: null == authenticated
@@ -103,10 +96,6 @@ class __$$BookingStateImplCopyWithImpl<$Res>
           ? _value.headsUp
           : headsUp // ignore: cast_nullable_to_non_nullable
               as String?,
-      promptChangePassword: null == promptChangePassword
-          ? _value.promptChangePassword
-          : promptChangePassword // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -115,20 +104,16 @@ class __$$BookingStateImplCopyWithImpl<$Res>
 
 class _$BookingStateImpl with DiagnosticableTreeMixin implements _BookingState {
   const _$BookingStateImpl(
-      {required this.authenticated,
-      required this.headsUp,
-      required this.promptChangePassword});
+      {required this.authenticated, required this.headsUp});
 
   @override
   final bool authenticated;
   @override
   final String? headsUp;
-  @override
-  final bool promptChangePassword;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookingState(authenticated: $authenticated, headsUp: $headsUp, promptChangePassword: $promptChangePassword)';
+    return 'BookingState(authenticated: $authenticated, headsUp: $headsUp)';
   }
 
   @override
@@ -137,8 +122,7 @@ class _$BookingStateImpl with DiagnosticableTreeMixin implements _BookingState {
     properties
       ..add(DiagnosticsProperty('type', 'BookingState'))
       ..add(DiagnosticsProperty('authenticated', authenticated))
-      ..add(DiagnosticsProperty('headsUp', headsUp))
-      ..add(DiagnosticsProperty('promptChangePassword', promptChangePassword));
+      ..add(DiagnosticsProperty('headsUp', headsUp));
   }
 
   @override
@@ -148,14 +132,11 @@ class _$BookingStateImpl with DiagnosticableTreeMixin implements _BookingState {
             other is _$BookingStateImpl &&
             (identical(other.authenticated, authenticated) ||
                 other.authenticated == authenticated) &&
-            (identical(other.headsUp, headsUp) || other.headsUp == headsUp) &&
-            (identical(other.promptChangePassword, promptChangePassword) ||
-                other.promptChangePassword == promptChangePassword));
+            (identical(other.headsUp, headsUp) || other.headsUp == headsUp));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, authenticated, headsUp, promptChangePassword);
+  int get hashCode => Object.hash(runtimeType, authenticated, headsUp);
 
   @JsonKey(ignore: true)
   @override
@@ -167,15 +148,12 @@ class _$BookingStateImpl with DiagnosticableTreeMixin implements _BookingState {
 abstract class _BookingState implements BookingState {
   const factory _BookingState(
       {required final bool authenticated,
-      required final String? headsUp,
-      required final bool promptChangePassword}) = _$BookingStateImpl;
+      required final String? headsUp}) = _$BookingStateImpl;
 
   @override
   bool get authenticated;
   @override
   String? get headsUp;
-  @override
-  bool get promptChangePassword;
   @override
   @JsonKey(ignore: true)
   _$$BookingStateImplCopyWith<_$BookingStateImpl> get copyWith =>

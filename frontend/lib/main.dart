@@ -18,7 +18,7 @@ void main() {
   final wsUri = Uri.parse('ws://localhost:8181');
   final channel = WebSocketChannel.connect(wsUri);
 
-  // Start app with dependency provider ChatBloc
+  // Start app with dependency provider BookingBloc
   runApp(BlocProvider(
     create: (context) => BookingBloc(channel: channel),
     child: const CourtBookingApp(),

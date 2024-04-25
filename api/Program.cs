@@ -20,13 +20,8 @@ public static class Startup
         
         var credentialService = new CredentialService();
 
-        // Generate salt
-        string salt = credentialService.GenerateSalt();
-        Console.WriteLine("Salt: " + salt);
 
-        // Hash the password "12345678" with the generated salt
-        string hashedPassword = credentialService.Hash("12345678", salt);
-        Console.WriteLine("Hashed Password: " + hashedPassword);  
+
         webApp.Run();
     }
 

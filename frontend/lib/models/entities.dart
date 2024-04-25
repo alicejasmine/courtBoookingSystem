@@ -11,10 +11,8 @@ class EndUser with _$EndUser {
   const factory EndUser({
     required int id,
     required String email,
-    String? fullName,
     String? hash,
-    String? salt,
-    bool? firstLogin,
+    String? salt
   }) = _EndUser;
 
   factory EndUser.fromJson(Map<String, dynamic> json) =>

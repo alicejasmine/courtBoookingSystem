@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/bloc/booking_bloc.dart';
 
 import '../bloc/booking_state.dart';
-import 'change_password_form.dart';
 
 
 
@@ -33,50 +32,48 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
   }
 
 
+  _onRegister() {
+    if (!_authFormKey.currentState!.validate()) return;
+    context.read<BookingBloc>().register(
+        password: _passwordController.text, email: _usernameController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<BookingBloc,BookingState>(
-      listener: (context, state) {
-        if (state.promptChangePassword) {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ChangePasswordForm()),
-          );
-        }
-      },
-      child: Form(
-        key: _authFormKey,
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(border: OutlineInputBorder()),
-              controller: _usernameController,
-              validator: (value) =>
-              (value ?? "").contains("@") ? null : "Must be a valid email",
-              onChanged: (value) => _authFormKey.currentState!.validate(),
-            ),
-            const SizedBox(height: 8),
-            TextFormField(
-              decoration: const InputDecoration(border: OutlineInputBorder()),
-              controller: _passwordController,
-              obscureText: true,
-              validator: (value) => (value ?? "").length >= 6
-                  ? null
-                  : "Must be at least 6 in length",
-              onChanged: (value) => _authFormKey.currentState!.validate(),
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                OutlinedButton(
-                  onPressed: _onSignIn,
-                  child: const Text("Sign in"),
-                ),
-                const SizedBox(width: 8),
-              ],
-            )
-          ],
-        ),
+    return Form(
+      key: _authFormKey,
+      child: Column(
+        children: [
+          TextFormField(
+            decoration: const InputDecoration(border: OutlineInputBorder()),
+            controller: _usernameController,
+            validator: (value) =>
+            (value ?? "").contains("@") ? null : "Must be a valid email",
+            onChanged: (value) => _authFormKey.currentState!.validate(),
+          ),
+          const SizedBox(height: 8),
+          TextFormField(
+            decoration: const InputDecoration(border: OutlineInputBorder()),
+            controller: _passwordController,
+            obscureText: true,
+            validator: (value) => (value ?? "").length >= 6
+                ? null
+                : "Must be at least 6 in length",
+            onChanged: (value) => _authFormKey.currentState!.validate(),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              OutlinedButton(
+                  onPressed: _onRegister, child: const Text("Register")),
+              const SizedBox(width: 8),OutlinedButton(
+                  onPressed: _onSignIn, child: const Text("Sign in")),
+             
+            ],
+          )
+        ],
       ),
     );
   }
 }
+
