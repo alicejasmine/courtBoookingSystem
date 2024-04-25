@@ -5,7 +5,8 @@ import 'package:frontend/bloc/booking_state.dart';
 
 import 'authenticate_form.dart';
 import 'common.dart';
-import 'home_Screen.dart';
+import 'home.dart';
+import 'nav_bar.dart';
 
 
 class CourtBookingApp extends StatelessWidget {
@@ -33,7 +34,7 @@ class CourtBookingApp extends StatelessWidget {
             if (state.authenticated) {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (_) => HomeScreen(),
+                  builder: (_) => Home(),
                 ),
               );
             }
