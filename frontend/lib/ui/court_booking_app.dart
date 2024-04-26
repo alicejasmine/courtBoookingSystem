@@ -5,8 +5,7 @@ import 'package:frontend/bloc/booking_state.dart';
 
 import 'authenticate_form.dart';
 import 'common.dart';
-import 'home.dart';
-import 'nav_bar.dart';
+import 'navigation.dart';
 
 
 class CourtBookingApp extends StatelessWidget {
@@ -34,27 +33,25 @@ class CourtBookingApp extends StatelessWidget {
             if (state.authenticated) {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (_) => Home(),
+                  builder: (_) => Navigation(),
                 ),
               );
             }
           },
-          builder: (context, state) =>
-              SingleChildScrollView(
-                child: Center(
-                  child: Container(
-                    constraints: const BoxConstraints(maxWidth: 400),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Header("Authenticate"),
-                        const AuthenticateForm(),
-
-                      ],
-                    ),
-                  ),
+          builder: (context, state) => SingleChildScrollView(
+            child: Center(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 400),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Header("Authenticate"),
+                    const AuthenticateForm(),
+                  ],
                 ),
               ),
+            ),
+          ),
         ),
       ),
     );

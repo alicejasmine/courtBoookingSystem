@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
   final String data;
+
   const Header(this.data, {super.key});
 
   @override
