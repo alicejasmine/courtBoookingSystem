@@ -4,6 +4,8 @@ import 'package:frontend/bloc/booking_bloc.dart';
 
 import '../bloc/booking_state.dart';
 
+
+
 class AuthenticateForm extends StatefulWidget {
   const AuthenticateForm({super.key});
 
@@ -29,6 +31,7 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
         password: _passwordController.text, email: _usernameController.text);
   }
 
+
   _onRegister() {
     if (!_authFormKey.currentState!.validate()) return;
     context.read<BookingBloc>().register(
@@ -45,7 +48,7 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
             decoration: const InputDecoration(border: OutlineInputBorder()),
             controller: _usernameController,
             validator: (value) =>
-                (value ?? "").contains("@") ? null : "Must be a valid email",
+            (value ?? "").contains("@") ? null : "Must be a valid email",
             onChanged: (value) => _authFormKey.currentState!.validate(),
           ),
           const SizedBox(height: 8),
@@ -63,9 +66,9 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
             children: [
               OutlinedButton(
                   onPressed: _onRegister, child: const Text("Register")),
-              const SizedBox(width: 8),
-              OutlinedButton(
+              const SizedBox(width: 8),OutlinedButton(
                   onPressed: _onSignIn, child: const Text("Sign in")),
+             
             ],
           )
         ],
@@ -73,3 +76,4 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
     );
   }
 }
+
