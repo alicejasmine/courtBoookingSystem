@@ -947,3 +947,186 @@ abstract class _ServerSendsErrorMessageToClient
           _$ServerSendsErrorMessageToClientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+ClientWantsToFetchCourtAvailability
+    _$ClientWantsToFetchCourtAvailabilityFromJson(Map<String, dynamic> json) {
+  return _ClientWantsToFetchCourtAvailability.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ClientWantsToFetchCourtAvailability {
+  String get eventType => throw _privateConstructorUsedError;
+  DateTime get selectedDate => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ClientWantsToFetchCourtAvailabilityCopyWith<
+          ClientWantsToFetchCourtAvailability>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ClientWantsToFetchCourtAvailabilityCopyWith<$Res> {
+  factory $ClientWantsToFetchCourtAvailabilityCopyWith(
+          ClientWantsToFetchCourtAvailability value,
+          $Res Function(ClientWantsToFetchCourtAvailability) then) =
+      _$ClientWantsToFetchCourtAvailabilityCopyWithImpl<$Res,
+          ClientWantsToFetchCourtAvailability>;
+  @useResult
+  $Res call({String eventType, DateTime selectedDate});
+}
+
+/// @nodoc
+class _$ClientWantsToFetchCourtAvailabilityCopyWithImpl<$Res,
+        $Val extends ClientWantsToFetchCourtAvailability>
+    implements $ClientWantsToFetchCourtAvailabilityCopyWith<$Res> {
+  _$ClientWantsToFetchCourtAvailabilityCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? selectedDate = null,
+  }) {
+    return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ClientWantsToFetchCourtAvailabilityImplCopyWith<$Res>
+    implements $ClientWantsToFetchCourtAvailabilityCopyWith<$Res> {
+  factory _$$ClientWantsToFetchCourtAvailabilityImplCopyWith(
+          _$ClientWantsToFetchCourtAvailabilityImpl value,
+          $Res Function(_$ClientWantsToFetchCourtAvailabilityImpl) then) =
+      __$$ClientWantsToFetchCourtAvailabilityImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String eventType, DateTime selectedDate});
+}
+
+/// @nodoc
+class __$$ClientWantsToFetchCourtAvailabilityImplCopyWithImpl<$Res>
+    extends _$ClientWantsToFetchCourtAvailabilityCopyWithImpl<$Res,
+        _$ClientWantsToFetchCourtAvailabilityImpl>
+    implements _$$ClientWantsToFetchCourtAvailabilityImplCopyWith<$Res> {
+  __$$ClientWantsToFetchCourtAvailabilityImplCopyWithImpl(
+      _$ClientWantsToFetchCourtAvailabilityImpl _value,
+      $Res Function(_$ClientWantsToFetchCourtAvailabilityImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? selectedDate = null,
+  }) {
+    return _then(_$ClientWantsToFetchCourtAvailabilityImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ClientWantsToFetchCourtAvailabilityImpl
+    with DiagnosticableTreeMixin
+    implements _ClientWantsToFetchCourtAvailability {
+  const _$ClientWantsToFetchCourtAvailabilityImpl(
+      {required this.eventType, required this.selectedDate});
+
+  factory _$ClientWantsToFetchCourtAvailabilityImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ClientWantsToFetchCourtAvailabilityImplFromJson(json);
+
+  @override
+  final String eventType;
+  @override
+  final DateTime selectedDate;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ClientWantsToFetchCourtAvailability(eventType: $eventType, selectedDate: $selectedDate)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ClientWantsToFetchCourtAvailability'))
+      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('selectedDate', selectedDate));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClientWantsToFetchCourtAvailabilityImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
+            (identical(other.selectedDate, selectedDate) ||
+                other.selectedDate == selectedDate));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, eventType, selectedDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ClientWantsToFetchCourtAvailabilityImplCopyWith<
+          _$ClientWantsToFetchCourtAvailabilityImpl>
+      get copyWith => __$$ClientWantsToFetchCourtAvailabilityImplCopyWithImpl<
+          _$ClientWantsToFetchCourtAvailabilityImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ClientWantsToFetchCourtAvailabilityImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ClientWantsToFetchCourtAvailability
+    implements ClientWantsToFetchCourtAvailability {
+  const factory _ClientWantsToFetchCourtAvailability(
+          {required final String eventType,
+          required final DateTime selectedDate}) =
+      _$ClientWantsToFetchCourtAvailabilityImpl;
+
+  factory _ClientWantsToFetchCourtAvailability.fromJson(
+          Map<String, dynamic> json) =
+      _$ClientWantsToFetchCourtAvailabilityImpl.fromJson;
+
+  @override
+  String get eventType;
+  @override
+  DateTime get selectedDate;
+  @override
+  @JsonKey(ignore: true)
+  _$$ClientWantsToFetchCourtAvailabilityImplCopyWith<
+          _$ClientWantsToFetchCourtAvailabilityImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

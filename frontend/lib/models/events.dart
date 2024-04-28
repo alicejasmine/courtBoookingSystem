@@ -93,7 +93,21 @@ class ServerSendsErrorMessageToClient extends ServerEvent
       _$ServerSendsErrorMessageToClientFromJson(json);
 }
 
+@freezed
+class ClientWantsToFetchCourtAvailability extends ClientEvent
+    with _$ClientWantsToFetchCourtAvailability {
+  static const String name = "ClientWantsToFetchCourtAvailability";
+  const factory ClientWantsToFetchCourtAvailability({
+    required String eventType,
+    required DateTime selectedDate,
+  }) = _ClientWantsToFetchCourtAvailability;
 
+  factory ClientWantsToFetchCourtAvailability.fromJson(
+      Map<String, Object?> json) =>
+      _$ClientWantsToFetchCourtAvailabilityFromJson(json);
+
+
+}
 
 
 

@@ -82,3 +82,18 @@ Map<String, dynamic> _$$ServerSendsErrorMessageToClientImplToJson(
       'errorMessage': instance.errorMessage,
       'receivedMessage': instance.receivedMessage,
     };
+
+_$ClientWantsToFetchCourtAvailabilityImpl
+    _$$ClientWantsToFetchCourtAvailabilityImplFromJson(
+            Map<String, dynamic> json) =>
+        _$ClientWantsToFetchCourtAvailabilityImpl(
+          eventType: json['eventType'] as String,
+          selectedDate: DateTime.parse(json['selectedDate'] as String),
+        );
+
+Map<String, dynamic> _$$ClientWantsToFetchCourtAvailabilityImplToJson(
+        _$ClientWantsToFetchCourtAvailabilityImpl instance) =>
+    <String, dynamic>{
+      'eventType': instance.eventType,
+      'selectedDate': instance.selectedDate.toIso8601String(),
+    };
