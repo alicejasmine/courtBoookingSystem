@@ -87,7 +87,9 @@ class _HomeState extends State<Home> {
                 children: courtDataList.map((courtData) {
 
                   return Container(
-                    color: Colors.blue,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.deepOrange), // Set border color here
+                    ),
                     alignment: Alignment.center,
                     margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
                     padding: const EdgeInsets.all(8),
