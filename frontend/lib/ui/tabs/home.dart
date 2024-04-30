@@ -3,9 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import '../../bloc/court_availability/court_availability_bloc.dart';
+import '../../bloc/court_availability/court_availability_state.dart';
+import '../../models/entities.dart';
 
-import '../../bloc/booking_bloc.dart';
-import '../../models/events.dart';
 
 
 class Home extends StatefulWidget {
@@ -19,11 +20,90 @@ class _HomeState extends State<Home> {
 
   DateTime selectedDate = DateTime.now();
 
-  
-  final Map<String, List<String>> courtTimeSlots = {
-    'Court 1': ['8:00 AM - 9:00 AM', '9:00 AM - 10:00 AM'],
-    'Court 2': ['10:00 AM - 11:00 AM', '11:00 AM - 12:00 PM'],
-  };
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Book a Court'),
+      ),
+      body: BlocBuilder<CourtAvailabilityBloc, CourtAvailabilityState>(
+        builder: (context, state) {
+
+          return Column(
+            children: [
+              TextButton.icon(
+                onPressed: () => _selectDate(context),
+                icon: const Icon(Icons.calendar_today),
+                label: Text('Select Date: ${DateFormat('dd/MM/yy').format(selectedDate)}'),
+              ),
+              Expanded(
+                child: state.courtAvailability.isNotEmpty
+                    ? _buildCourtAvailabilityList(state.courtAvailability)
+                    : const Center(child: Text('No court availability.')),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildCourtAvailabilityList(List<CourtAvailability> availability) {
+    if (availability.isEmpty) {
+      return const Center(child: Text('No court availability.'));
+    }
+
+    // Group court availability by court number
+    Map<int, List<CourtAvailability>> groupedAvailability = {};
+    for (var courtData in availability) {
+      groupedAvailability.putIfAbsent(courtData.courtNumber, () => []).add(courtData);
+    }
+
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: groupedAvailability.entries.map((entry) {
+          int? courtNumber = entry.key;
+          List<CourtAvailability> courtDataList = entry.value;
+
+          if (courtNumber == null || courtDataList.isEmpty) {
+            return const SizedBox();
+          }
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                child: Text(
+                  'Court $courtNumber',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Column(
+                children: courtDataList.map((courtData) {
+
+                  return Container(
+                    color: Colors.blue,
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      '${(courtData.startTime)} - ${(courtData.endTime)}',
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
+          );
+        }).toList(),
+      ),
+    );
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
@@ -35,60 +115,10 @@ class _HomeState extends State<Home> {
     if (pickedDate != null && pickedDate != selectedDate) {
       setState(() {
         selectedDate = pickedDate;
-        context.read<BookingBloc>().add(
-          ClientWantsToFetchCourtAvailability(selectedDate: selectedDate, eventType: 'ClientWantsToFetchCourtAvailability'),
-        );
-
+        print('Selected date: $selectedDate');
+        context.read<CourtAvailabilityBloc>().fetchCourtAvailability(selectedDate);
       });
     }
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Book a Court'),
-      ),
-      body: Column(
-        children: [
-          TextButton.icon(
-            onPressed: () => _selectDate(context),
-            icon: const Icon(Icons.calendar_today),
-            label: Text('Select Date: ${DateFormat('dd/MM/yy').format(selectedDate)}'),
-          ),
-          Expanded(
-            child: GridView.count(
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
-              crossAxisCount: 2,
-              children: [
-                for (var court in courtTimeSlots.keys) 
-                  Column(
-                    children: [
-                      Text(
-                        court,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      for (var timeSlot in courtTimeSlots[court]!) 
-                        Container(
-                          color: Colors.blue,
-                          alignment: Alignment.center,
-                          child: Text(
-                            timeSlot,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          height: 40,
-                        ),
-                    ],
-                  ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
+
