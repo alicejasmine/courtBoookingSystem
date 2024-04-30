@@ -20,8 +20,8 @@ public class courtAvailabilityRepository (NpgsqlDataSource source, CredentialSer
         using var conn = source.OpenConnection();
         return conn.Query<CourtAvailability>(@$"
 SELECT 
-     court_availability.court_id as {nameof(CourtAvailability.court_id)},
-     court_number as {nameof(CourtAvailability.court_number)},
+     court_availability.court_id as {nameof(CourtAvailability.courtId)},
+     court_number as {nameof(CourtAvailability.courtNumber)},
      start_time as {nameof(CourtAvailability.startTime)}, 
     end_time as {nameof(CourtAvailability.endTime)}
    
