@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
-import '../models/entities.dart';
+import '../../models/entities.dart';
 part 'booking_state.freezed.dart';
 
 

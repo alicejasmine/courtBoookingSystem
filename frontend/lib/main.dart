@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/booking_bloc.dart';
+
 import 'package:frontend/logger_bloc_observer.dart';
 import 'package:logging_appenders/logging_appenders.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'package:logging/logging.dart';
 
+import 'bloc/auth/booking_bloc.dart';
 import 'bloc/court_availability/court_availability_bloc.dart';
 import 'ui/court_booking_app.dart';
 

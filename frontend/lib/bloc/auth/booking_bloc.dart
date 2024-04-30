@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-import '../models/events.dart';
+import '../../models/events.dart';
 import 'booking_state.dart';
 
 

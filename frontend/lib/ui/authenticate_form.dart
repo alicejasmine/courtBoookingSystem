@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/booking_bloc.dart';
 
-import '../bloc/booking_state.dart';
+import '../bloc/auth/booking_bloc.dart';
+
 
 
 
