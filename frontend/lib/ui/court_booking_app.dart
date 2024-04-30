@@ -10,7 +10,7 @@ import 'navigation.dart';
 
 
 class CourtBookingApp extends StatelessWidget {
-  const CourtBookingApp({super.key});
+  const CourtBookingApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
