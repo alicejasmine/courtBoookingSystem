@@ -21,3 +21,21 @@ Map<String, dynamic> _$$EndUserImplToJson(_$EndUserImpl instance) =>
       'hash': instance.hash,
       'salt': instance.salt,
     };
+
+_$CourtAvailabilityImpl _$$CourtAvailabilityImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CourtAvailabilityImpl(
+      courtId: json['courtId'] as int,
+      courtNumber: json['courtNumber'] as int,
+      startTime: json['startTime'] as String,
+      endTime: json['endTime'] as String,
+    );
+
+Map<String, dynamic> _$$CourtAvailabilityImplToJson(
+        _$CourtAvailabilityImpl instance) =>
+    <String, dynamic>{
+      'courtId': instance.courtId,
+      'courtNumber': instance.courtNumber,
+      'startTime': instance.startTime,
+      'endTime': instance.endTime,
+    };
