@@ -16,7 +16,7 @@ public class ClientWantsToFetchCourtAvailabilityDto : BaseDto
     [Required]  public DateTime selectedDate  { get; set; }
 }
 
-[RequireAuthentication]
+//[RequireAuthentication]
 [ValidateDataAnnotations]
 public class ClientWantsToFetchCourtAvailability(
     courtAvailabilityRepository courtAvailabilityRepository) : BaseEventHandler<ClientWantsToFetchCourtAvailabilityDto>
