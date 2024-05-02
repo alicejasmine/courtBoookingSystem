@@ -7,6 +7,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'package:logging/logging.dart';
 
+import 'BroadcastWsChannel.dart';
 import 'bloc/auth/booking_bloc.dart';
 import 'bloc/court_availability/court_availability_bloc.dart';
 import 'ui/court_booking_app.dart';
@@ -20,22 +21,19 @@ void main() {
   final wsUri = Uri.parse('ws://localhost:8181');
   final channel = WebSocketChannel.connect(wsUri);
 
- 
+  final broadcastWsChannel = BroadcastWsChannel(wsUri);
+
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider<BookingBloc>(
-          create: (context) => BookingBloc(channel: channel),
+          create: (context) => BookingBloc(channel: broadcastWsChannel),
         ),
         BlocProvider<CourtAvailabilityBloc>(
-          create: (context) {
-            // Create a new WebSocket channel for CourtAvailabilityBloc
-            final courtAvailabilityChannel = WebSocketChannel.connect(wsUri);
-            return CourtAvailabilityBloc(channel: courtAvailabilityChannel);
-          },
-        ),
+        create: (context) => CourtAvailabilityBloc(channel: broadcastWsChannel),
+  ),
       ],
-      child: const CourtBookingApp(),
+      child:  CourtBookingApp(),
     ),
   );
 }

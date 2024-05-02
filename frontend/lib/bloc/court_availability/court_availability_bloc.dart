@@ -1,22 +1,21 @@
-
-
 import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
+import '../../BroadcastWsChannel.dart';
 import '../../models/events.dart';
 import 'court_availability_state.dart';
 
 class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
-  final WebSocketChannel _channel;
   late StreamSubscription _channelSubscription;
+  final BroadcastWsChannel _channel;
 
-
-  CourtAvailabilityBloc({required WebSocketChannel channel})
+  CourtAvailabilityBloc({required BroadcastWsChannel channel})
       : _channel = channel,
         super(CourtAvailabilityState.empty()) {
+    // Handler for client events
     on<ClientEvent>(_onClientEvent);
 
     on<ServerSendsCourtAvailabilityToClient>(_onServerSendsCourtAvailabilityToClient);
@@ -33,7 +32,6 @@ class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
       addError(error);
     });
   }
-
   @override
   Future<void> close() async {
     // Remember to cancel the subscription when no longer needed.
@@ -43,7 +41,6 @@ class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
     super.close();
   }
 
-
   void fetchCourtAvailability(DateTime selectedDate) {
     print('Fetching court availability for date: $selectedDate');
     add(ClientWantsToFetchCourtAvailability(
@@ -52,11 +49,10 @@ class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
     ));
   }
 
-  FutureOr<void> _onClientEvent(ClientEvent event,
-      Emitter<CourtAvailabilityState> emit) {
+  FutureOr<void> _onClientEvent(
+      ClientEvent event, Emitter<CourtAvailabilityState> emit) {
     _channel.sink.add(jsonEncode(event.toJson()));
   }
-
 
   FutureOr<void> _onServerSendsCourtAvailabilityToClient(
       ServerSendsCourtAvailabilityToClient event,
@@ -68,13 +64,10 @@ class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
         message: 'No courts available for the selected date.',
       ));
     } else {
-
       emit(state.copyWith(
         courtAvailability: event.courtAvailability,
-        message: null, 
+        message: null,
       ));
     }
   }
-
-
 }
