@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/bloc/booking_bloc.dart';
-import 'package:frontend/bloc/booking_state.dart';
 
+
+import '../bloc/auth/booking_bloc.dart';
+import '../bloc/auth/booking_state.dart';
 import 'authenticate_form.dart';
 import 'common.dart';
 import 'navigation.dart';
@@ -10,7 +11,7 @@ import 'navigation.dart';
 
 
 class CourtBookingApp extends StatelessWidget {
-  const CourtBookingApp({super.key});
+  const CourtBookingApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

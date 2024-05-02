@@ -56,13 +56,16 @@ class ClientWantsToSignIn extends ClientEvent with _$ClientWantsToSignIn {
 class ServerEvent extends BaseEvent {
   static ServerEvent fromJson(Map<String, Object?> json) {
     final type = json['eventType'];
-    return switch (type) {
-      ServerAuthenticatesUser.name => ServerAuthenticatesUser.fromJson(json),
-      _ => throw "Unknown event type: $type in $json"
-    };
+    switch (type) {
+      case ServerAuthenticatesUser.name:
+        return ServerAuthenticatesUser.fromJson(json);
+      case ServerSendsCourtAvailabilityToClient.name:
+        return ServerSendsCourtAvailabilityToClient.fromJson(json);
+      default:
+        throw "Unknown event type: $type in $json";
+    }
   }
 }
-
 
 @freezed
 class ServerAuthenticatesUser extends ServerEvent
@@ -93,8 +96,34 @@ class ServerSendsErrorMessageToClient extends ServerEvent
       _$ServerSendsErrorMessageToClientFromJson(json);
 }
 
+@freezed
+class ClientWantsToFetchCourtAvailability extends ClientEvent
+    with _$ClientWantsToFetchCourtAvailability {
+  static const String name = "ClientWantsToFetchCourtAvailability";
+  const factory ClientWantsToFetchCourtAvailability({
+    required String eventType,
+    required DateTime selectedDate,
+  }) = _ClientWantsToFetchCourtAvailability;
+
+  factory ClientWantsToFetchCourtAvailability.fromJson(
+      Map<String, Object?> json) =>
+      _$ClientWantsToFetchCourtAvailabilityFromJson(json);
 
 
+}
+
+@freezed
+class ServerSendsCourtAvailabilityToClient extends ServerEvent with _$ServerSendsCourtAvailabilityToClient {
+  static const String name = "ServerSendsCourtAvailabilityToClient";
+  const factory ServerSendsCourtAvailabilityToClient({
+    required String eventType,
+    required List<CourtAvailability> courtAvailability,
+    String? message,
+  }) = _ServerSendsCourtAvailabilityToClient;
+
+  factory ServerSendsCourtAvailabilityToClient.fromJson(Map<String, dynamic> json) =>
+      _$ServerSendsCourtAvailabilityToClientFromJson(json);
+}
 
 
 
