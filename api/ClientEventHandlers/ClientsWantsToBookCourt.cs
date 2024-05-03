@@ -47,8 +47,7 @@ public class ClientWantsToBookCourt(CourtAvailabilityRepository courtAvailabilit
             CreationTime = DateTimeOffset.UtcNow
         };
         bookingRepository.CreateCourtBooking(courtBooking);
-
-        courtAvailabilityRepository.UpdateCourtAvailability(dto.CourtId, dto.SelectedDate, dto.StartTime, dto.EndTime);
+        
         socket.SendDto(new ServerSendsBookingConfirmation { ConfirmationMessage = "Booking successful" });
     }
 }

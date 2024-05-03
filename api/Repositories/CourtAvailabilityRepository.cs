@@ -32,19 +32,7 @@ AND booking_system.court_availability.is_available='true'
 ", new { selectedDate });
     }
 
-    public void UpdateCourtAvailability(int courtId, DateTime selectedDate, TimeSpan startTime, TimeSpan endTime)
-    {
-        using var conn = _dataSource.OpenConnection();
-
-        conn.Execute(@"
-        UPDATE booking_system.court_availability
-        SET is_available = false
-        WHERE court_id = @CourtId
-        AND date = @SelectedDate
-        AND start_time = @StartTime
-        AND end_time = @EndTime",
-            new { CourtId = courtId, SelectedDate = selectedDate, StartTime = startTime, EndTime = endTime });
-    }
+  
 
     public bool IsCourtAvailable(int courtId, DateTime selectedDate, TimeSpan startTime, TimeSpan endTime)
     {
