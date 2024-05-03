@@ -16,10 +16,10 @@ public class ClientWantsToFetchCourtAvailabilityDto : BaseDto
     [Required]  public DateTime selectedDate  { get; set; }
 }
 
-//[RequireAuthentication]
+[RequireAuthentication]
 [ValidateDataAnnotations]
 public class ClientWantsToFetchCourtAvailability(
-    courtAvailabilityRepository courtAvailabilityRepository) : BaseEventHandler<ClientWantsToFetchCourtAvailabilityDto>
+    CourtAvailabilityRepository courtAvailabilityRepository) : BaseEventHandler<ClientWantsToFetchCourtAvailabilityDto>
 {
     public override Task Handle(ClientWantsToFetchCourtAvailabilityDto dto, IWebSocketConnection socket)
     {

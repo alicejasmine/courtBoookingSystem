@@ -5,16 +5,16 @@ using Npgsql;
 
 namespace api.Repositories;
 
-public class CourtAvailabilityRepository 
+public class CourtAvailabilityRepository
 {
     private NpgsqlDataSource _dataSource;
-    
+
     public CourtAvailabilityRepository(NpgsqlDataSource dataSource)
     {
         _dataSource = dataSource;
     }
-   
-    
+
+
     public IEnumerable<CourtAvailability> GetAvailableCourts(DateTime selectedDate)
     {
         using var conn = _dataSource.OpenConnection();
@@ -28,16 +28,34 @@ SELECT
 FROM booking_system.court_availability
 JOIN booking_system.courts c on c.court_id = court_availability.court_id
 WHERE booking_system.court_availability.date =  @selectedDate", new { selectedDate });
-
-    }
-    
-    public void UpdateCourtAvailability(int dtoCourtId, DateTime dtoSelectedDate, TimeSpan dtoStartTime, TimeSpan dtoEndTime, bool b)
-    {
-        throw new NotImplementedException();
     }
 
-    public bool IsCourtAvailable(int dtoCourtId, DateTime dtoSelectedDate, TimeSpan dtoStartTime, TimeSpan dtoEndTime)
+    public void UpdateCourtAvailability(int courtId, DateTime selectedDate, TimeSpan startTime, TimeSpan endTime)
     {
-        throw new NotImplementedException();
+        using var conn = _dataSource.OpenConnection();
+
+        conn.Execute(@"
+        UPDATE booking_system.court_availability
+        SET is_available = false
+        WHERE court_id = @CourtId
+        AND date = @SelectedDate
+        AND start_time = @StartTime
+        AND end_time = @EndTime",
+            new { CourtId = courtId, SelectedDate = selectedDate, StartTime = startTime, EndTime = endTime });
+    }
+
+    public bool IsCourtAvailable(int courtId, DateTime selectedDate, TimeSpan startTime, TimeSpan endTime)
+    {
+        using var conn = _dataSource.OpenConnection();
+        var isAvailable = conn.QueryFirstOrDefault<bool>(@"
+        SELECT is_available
+        FROM booking_system.court_availability
+        WHERE court_id = @CourtId
+          AND date = @SelectedDate
+          AND start_time = @StartTime
+          AND end_time = @EndTime",
+            new { CourtId = courtId, SelectedDate = selectedDate, StartTime = startTime, EndTime = endTime });
+
+        return isAvailable;
     }
 }

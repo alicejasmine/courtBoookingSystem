@@ -16,40 +16,39 @@ public class ClientWantsToBookCourtDto : BaseDto
     [Required] public DateTime SelectedDate { get; set; }
     [Required] public TimeSpan StartTime { get; set; }
     [Required] public TimeSpan EndTime { get; set; }
+    [Required] public DateTimeOffset CreationTime { get; set; }
 }
-
-/*
 
 [RequireAuthentication]
 [ValidateDataAnnotations]
 public class ClientWantsToBookCourt(CourtAvailabilityRepository courtAvailabilityRepository,
     CourtBookingRepository bookingRepository) : BaseEventHandler<ClientWantsToBookCourtDto>
 {
-    
-
     public override async Task Handle(ClientWantsToBookCourtDto dto, IWebSocketConnection socket)
     {
-     
-        bool isCourtAvailable = courtAvailabilityRepository.IsCourtAvailable(dto.CourtId, dto.SelectedDate, dto.StartTime, dto.EndTime);
-        
+        bool isCourtAvailable =
+            courtAvailabilityRepository.IsCourtAvailable(dto.CourtId, dto.SelectedDate, dto.StartTime, dto.EndTime);
+
         if (!isCourtAvailable)
         {
-            
+            socket.SendDto(new ServerSendsErrorMessageToClient
+                { errorMessage = "Court is not available for the selected date and time." });
+            return;
         }
-        CourtBooking booking = new CourtBooking
+
+
+        var courtBooking = new CourtBooking
         {
             CourtId = dto.CourtId,
             UserId = dto.UserId,
-            Date = dto.SelectedDate,
+            SelectedDate = dto.SelectedDate,
             StartTime = dto.StartTime,
             EndTime = dto.EndTime,
+            CreationTime = DateTimeOffset.UtcNow
         };
+        bookingRepository.CreateCourtBooking(courtBooking);
 
-       
-        bookingRepository.CreateCourtBooking(booking);
-        courtAvailabilityRepository.UpdateCourtAvailability(dto.CourtId, dto.SelectedDate, dto.StartTime, dto.EndTime, false);
-        socket.SendDto(new ServerSendsBookingConfirmation { BookingId = booking.Id });
-
-       
+        courtAvailabilityRepository.UpdateCourtAvailability(dto.CourtId, dto.SelectedDate, dto.StartTime, dto.EndTime);
+        socket.SendDto(new ServerSendsBookingConfirmation { ConfirmationMessage = "Booking successful" });
     }
-}*/
+}

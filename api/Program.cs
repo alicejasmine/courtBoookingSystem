@@ -45,6 +45,8 @@ public static class Startup
         builder.Services.AddSingleton<UserRepository>();
                
         builder.Services.AddSingleton<CourtAvailabilityRepository>();
+        builder.Services.AddSingleton<CourtBookingRepository>();
+        
         var services = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());
 
         builder.WebHost.UseUrls("http://*:9999");
