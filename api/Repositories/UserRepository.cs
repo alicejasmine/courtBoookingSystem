@@ -7,22 +7,20 @@ using Serilog;
 
 namespace api.Repositories;
 
-public class UserRepository(NpgsqlDataSource source, CredentialService credentialService)
+public class UserRepository
 
 
 {
-    public static string ProperlyFormattedConnectionString(Uri uri) => string.Format(
-        "Server={0};Database={1};User Id={2};Password={3};Port={4};Pooling=false;",
-        uri.Host,
-        uri.AbsolutePath.Trim('/'),
-        uri.UserInfo.Split(':')[0],
-        uri.UserInfo.Split(':')[1],
-        uri.Port > 0 ? uri.Port : 5432);
+    private NpgsqlDataSource _dataSource;
 
+    public UserRepository(NpgsqlDataSource dataSource)
+    {
+        _dataSource = dataSource;
+    }
 
     public EndUser GetUser(FindByEmailParams findByEmailParams)
     {
-        using var conn = source.OpenConnection();
+        using var conn = _dataSource.OpenConnection();
         return conn.QueryFirstOrDefault<EndUser>($@"
                         select user_id as {nameof(EndUser.Id)},
                             email as {nameof(EndUser.Email)},
@@ -35,7 +33,7 @@ public class UserRepository(NpgsqlDataSource source, CredentialService credentia
 
     public EndUser InsertUser(InsertUserParams insertUserParams)
     {
-        using var conn = source.OpenConnection();
+        using var conn = _dataSource.OpenConnection();
         return conn.QueryFirstOrDefault<EndUser>(@$"
 insert into booking_system.users (email, hash, salt) 
 values (
@@ -51,7 +49,7 @@ returning
  
     public bool DoesUserAlreadyExist(FindByEmailParams findByEmailParams)
     {
-        using var conn = source.OpenConnection();
+        using var conn = _dataSource.OpenConnection();
         return conn.ExecuteScalar<int>(@$"
 select count(*) from booking_system.users where email = @{nameof(findByEmailParams.email)};", findByEmailParams) == 1;
     }
@@ -60,7 +58,7 @@ select count(*) from booking_system.users where email = @{nameof(findByEmailPara
     
     public EndUser GetUserById(int userId)
     {
-        using var conn = source.OpenConnection();
+        using var conn = _dataSource.OpenConnection();
         return conn.QueryFirstOrDefault<EndUser>($@"
         SELECT 
             user_id as {nameof(EndUser.Id)},

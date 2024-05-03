@@ -5,19 +5,19 @@ using Npgsql;
 
 namespace api.Repositories;
 
-public class courtAvailabilityRepository (NpgsqlDataSource source, CredentialService credentialService)
+public class CourtAvailabilityRepository 
 {
-    public static string ProperlyFormattedConnectionString(Uri uri) => string.Format(
-        "Server={0};Database={1};User Id={2};Password={3};Port={4};Pooling=false;",
-        uri.Host,
-        uri.AbsolutePath.Trim('/'),
-        uri.UserInfo.Split(':')[0],
-        uri.UserInfo.Split(':')[1],
-        uri.Port > 0 ? uri.Port : 5432);
+    private NpgsqlDataSource _dataSource;
+    
+    public CourtAvailabilityRepository(NpgsqlDataSource dataSource)
+    {
+        _dataSource = dataSource;
+    }
+   
     
     public IEnumerable<CourtAvailability> GetAvailableCourts(DateTime selectedDate)
     {
-        using var conn = source.OpenConnection();
+        using var conn = _dataSource.OpenConnection();
         return conn.Query<CourtAvailability>(@$"
 SELECT 
      court_availability.court_id as {nameof(CourtAvailability.courtId)},
@@ -29,5 +29,15 @@ FROM booking_system.court_availability
 JOIN booking_system.courts c on c.court_id = court_availability.court_id
 WHERE booking_system.court_availability.date =  @selectedDate", new { selectedDate });
 
+    }
+    
+    public void UpdateCourtAvailability(int dtoCourtId, DateTime dtoSelectedDate, TimeSpan dtoStartTime, TimeSpan dtoEndTime, bool b)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsCourtAvailable(int dtoCourtId, DateTime dtoSelectedDate, TimeSpan dtoStartTime, TimeSpan dtoEndTime)
+    {
+        throw new NotImplementedException();
     }
 }

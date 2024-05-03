@@ -37,14 +37,14 @@ public static class Startup
         builder.Services.AddSingleton<CredentialService>();
         builder.Services.AddSingleton<TokenService>();
 
-        Uri uri = builder.Configuration.GetValue<Uri>("PG_CONN")!;
-        builder.Services.AddNpgsqlDataSource(UserRepository.ProperlyFormattedConnectionString(uri),
-           sourceBuilder => { sourceBuilder.EnableParameterLogging(); });
+      
+        builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString,
+            dataSourceBuilder => dataSourceBuilder.EnableParameterLogging());
  
         
         builder.Services.AddSingleton<UserRepository>();
                
-        builder.Services.AddSingleton<courtAvailabilityRepository>();
+        builder.Services.AddSingleton<CourtAvailabilityRepository>();
         var services = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());
 
         builder.WebHost.UseUrls("http://*:9999");

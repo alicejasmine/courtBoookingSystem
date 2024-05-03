@@ -1,11 +1,18 @@
 ﻿using api.Models;
+using Npgsql;
 
 namespace api.Repositories;
 
 public class CourtBookingRepository
 {
+    private NpgsqlDataSource _dataSource;
+
+    public CourtBookingRepository(NpgsqlDataSource dataSource)
+    {
+        _dataSource = dataSource;
+    }
     public void CreateCourtBooking(CourtBooking booking)
     {
-        throw new NotImplementedException();
+        using var conn = _dataSource.OpenConnection();
     }
 }
