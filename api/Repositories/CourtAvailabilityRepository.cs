@@ -27,7 +27,9 @@ SELECT
    
 FROM booking_system.court_availability
 JOIN booking_system.courts c on c.court_id = court_availability.court_id
-WHERE booking_system.court_availability.date =  @selectedDate", new { selectedDate });
+WHERE booking_system.court_availability.date =  @selectedDate
+AND booking_system.court_availability.is_available='true'
+", new { selectedDate });
     }
 
     public void UpdateCourtAvailability(int courtId, DateTime selectedDate, TimeSpan startTime, TimeSpan endTime)
