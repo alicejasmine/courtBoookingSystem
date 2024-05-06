@@ -3,9 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/court_availability/court_availability_bloc.dart';
 import '../../bloc/court_availability/court_availability_state.dart';
+import '../../bloc/court_booking/court_booking_bloc.dart';
 import '../../models/entities.dart';
+import '../../models/events.dart';
 
 
 
@@ -19,6 +22,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   DateTime selectedDate = DateTime.now();
+  CourtAvailability? selectedSlot;
 
   @override
   Widget build(BuildContext context) {
@@ -85,10 +89,14 @@ class _HomeState extends State<Home> {
               ),
               Column(
                 children: courtDataList.map((courtData) {
-
-                  return Container(
+                  bool isSelected = selectedSlot == courtData;
+                  return Column(
+                    children: [ GestureDetector(
+                  onTap: () => _selectSlot(courtData),
+                  child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.deepOrange), // Set border color here
+                      border: Border.all(color: Colors.deepOrange),
+                  color: isSelected ? Colors.amber : Colors.transparent,
                     ),
                     alignment: Alignment.center,
                     margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -97,6 +105,20 @@ class _HomeState extends State<Home> {
                       '${(courtData.startTime)} - ${(courtData.endTime)}',
                       style: const TextStyle(fontSize: 14),
                     ),
+                  ),
+                  ),
+                  if (isSelected)
+                  Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: ElevatedButton(
+                  onPressed: () {
+
+                  _bookCourt(context,courtData);
+                  },
+                  child: Text('Book'),
+                  ),
+                  ),
+                  ],
                   );
                 }).toList(),
               ),
@@ -106,7 +128,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -121,6 +142,40 @@ class _HomeState extends State<Home> {
         context.read<CourtAvailabilityBloc>().fetchCourtAvailability(selectedDate);
       });
     }
+  }
+
+
+
+  void _selectSlot(CourtAvailability slot) {
+    setState(() {
+      selectedSlot = slot;
+    });
+  }
+
+
+  void _bookCourt(BuildContext context, CourtAvailability courtData) {
+    final courtBookingBloc = context.read<CourtBookingBloc>();
+    final authState = context.read<AuthBloc>().state;
+
+    final booking = CourtBooking(
+      courtId: courtData.courtId,
+      userId: authState.userId,
+      selectedDate: selectedDate,
+      startTime: courtData.startTime,
+      endTime: courtData.endTime,
+      creationTime: DateTime.now(),
+    );
+
+    final event = ClientWantsToBookCourt(
+      eventType: ClientWantsToBookCourt.name,
+      courtId: booking.courtId,
+      userId: booking.userId,
+      selectedDate: booking.selectedDate,
+      startTime: booking.startTime,
+      endTime: booking.endTime,
+      creationTime: booking.creationTime,
+    );
+    courtBookingBloc.add(event);
   }
 }
 
