@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend/bloc/court_booking/court_booking_bloc.dart';
 
 import 'package:frontend/logger_bloc_observer.dart';
 import 'package:logging_appenders/logging_appenders.dart';
@@ -32,6 +33,10 @@ void main() {
         BlocProvider<CourtAvailabilityBloc>(
         create: (context) => CourtAvailabilityBloc(channel: broadcastWsChannel),
   ),
+
+        BlocProvider<CourtBookingBloc>(
+          create: (context) => CourtBookingBloc(channel: broadcastWsChannel),
+        ),
       ],
       child:  CourtBookingApp(),
     ),
