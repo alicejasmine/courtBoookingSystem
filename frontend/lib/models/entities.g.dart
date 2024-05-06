@@ -39,3 +39,23 @@ Map<String, dynamic> _$$CourtAvailabilityImplToJson(
       'startTime': instance.startTime,
       'endTime': instance.endTime,
     };
+
+_$CourtBookingImpl _$$CourtBookingImplFromJson(Map<String, dynamic> json) =>
+    _$CourtBookingImpl(
+      courtId: json['courtId'] as int,
+      userId: json['userId'] as int,
+      selectedDate: DateTime.parse(json['selectedDate'] as String),
+      startTime: json['startTime'] as String,
+      endTime: json['endTime'] as String,
+      creationTime: DateTime.parse(json['creationTime'] as String),
+    );
+
+Map<String, dynamic> _$$CourtBookingImplToJson(_$CourtBookingImpl instance) =>
+    <String, dynamic>{
+      'courtId': instance.courtId,
+      'userId': instance.userId,
+      'selectedDate': instance.selectedDate.toIso8601String(),
+      'startTime': instance.startTime,
+      'endTime': instance.endTime,
+      'creationTime': instance.creationTime.toIso8601String(),
+    };

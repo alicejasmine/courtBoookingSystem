@@ -34,6 +34,23 @@ class CourtAvailability with _$CourtAvailability {
   factory CourtAvailability.fromJson(Map<String, dynamic> json) =>
       _$CourtAvailabilityFromJson(json);
 
+}
+
+
+@freezed
+class CourtBooking with _$CourtBooking {
+  const factory CourtBooking({
+
+    required int courtId,
+    required int userId,
+    required DateTime selectedDate,
+    required String startTime,
+    required String endTime,
+    required DateTime creationTime,
+}) = _CourtBooking;
+
+  factory CourtBooking.fromJson(Map<String, dynamic> json) =>
+      _$CourtBookingFromJson(json);
 
 
 
