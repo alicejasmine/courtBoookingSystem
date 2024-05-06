@@ -76,6 +76,7 @@ class ServerAuthenticatesUser extends ServerEvent
   const factory ServerAuthenticatesUser({
     required String eventType,
     required String jwt,
+    required int userId,
   }) = _ServerAuthenticatesUser;
 
   factory ServerAuthenticatesUser.fromJson(Map<String, Object?> json) =>
