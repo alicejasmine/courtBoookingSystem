@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/auth/booking_bloc.dart';
+import '../bloc/auth/auth_bloc.dart';
 
 
 
@@ -27,14 +27,14 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
 
   _onSignIn() {
     if (!_authFormKey.currentState!.validate()) return;
-    context.read<BookingBloc>().signIn(
+    context.read<AuthBloc>().signIn(
         password: _passwordController.text, email: _usernameController.text);
   }
 
 
   _onRegister() {
     if (!_authFormKey.currentState!.validate()) return;
-    context.read<BookingBloc>().register(
+    context.read<AuthBloc>().register(
         password: _passwordController.text, email: _usernameController.text);
   }
 

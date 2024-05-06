@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'booking_state.dart';
+part of 'auth_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,28 +15,27 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$BookingState {
+mixin _$AuthState {
   bool get authenticated => throw _privateConstructorUsedError;
   String? get headsUp => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $BookingStateCopyWith<BookingState> get copyWith =>
+  $AuthStateCopyWith<AuthState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BookingStateCopyWith<$Res> {
-  factory $BookingStateCopyWith(
-          BookingState value, $Res Function(BookingState) then) =
-      _$BookingStateCopyWithImpl<$Res, BookingState>;
+abstract class $AuthStateCopyWith<$Res> {
+  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
+      _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
   $Res call({bool authenticated, String? headsUp});
 }
 
 /// @nodoc
-class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
-    implements $BookingStateCopyWith<$Res> {
-  _$BookingStateCopyWithImpl(this._value, this._then);
+class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
+    implements $AuthStateCopyWith<$Res> {
+  _$AuthStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -63,22 +62,22 @@ class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
 }
 
 /// @nodoc
-abstract class _$$BookingStateImplCopyWith<$Res>
-    implements $BookingStateCopyWith<$Res> {
-  factory _$$BookingStateImplCopyWith(
-          _$BookingStateImpl value, $Res Function(_$BookingStateImpl) then) =
-      __$$BookingStateImplCopyWithImpl<$Res>;
+abstract class _$$AuthStateImplCopyWith<$Res>
+    implements $AuthStateCopyWith<$Res> {
+  factory _$$AuthStateImplCopyWith(
+          _$AuthStateImpl value, $Res Function(_$AuthStateImpl) then) =
+      __$$AuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool authenticated, String? headsUp});
 }
 
 /// @nodoc
-class __$$BookingStateImplCopyWithImpl<$Res>
-    extends _$BookingStateCopyWithImpl<$Res, _$BookingStateImpl>
-    implements _$$BookingStateImplCopyWith<$Res> {
-  __$$BookingStateImplCopyWithImpl(
-      _$BookingStateImpl _value, $Res Function(_$BookingStateImpl) _then)
+class __$$AuthStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateImpl>
+    implements _$$AuthStateImplCopyWith<$Res> {
+  __$$AuthStateImplCopyWithImpl(
+      _$AuthStateImpl _value, $Res Function(_$AuthStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +86,7 @@ class __$$BookingStateImplCopyWithImpl<$Res>
     Object? authenticated = null,
     Object? headsUp = freezed,
   }) {
-    return _then(_$BookingStateImpl(
+    return _then(_$AuthStateImpl(
       authenticated: null == authenticated
           ? _value.authenticated
           : authenticated // ignore: cast_nullable_to_non_nullable
@@ -102,9 +101,8 @@ class __$$BookingStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BookingStateImpl with DiagnosticableTreeMixin implements _BookingState {
-  const _$BookingStateImpl(
-      {required this.authenticated, required this.headsUp});
+class _$AuthStateImpl with DiagnosticableTreeMixin implements _AuthState {
+  const _$AuthStateImpl({required this.authenticated, required this.headsUp});
 
   @override
   final bool authenticated;
@@ -113,14 +111,14 @@ class _$BookingStateImpl with DiagnosticableTreeMixin implements _BookingState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookingState(authenticated: $authenticated, headsUp: $headsUp)';
+    return 'AuthState(authenticated: $authenticated, headsUp: $headsUp)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'BookingState'))
+      ..add(DiagnosticsProperty('type', 'AuthState'))
       ..add(DiagnosticsProperty('authenticated', authenticated))
       ..add(DiagnosticsProperty('headsUp', headsUp));
   }
@@ -129,7 +127,7 @@ class _$BookingStateImpl with DiagnosticableTreeMixin implements _BookingState {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BookingStateImpl &&
+            other is _$AuthStateImpl &&
             (identical(other.authenticated, authenticated) ||
                 other.authenticated == authenticated) &&
             (identical(other.headsUp, headsUp) || other.headsUp == headsUp));
@@ -141,14 +139,14 @@ class _$BookingStateImpl with DiagnosticableTreeMixin implements _BookingState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BookingStateImplCopyWith<_$BookingStateImpl> get copyWith =>
-      __$$BookingStateImplCopyWithImpl<_$BookingStateImpl>(this, _$identity);
+  _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
+      __$$AuthStateImplCopyWithImpl<_$AuthStateImpl>(this, _$identity);
 }
 
-abstract class _BookingState implements BookingState {
-  const factory _BookingState(
+abstract class _AuthState implements AuthState {
+  const factory _AuthState(
       {required final bool authenticated,
-      required final String? headsUp}) = _$BookingStateImpl;
+      required final String? headsUp}) = _$AuthStateImpl;
 
   @override
   bool get authenticated;
@@ -156,6 +154,6 @@ abstract class _BookingState implements BookingState {
   String? get headsUp;
   @override
   @JsonKey(ignore: true)
-  _$$BookingStateImplCopyWith<_$BookingStateImpl> get copyWith =>
+  _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

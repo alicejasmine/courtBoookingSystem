@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-import '../bloc/auth/booking_bloc.dart';
-import '../bloc/auth/booking_state.dart';
+import '../bloc/auth/auth_bloc.dart';
+import '../bloc/auth/auth_state.dart';
 import 'authenticate_form.dart';
 import 'common.dart';
 import 'navigation.dart';
@@ -27,7 +27,7 @@ class CourtBookingApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.system,
       home: Scaffold(
-        body: BlocConsumer<BookingBloc, BookingState>(
+        body: BlocConsumer<AuthBloc, AuthState>(
           listenWhen: (previous, current) => current.headsUp != null,
           listener: (context, state) {
             ScaffoldMessenger.of(context)

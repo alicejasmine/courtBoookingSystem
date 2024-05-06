@@ -8,7 +8,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:logging/logging.dart';
 
 import 'BroadcastWsChannel.dart';
-import 'bloc/auth/booking_bloc.dart';
+import 'bloc/auth/auth_bloc.dart';
 import 'bloc/court_availability/court_availability_bloc.dart';
 import 'ui/court_booking_app.dart';
 
@@ -26,8 +26,8 @@ void main() {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider<BookingBloc>(
-          create: (context) => BookingBloc(channel: broadcastWsChannel),
+        BlocProvider<AuthBloc>(
+          create: (context) => AuthBloc(channel: broadcastWsChannel),
         ),
         BlocProvider<CourtAvailabilityBloc>(
         create: (context) => CourtAvailabilityBloc(channel: broadcastWsChannel),

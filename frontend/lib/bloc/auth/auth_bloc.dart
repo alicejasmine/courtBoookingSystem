@@ -6,16 +6,16 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../../BroadcastWsChannel.dart';
 import '../../models/events.dart';
-import 'booking_state.dart';
+import 'auth_state.dart';
 
-class BookingBloc extends Bloc<BaseEvent, BookingState> {
+class AuthBloc extends Bloc<BaseEvent, AuthState> {
   late StreamSubscription _channelSubscription;
   String? _jwt;
   final BroadcastWsChannel _channel;
 
-  BookingBloc({required BroadcastWsChannel channel})
+  AuthBloc({required BroadcastWsChannel channel})
       : _channel = channel,
-        super(BookingState.empty()) {
+        super(AuthState.empty()) {
     // Handler for client events
     on<ClientEvent>(_onClientEvent);
 
@@ -58,12 +58,12 @@ class BookingBloc extends Bloc<BaseEvent, BookingState> {
     ));
   }
 
-  FutureOr<void> _onClientEvent(ClientEvent event, Emitter<BookingState> emit) {
+  FutureOr<void> _onClientEvent(ClientEvent event, Emitter<AuthState> emit) {
     _channel.sink.add(jsonEncode(event.toJson()));
   }
 
   FutureOr<void> _onServerAuthenticatesUser(
-      ServerAuthenticatesUser event, Emitter<BookingState> emit) {
+      ServerAuthenticatesUser event, Emitter<AuthState> emit) {
     _jwt = event.jwt;
     emit(state.copyWith(
       authenticated: true,
@@ -72,7 +72,7 @@ class BookingBloc extends Bloc<BaseEvent, BookingState> {
   }
 
   FutureOr<void> _onServerSendsErrorMessageToClient(
-      ServerSendsErrorMessageToClient event, Emitter<BookingState> emit) {
+      ServerSendsErrorMessageToClient event, Emitter<AuthState> emit) {
     emit(state.copyWith(headsUp: '⚠️ ${event.errorMessage}'));
   }
 }
