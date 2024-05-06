@@ -58,6 +58,7 @@ _$ServerAuthenticatesUserImpl _$$ServerAuthenticatesUserImplFromJson(
     _$ServerAuthenticatesUserImpl(
       eventType: json['eventType'] as String,
       jwt: json['jwt'] as String,
+      userId: json['userId'] as int,
     );
 
 Map<String, dynamic> _$$ServerAuthenticatesUserImplToJson(
@@ -65,6 +66,7 @@ Map<String, dynamic> _$$ServerAuthenticatesUserImplToJson(
     <String, dynamic>{
       'eventType': instance.eventType,
       'jwt': instance.jwt,
+      'userId': instance.userId,
     };
 
 _$ServerSendsErrorMessageToClientImpl
@@ -115,4 +117,42 @@ Map<String, dynamic> _$$ServerSendsCourtAvailabilityToClientImplToJson(
       'eventType': instance.eventType,
       'courtAvailability': instance.courtAvailability,
       'message': instance.message,
+    };
+
+_$ClientWantsToBookCourtImpl _$$ClientWantsToBookCourtImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ClientWantsToBookCourtImpl(
+      eventType: json['eventType'] as String,
+      courtId: json['courtId'] as int,
+      userId: json['userId'] as int,
+      selectedDate: DateTime.parse(json['selectedDate'] as String),
+      startTime: json['startTime'] as String,
+      endTime: json['endTime'] as String,
+      creationTime: DateTime.parse(json['creationTime'] as String),
+    );
+
+Map<String, dynamic> _$$ClientWantsToBookCourtImplToJson(
+        _$ClientWantsToBookCourtImpl instance) =>
+    <String, dynamic>{
+      'eventType': instance.eventType,
+      'courtId': instance.courtId,
+      'userId': instance.userId,
+      'selectedDate': instance.selectedDate.toIso8601String(),
+      'startTime': instance.startTime,
+      'endTime': instance.endTime,
+      'creationTime': instance.creationTime.toIso8601String(),
+    };
+
+_$ServerSendsBookingConfirmationImpl
+    _$$ServerSendsBookingConfirmationImplFromJson(Map<String, dynamic> json) =>
+        _$ServerSendsBookingConfirmationImpl(
+          eventType: json['eventType'] as String,
+          confirmationMessage: json['confirmationMessage'] as String,
+        );
+
+Map<String, dynamic> _$$ServerSendsBookingConfirmationImplToJson(
+        _$ServerSendsBookingConfirmationImpl instance) =>
+    <String, dynamic>{
+      'eventType': instance.eventType,
+      'confirmationMessage': instance.confirmationMessage,
     };

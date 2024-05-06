@@ -12,6 +12,8 @@ abstract class ClientEvent extends BaseEvent {
   Map<String, dynamic> toJson();
 }
 
+//user auth events
+
 @freezed
 class ClientWantsToAuthenticateWithJwt extends ClientEvent
     with _$ClientWantsToAuthenticateWithJwt {
@@ -96,6 +98,8 @@ class ServerSendsErrorMessageToClient extends ServerEvent
       _$ServerSendsErrorMessageToClientFromJson(json);
 }
 
+// court availability events
+
 @freezed
 class ClientWantsToFetchCourtAvailability extends ClientEvent
     with _$ClientWantsToFetchCourtAvailability {
@@ -125,6 +129,37 @@ class ServerSendsCourtAvailabilityToClient extends ServerEvent with _$ServerSend
       _$ServerSendsCourtAvailabilityToClientFromJson(json);
 }
 
+//court booking events
+
+@freezed
+class ClientWantsToBookCourt extends ClientEvent
+    with _$ClientWantsToBookCourt {
+  static const String name = "ClientWantsToBookCourt";
+  const factory ClientWantsToBookCourt({
+    required String eventType,
+    required int courtId,
+    required int userId,
+    required DateTime selectedDate,
+    required String startTime,
+    required String endTime,
+    required DateTime creationTime,
+  }) = _ClientWantsToBookCourt;
+
+  factory ClientWantsToBookCourt.fromJson(Map<String, Object?> json) =>
+      _$ClientWantsToBookCourtFromJson(json);
+}
 
 
+@freezed
+class ServerSendsBookingConfirmation extends ServerEvent
+    with _$ServerSendsBookingConfirmation {
+  static const String name = "ServerSendsBookingConfirmation";
+  const factory ServerSendsBookingConfirmation({
+    required String eventType,
+    required String confirmationMessage,
+  }) = _ServerSendsBookingConfirmation;
 
+  factory ServerSendsBookingConfirmation.fromJson(
+      Map<String, Object?> json) =>
+      _$ServerSendsBookingConfirmationFromJson(json);
+}
