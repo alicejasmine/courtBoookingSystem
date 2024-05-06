@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthState {
   bool get authenticated => throw _privateConstructorUsedError;
   String? get headsUp => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({bool authenticated, String? headsUp});
+  $Res call({bool authenticated, String? headsUp, int userId});
 }
 
 /// @nodoc
@@ -47,6 +48,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $Res call({
     Object? authenticated = null,
     Object? headsUp = freezed,
+    Object? userId = null,
   }) {
     return _then(_value.copyWith(
       authenticated: null == authenticated
@@ -57,6 +59,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.headsUp
           : headsUp // ignore: cast_nullable_to_non_nullable
               as String?,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -69,7 +75,7 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       __$$AuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool authenticated, String? headsUp});
+  $Res call({bool authenticated, String? headsUp, int userId});
 }
 
 /// @nodoc
@@ -85,6 +91,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
   $Res call({
     Object? authenticated = null,
     Object? headsUp = freezed,
+    Object? userId = null,
   }) {
     return _then(_$AuthStateImpl(
       authenticated: null == authenticated
@@ -95,6 +102,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.headsUp
           : headsUp // ignore: cast_nullable_to_non_nullable
               as String?,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -102,16 +113,21 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthStateImpl with DiagnosticableTreeMixin implements _AuthState {
-  const _$AuthStateImpl({required this.authenticated, required this.headsUp});
+  const _$AuthStateImpl(
+      {required this.authenticated,
+      required this.headsUp,
+      required this.userId});
 
   @override
   final bool authenticated;
   @override
   final String? headsUp;
+  @override
+  final int userId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AuthState(authenticated: $authenticated, headsUp: $headsUp)';
+    return 'AuthState(authenticated: $authenticated, headsUp: $headsUp, userId: $userId)';
   }
 
   @override
@@ -120,7 +136,8 @@ class _$AuthStateImpl with DiagnosticableTreeMixin implements _AuthState {
     properties
       ..add(DiagnosticsProperty('type', 'AuthState'))
       ..add(DiagnosticsProperty('authenticated', authenticated))
-      ..add(DiagnosticsProperty('headsUp', headsUp));
+      ..add(DiagnosticsProperty('headsUp', headsUp))
+      ..add(DiagnosticsProperty('userId', userId));
   }
 
   @override
@@ -130,11 +147,12 @@ class _$AuthStateImpl with DiagnosticableTreeMixin implements _AuthState {
             other is _$AuthStateImpl &&
             (identical(other.authenticated, authenticated) ||
                 other.authenticated == authenticated) &&
-            (identical(other.headsUp, headsUp) || other.headsUp == headsUp));
+            (identical(other.headsUp, headsUp) || other.headsUp == headsUp) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authenticated, headsUp);
+  int get hashCode => Object.hash(runtimeType, authenticated, headsUp, userId);
 
   @JsonKey(ignore: true)
   @override
@@ -146,12 +164,15 @@ class _$AuthStateImpl with DiagnosticableTreeMixin implements _AuthState {
 abstract class _AuthState implements AuthState {
   const factory _AuthState(
       {required final bool authenticated,
-      required final String? headsUp}) = _$AuthStateImpl;
+      required final String? headsUp,
+      required final int userId}) = _$AuthStateImpl;
 
   @override
   bool get authenticated;
   @override
   String? get headsUp;
+  @override
+  int get userId;
   @override
   @JsonKey(ignore: true)
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>

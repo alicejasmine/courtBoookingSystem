@@ -68,6 +68,7 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
     emit(state.copyWith(
       authenticated: true,
       headsUp: 'Authentication successful!',
+      userId: event.userId,
     ));
   }
 

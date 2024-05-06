@@ -32,7 +32,7 @@ public class ClientWantsToAuthenticate(
         if (!expectedHash.Equals(user.Hash)) throw new AuthenticationException("Wrong credentials!");
         WebSocketStateService.GetClient(socket.ConnectionInfo.Id).IsAuthenticated = true;
         WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
-        socket.SendDto(new ServerAuthenticatesUser { jwt = tokenService.IssueJwt(user) });
+        socket.SendDto(new ServerAuthenticatesUser { jwt = tokenService.IssueJwt(user),userId = user.Id });
         return Task.CompletedTask;
     }
 }
