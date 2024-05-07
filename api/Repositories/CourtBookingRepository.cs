@@ -55,4 +55,27 @@ public class CourtBookingRepository
         AND end_time = @EndTime",
             new { CourtId = courtId, SelectedDate = selectedDate, StartTime = startTime, EndTime = endTime });
     }
+
+    public List<CourtBooking> getBookingsByUserId(int userId)
+    {
+        using var conn = _dataSource.OpenConnection();
+        
+        string sql = $@"
+        SELECT 
+            booking_id AS {nameof(CourtBooking.BookingId)},
+            court_id AS {nameof(CourtBooking.CourtId)},
+            user_id AS {nameof(CourtBooking.UserId)},
+            date AS {nameof(CourtBooking.SelectedDate)},
+            start_time AS {nameof(CourtBooking.StartTime)},
+            end_time AS {nameof(CourtBooking.EndTime)},
+            creation_time AS {nameof(CourtBooking.CreationTime)}
+        FROM 
+            booking_system.bookings 
+        WHERE 
+            user_id = @userId";
+        
+return conn.Query<CourtBooking>(sql, new { userId }).AsList();
+
+       
+    }
 }
