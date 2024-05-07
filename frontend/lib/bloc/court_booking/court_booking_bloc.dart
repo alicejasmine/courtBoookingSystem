@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend/models/entities.dart';
 
 import '../../BroadcastWsChannel.dart';
 import '../../models/events.dart';
@@ -28,6 +29,7 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
       addError(error);
     });
   }
+
   @override
   Future<void> close() async {
     // Remember to cancel the subscription when no longer needed.
@@ -37,23 +39,30 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
   }
 
 
-  FutureOr<void> _onClientEvent(
-      ClientEvent event, Emitter<CourtBookingState> emit) {
+  FutureOr<void> _onClientEvent(ClientEvent event,
+      Emitter<CourtBookingState> emit) {
     _channel.sink.add(jsonEncode(event.toJson()));
   }
 
 
-
   FutureOr<void> _onServerSendsBookingConfirmation(
-      ServerSendsBookingConfirmation event,
-      Emitter<CourtBookingState> emit) {
-      emit(state.copyWith(
-        confirmationMessage: 'booking confirmed',
-      ));
-    }
+      ServerSendsBookingConfirmation event, Emitter<CourtBookingState> emit) {
+    print("Received confirmation event: ${event.confirmationMessage}");
+    emit(state.copyWith(
+      confirmationMessage: event.confirmationMessage,
+    ));
+  }
 
 
-  Future<void> bookCourt(ClientWantsToBookCourt event) async {
-    add(event);
+  void bookCourt(CourtBooking booking) {
+    add(ClientWantsToBookCourt(
+      eventType: ClientWantsToBookCourt.name,
+      courtId: booking.courtId,
+      userId: booking.userId,
+      selectedDate: booking.selectedDate,
+      startTime: booking.startTime,
+      endTime: booking.endTime,
+      creationTime: booking.creationTime,
+    ));
   }
 }

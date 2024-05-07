@@ -6,6 +6,7 @@ using api.Repositories;
 using api.ServerEvents;
 using Fleck;
 using lib;
+using Serilog;
 
 namespace api.ClientEventHandlers;
 
@@ -47,7 +48,7 @@ public class ClientWantsToBookCourt(CourtAvailabilityRepository courtAvailabilit
             CreationTime = DateTimeOffset.UtcNow
         };
         bookingRepository.CreateCourtBooking(courtBooking);
-        
-        socket.SendDto(new ServerSendsBookingConfirmation { ConfirmationMessage = "Booking successful" });
+
+        socket.SendDto(new ServerSendsBookingConfirmation { confirmationMessage = "Booking successful" });
     }
 }

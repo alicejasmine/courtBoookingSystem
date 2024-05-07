@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -7,6 +6,7 @@ import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/court_availability/court_availability_bloc.dart';
 import '../../bloc/court_availability/court_availability_state.dart';
 import '../../bloc/court_booking/court_booking_bloc.dart';
+import '../../bloc/court_booking/court_booking_state.dart';
 import '../../models/entities.dart';
 import '../../models/events.dart';
 
@@ -44,6 +44,15 @@ class _HomeState extends State<Home> {
                 child: state.courtAvailability.isNotEmpty
                     ? _buildCourtAvailabilityList(state.courtAvailability)
                     : const Center(child: Text('No court availability.')),
+              ),
+              BlocBuilder<CourtBookingBloc, CourtBookingState>(
+                builder: (context, bookingState) {
+                  if (bookingState.confirmationMessage =="Booking successful") {
+                    return Text(bookingState.confirmationMessage!);
+                  } else {
+                    return Container();
+                  }
+                },
               ),
             ],
           );
