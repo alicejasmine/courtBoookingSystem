@@ -21,7 +21,7 @@ using Fleck;
      {
          socket.SendDto(new ServerSendsUserBookingsToClient
          {
-             userBookings = bookingRepository.getBookingsByUserId(dto.UserId),
+             userBookings = bookingRepository.GetBookingsByUserId(dto.UserId),
          });
          return Task.CompletedTask;
      

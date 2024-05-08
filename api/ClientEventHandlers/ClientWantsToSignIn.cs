@@ -28,11 +28,11 @@ public class ClientWantsToAuthenticate(
 
         var user = userRepository.GetUser(new FindByEmailParams(request.email!));
 
-        var expectedHash = credentialService.Hash(request.password!, user.Salt!);
-        if (!expectedHash.Equals(user.Hash)) throw new AuthenticationException("Wrong credentials!");
+        var expectedHash = credentialService.Hash(request.password!, user.salt!);
+        if (!expectedHash.Equals(user.hash)) throw new AuthenticationException("Wrong credentials!");
         WebSocketStateService.GetClient(socket.ConnectionInfo.Id).IsAuthenticated = true;
         WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
-        socket.SendDto(new ServerAuthenticatesUser { jwt = tokenService.IssueJwt(user),userId = user.Id });
+        socket.SendDto(new ServerAuthenticatesUser { jwt = tokenService.IssueJwt(user),userId = user.id });
         return Task.CompletedTask;
     }
 }
