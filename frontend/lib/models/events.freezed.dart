@@ -2022,7 +2022,8 @@ ServerSendsUserBookingsToClient _$ServerSendsUserBookingsToClientFromJson(
 /// @nodoc
 mixin _$ServerSendsUserBookingsToClient {
   String get eventType => throw _privateConstructorUsedError;
-  List<CourtBooking> get userBookings => throw _privateConstructorUsedError;
+  List<CourtBookingWithCourtNumber> get userBookings =>
+      throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -2040,7 +2041,9 @@ abstract class $ServerSendsUserBookingsToClientCopyWith<$Res> {
           ServerSendsUserBookingsToClient>;
   @useResult
   $Res call(
-      {String eventType, List<CourtBooking> userBookings, String? message});
+      {String eventType,
+      List<CourtBookingWithCourtNumber> userBookings,
+      String? message});
 }
 
 /// @nodoc
@@ -2069,7 +2072,7 @@ class _$ServerSendsUserBookingsToClientCopyWithImpl<$Res,
       userBookings: null == userBookings
           ? _value.userBookings
           : userBookings // ignore: cast_nullable_to_non_nullable
-              as List<CourtBooking>,
+              as List<CourtBookingWithCourtNumber>,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -2088,7 +2091,9 @@ abstract class _$$ServerSendsUserBookingsToClientImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String eventType, List<CourtBooking> userBookings, String? message});
+      {String eventType,
+      List<CourtBookingWithCourtNumber> userBookings,
+      String? message});
 }
 
 /// @nodoc
@@ -2116,7 +2121,7 @@ class __$$ServerSendsUserBookingsToClientImplCopyWithImpl<$Res>
       userBookings: null == userBookings
           ? _value._userBookings
           : userBookings // ignore: cast_nullable_to_non_nullable
-              as List<CourtBooking>,
+              as List<CourtBookingWithCourtNumber>,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -2132,7 +2137,7 @@ class _$ServerSendsUserBookingsToClientImpl
     implements _ServerSendsUserBookingsToClient {
   const _$ServerSendsUserBookingsToClientImpl(
       {required this.eventType,
-      required final List<CourtBooking> userBookings,
+      required final List<CourtBookingWithCourtNumber> userBookings,
       this.message})
       : _userBookings = userBookings;
 
@@ -2142,9 +2147,9 @@ class _$ServerSendsUserBookingsToClientImpl
 
   @override
   final String eventType;
-  final List<CourtBooking> _userBookings;
+  final List<CourtBookingWithCourtNumber> _userBookings;
   @override
-  List<CourtBooking> get userBookings {
+  List<CourtBookingWithCourtNumber> get userBookings {
     if (_userBookings is EqualUnmodifiableListView) return _userBookings;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_userBookings);
@@ -2205,7 +2210,7 @@ abstract class _ServerSendsUserBookingsToClient
     implements ServerSendsUserBookingsToClient {
   const factory _ServerSendsUserBookingsToClient(
       {required final String eventType,
-      required final List<CourtBooking> userBookings,
+      required final List<CourtBookingWithCourtNumber> userBookings,
       final String? message}) = _$ServerSendsUserBookingsToClientImpl;
 
   factory _ServerSendsUserBookingsToClient.fromJson(Map<String, dynamic> json) =
@@ -2214,7 +2219,7 @@ abstract class _ServerSendsUserBookingsToClient
   @override
   String get eventType;
   @override
-  List<CourtBooking> get userBookings;
+  List<CourtBookingWithCourtNumber> get userBookings;
   @override
   String? get message;
   @override

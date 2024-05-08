@@ -6,5 +6,5 @@ namespace api.ServerEvents;
 
 public class ServerSendsUserBookingsToClient:BaseDto
 {
-    [Required] public IEnumerable<CourtBooking> userBookings { get; set; }
+    [Required] public IEnumerable<CourtBookingWithCourtNumber> userBookings { get; set; }
 }

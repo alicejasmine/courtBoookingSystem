@@ -189,7 +189,7 @@ class ServerSendsUserBookingsToClient extends ServerEvent with _$ServerSendsUser
   static const String name = "ServerSendsUserBookingsToClient";
   const factory ServerSendsUserBookingsToClient({
     required String eventType,
-    required List<CourtBooking> userBookings,
+    required List<CourtBookingWithCourtNumber> userBookings,
     String? message,
   }) = _ServerSendsUserBookingsToClient;
 

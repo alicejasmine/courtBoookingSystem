@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CourtBookingState {
   String? get confirmationMessage => throw _privateConstructorUsedError;
-  List<CourtBooking> get userBookings => throw _privateConstructorUsedError;
+  List<CourtBookingWithCourtNumber> get userBookings =>
+      throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -33,7 +34,7 @@ abstract class $CourtBookingStateCopyWith<$Res> {
   @useResult
   $Res call(
       {String? confirmationMessage,
-      List<CourtBooking> userBookings,
+      List<CourtBookingWithCourtNumber> userBookings,
       String? message});
 }
 
@@ -62,7 +63,7 @@ class _$CourtBookingStateCopyWithImpl<$Res, $Val extends CourtBookingState>
       userBookings: null == userBookings
           ? _value.userBookings
           : userBookings // ignore: cast_nullable_to_non_nullable
-              as List<CourtBooking>,
+              as List<CourtBookingWithCourtNumber>,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -81,7 +82,7 @@ abstract class _$$CourtBookingStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? confirmationMessage,
-      List<CourtBooking> userBookings,
+      List<CourtBookingWithCourtNumber> userBookings,
       String? message});
 }
 
@@ -108,7 +109,7 @@ class __$$CourtBookingStateImplCopyWithImpl<$Res>
       userBookings: null == userBookings
           ? _value._userBookings
           : userBookings // ignore: cast_nullable_to_non_nullable
-              as List<CourtBooking>,
+              as List<CourtBookingWithCourtNumber>,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -122,15 +123,15 @@ class __$$CourtBookingStateImplCopyWithImpl<$Res>
 class _$CourtBookingStateImpl implements _CourtBookingState {
   const _$CourtBookingStateImpl(
       {required this.confirmationMessage,
-      required final List<CourtBooking> userBookings,
+      required final List<CourtBookingWithCourtNumber> userBookings,
       this.message})
       : _userBookings = userBookings;
 
   @override
   final String? confirmationMessage;
-  final List<CourtBooking> _userBookings;
+  final List<CourtBookingWithCourtNumber> _userBookings;
   @override
-  List<CourtBooking> get userBookings {
+  List<CourtBookingWithCourtNumber> get userBookings {
     if (_userBookings is EqualUnmodifiableListView) return _userBookings;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_userBookings);
@@ -171,13 +172,13 @@ class _$CourtBookingStateImpl implements _CourtBookingState {
 abstract class _CourtBookingState implements CourtBookingState {
   const factory _CourtBookingState(
       {required final String? confirmationMessage,
-      required final List<CourtBooking> userBookings,
+      required final List<CourtBookingWithCourtNumber> userBookings,
       final String? message}) = _$CourtBookingStateImpl;
 
   @override
   String? get confirmationMessage;
   @override
-  List<CourtBooking> get userBookings;
+  List<CourtBookingWithCourtNumber> get userBookings;
   @override
   String? get message;
   @override

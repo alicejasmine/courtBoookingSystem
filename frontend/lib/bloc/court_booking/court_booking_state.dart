@@ -9,7 +9,7 @@ part 'court_booking_state.freezed.dart';
 class CourtBookingState with _$CourtBookingState {
   const factory CourtBookingState({
     required String? confirmationMessage,
-    required List<CourtBooking> userBookings,
+    required List<CourtBookingWithCourtNumber> userBookings,
     String? message,
 
   }) = _CourtBookingState;

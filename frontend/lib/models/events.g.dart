@@ -176,7 +176,8 @@ _$ServerSendsUserBookingsToClientImpl
         _$ServerSendsUserBookingsToClientImpl(
           eventType: json['eventType'] as String,
           userBookings: (json['userBookings'] as List<dynamic>)
-              .map((e) => CourtBooking.fromJson(e as Map<String, dynamic>))
+              .map((e) => CourtBookingWithCourtNumber.fromJson(
+                  e as Map<String, dynamic>))
               .toList(),
           message: json['message'] as String?,
         );

@@ -35,7 +35,7 @@ class UserBookings extends StatelessWidget {
                 final booking = state.userBookings[index];
                 return Card(
                   child: ListTile(
-                    title: Text('Court ${booking.courtId} - ${DateFormat('dd/MM/yy').format(booking.selectedDate)}'),
+                    title: Text('Court ${booking.courtNumber} - ${DateFormat('dd/MM/yy').format(booking.selectedDate)}'),
                     subtitle: Text('${booking.startTime} - ${booking.endTime}'),
                   ),
                 );
