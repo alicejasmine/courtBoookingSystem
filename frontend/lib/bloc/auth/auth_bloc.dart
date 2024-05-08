@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-import '../../BroadcastWsChannel.dart';
+import '../../broadcast_ws_channel.dart';
 import '../../models/events.dart';
 import 'auth_state.dart';
 
@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
     // Handlers for server events
 
     on<ServerAuthenticatesUser>(_onServerAuthenticatesUser);
-    on<ServerSendsErrorMessageToClient>(_onServerSendsErrorMessageToClient);
+    on<ServerEvent>((event, _) => print(event));
 
     // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
@@ -72,8 +72,5 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
     ));
   }
 
-  FutureOr<void> _onServerSendsErrorMessageToClient(
-      ServerSendsErrorMessageToClient event, Emitter<AuthState> emit) {
-    emit(state.copyWith(headsUp: '⚠️ ${event.errorMessage}'));
-  }
+
 }

@@ -67,6 +67,8 @@ class ServerEvent extends BaseEvent {
         return ServerSendsBookingConfirmation.fromJson(json);
       case ServerSendsUserBookingsToClient.name:
         return ServerSendsUserBookingsToClient.fromJson(json);
+      case ServerSendsErrorMessageToClient.name:
+        return ServerSendsErrorMessageToClient.fromJson(json);
       default:
         throw "Unknown event type: $type in $json";
     }

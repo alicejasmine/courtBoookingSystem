@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/auth/auth_bloc.dart';
+import '../bloc/error/error_bloc.dart';
+import '../bloc/error/error_state.dart';
 
 
 
@@ -40,7 +42,8 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
+    return ErrorMessageWrapper(
+    child: Form(
       key: _authFormKey,
       child: Column(
         children: [
@@ -68,12 +71,34 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
                   onPressed: _onRegister, child: const Text("Register")),
               const SizedBox(width: 8),OutlinedButton(
                   onPressed: _onSignIn, child: const Text("Sign in")),
-             
             ],
           )
         ],
       ),
+    ),
     );
   }
 }
 
+
+class ErrorMessageWrapper extends StatelessWidget {
+  const ErrorMessageWrapper({
+    super.key,
+    required this.child,
+  });
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<ErrorBloc, BaseErrorState>(
+      listener: (context, state) {
+        if (state is ErrorState) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.message)));
+        }
+      },
+      child: child,
+    );
+  }
+}

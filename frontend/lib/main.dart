@@ -11,7 +11,8 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'package:logging/logging.dart';
 
-import 'BroadcastWsChannel.dart';
+import 'bloc/error/error_bloc.dart';
+import 'broadcast_ws_channel.dart';
 import 'bloc/auth/auth_bloc.dart';
 import 'bloc/court_availability/court_availability_bloc.dart';
 import 'ui/court_booking_app.dart';
@@ -45,8 +46,13 @@ void main() {
         BlocProvider<CourtBookingBloc>(
           create: (context) => CourtBookingBloc(channel: broadcastWsChannel),
         ),
+
+        BlocProvider<ErrorBloc>(
+          create: (context) => ErrorBloc(channel: broadcastWsChannel),
+        ),
       ],
       child:  CourtBookingApp(),
     ),
   );
 }
+

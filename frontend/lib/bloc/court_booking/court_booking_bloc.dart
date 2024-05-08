@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/models/entities.dart';
 
-import '../../BroadcastWsChannel.dart';
+import '../../broadcast_ws_channel.dart';
 import '../../models/events.dart';
 import 'court_booking_state.dart';
 
