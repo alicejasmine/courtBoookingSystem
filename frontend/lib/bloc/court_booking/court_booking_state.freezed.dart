@@ -17,6 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CourtBookingState {
   String? get confirmationMessage => throw _privateConstructorUsedError;
+  List<CourtBookingWithCourtNumber> get userBookings =>
+      throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CourtBookingStateCopyWith<CourtBookingState> get copyWith =>
@@ -29,7 +32,10 @@ abstract class $CourtBookingStateCopyWith<$Res> {
           CourtBookingState value, $Res Function(CourtBookingState) then) =
       _$CourtBookingStateCopyWithImpl<$Res, CourtBookingState>;
   @useResult
-  $Res call({String? confirmationMessage});
+  $Res call(
+      {String? confirmationMessage,
+      List<CourtBookingWithCourtNumber> userBookings,
+      String? message});
 }
 
 /// @nodoc
@@ -46,11 +52,21 @@ class _$CourtBookingStateCopyWithImpl<$Res, $Val extends CourtBookingState>
   @override
   $Res call({
     Object? confirmationMessage = freezed,
+    Object? userBookings = null,
+    Object? message = freezed,
   }) {
     return _then(_value.copyWith(
       confirmationMessage: freezed == confirmationMessage
           ? _value.confirmationMessage
           : confirmationMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userBookings: null == userBookings
+          ? _value.userBookings
+          : userBookings // ignore: cast_nullable_to_non_nullable
+              as List<CourtBookingWithCourtNumber>,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -64,7 +80,10 @@ abstract class _$$CourtBookingStateImplCopyWith<$Res>
       __$$CourtBookingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? confirmationMessage});
+  $Res call(
+      {String? confirmationMessage,
+      List<CourtBookingWithCourtNumber> userBookings,
+      String? message});
 }
 
 /// @nodoc
@@ -79,11 +98,21 @@ class __$$CourtBookingStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? confirmationMessage = freezed,
+    Object? userBookings = null,
+    Object? message = freezed,
   }) {
     return _then(_$CourtBookingStateImpl(
       confirmationMessage: freezed == confirmationMessage
           ? _value.confirmationMessage
           : confirmationMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userBookings: null == userBookings
+          ? _value._userBookings
+          : userBookings // ignore: cast_nullable_to_non_nullable
+              as List<CourtBookingWithCourtNumber>,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -92,14 +121,28 @@ class __$$CourtBookingStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CourtBookingStateImpl implements _CourtBookingState {
-  const _$CourtBookingStateImpl({required this.confirmationMessage});
+  const _$CourtBookingStateImpl(
+      {required this.confirmationMessage,
+      required final List<CourtBookingWithCourtNumber> userBookings,
+      this.message})
+      : _userBookings = userBookings;
 
   @override
   final String? confirmationMessage;
+  final List<CourtBookingWithCourtNumber> _userBookings;
+  @override
+  List<CourtBookingWithCourtNumber> get userBookings {
+    if (_userBookings is EqualUnmodifiableListView) return _userBookings;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_userBookings);
+  }
+
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'CourtBookingState(confirmationMessage: $confirmationMessage)';
+    return 'CourtBookingState(confirmationMessage: $confirmationMessage, userBookings: $userBookings, message: $message)';
   }
 
   @override
@@ -108,11 +151,15 @@ class _$CourtBookingStateImpl implements _CourtBookingState {
         (other.runtimeType == runtimeType &&
             other is _$CourtBookingStateImpl &&
             (identical(other.confirmationMessage, confirmationMessage) ||
-                other.confirmationMessage == confirmationMessage));
+                other.confirmationMessage == confirmationMessage) &&
+            const DeepCollectionEquality()
+                .equals(other._userBookings, _userBookings) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, confirmationMessage);
+  int get hashCode => Object.hash(runtimeType, confirmationMessage,
+      const DeepCollectionEquality().hash(_userBookings), message);
 
   @JsonKey(ignore: true)
   @override
@@ -124,10 +171,16 @@ class _$CourtBookingStateImpl implements _CourtBookingState {
 
 abstract class _CourtBookingState implements CourtBookingState {
   const factory _CourtBookingState(
-      {required final String? confirmationMessage}) = _$CourtBookingStateImpl;
+      {required final String? confirmationMessage,
+      required final List<CourtBookingWithCourtNumber> userBookings,
+      final String? message}) = _$CourtBookingStateImpl;
 
   @override
   String? get confirmationMessage;
+  @override
+  List<CourtBookingWithCourtNumber> get userBookings;
+  @override
+  String? get message;
   @override
   @JsonKey(ignore: true)
   _$$CourtBookingStateImplCopyWith<_$CourtBookingStateImpl> get copyWith =>

@@ -156,3 +156,36 @@ Map<String, dynamic> _$$ServerSendsBookingConfirmationImplToJson(
       'eventType': instance.eventType,
       'confirmationMessage': instance.confirmationMessage,
     };
+
+_$ClientWantsToFetchUserBookingsImpl
+    _$$ClientWantsToFetchUserBookingsImplFromJson(Map<String, dynamic> json) =>
+        _$ClientWantsToFetchUserBookingsImpl(
+          eventType: json['eventType'] as String,
+          userId: json['userId'] as int,
+        );
+
+Map<String, dynamic> _$$ClientWantsToFetchUserBookingsImplToJson(
+        _$ClientWantsToFetchUserBookingsImpl instance) =>
+    <String, dynamic>{
+      'eventType': instance.eventType,
+      'userId': instance.userId,
+    };
+
+_$ServerSendsUserBookingsToClientImpl
+    _$$ServerSendsUserBookingsToClientImplFromJson(Map<String, dynamic> json) =>
+        _$ServerSendsUserBookingsToClientImpl(
+          eventType: json['eventType'] as String,
+          userBookings: (json['userBookings'] as List<dynamic>)
+              .map((e) => CourtBookingWithCourtNumber.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+          message: json['message'] as String?,
+        );
+
+Map<String, dynamic> _$$ServerSendsUserBookingsToClientImplToJson(
+        _$ServerSendsUserBookingsToClientImpl instance) =>
+    <String, dynamic>{
+      'eventType': instance.eventType,
+      'userBookings': instance.userBookings,
+      'message': instance.message,
+    };

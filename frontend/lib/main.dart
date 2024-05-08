@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/bloc/court_booking/court_booking_bloc.dart';
@@ -19,9 +22,14 @@ void main() {
   Bloc.observer = LoggerBlocObserver();
 
   // Connect to WebSocket
-  final wsUri = Uri.parse('ws://localhost:8181');
-  final channel = WebSocketChannel.connect(wsUri);
+  Uri wsUri;
+  if (kIsWeb) {
+    wsUri = Uri.parse('ws://localhost:8181');
 
+  } else {
+    wsUri = Uri.parse('ws://10.0.2.2:8181');
+
+  }
   final broadcastWsChannel = BroadcastWsChannel(wsUri);
 
   runApp(

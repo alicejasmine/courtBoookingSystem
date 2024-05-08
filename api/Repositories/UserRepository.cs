@@ -22,10 +22,10 @@ public class UserRepository
     {
         using var conn = _dataSource.OpenConnection();
         return conn.QueryFirstOrDefault<EndUser>($@"
-                        select user_id as {nameof(EndUser.Id)},
-                            email as {nameof(EndUser.Email)},
-                            hash as {nameof(EndUser.Hash)},
-                            salt as {nameof(EndUser.Salt)}
+                        select user_id as {nameof(EndUser.id)},
+                            email as {nameof(EndUser.email)},
+                            hash as {nameof(EndUser.hash)},
+                            salt as {nameof(EndUser.salt)}
                         from booking_system.users where email = @{nameof(FindByEmailParams.email)};", findByEmailParams) ??
                    
                throw new KeyNotFoundException("Could not find user with email " + findByEmailParams.email);
@@ -42,8 +42,8 @@ values (
         @{nameof(InsertUserParams.salt)}
         ) 
 returning 
-    email as {nameof(EndUser.Email)}, 
-    user_id as {nameof(EndUser.Id)};", insertUserParams)
+    email as {nameof(EndUser.email)}, 
+    user_id as {nameof(EndUser.id)};", insertUserParams)
                ?? throw new InvalidOperationException("Insertion and retrieval failed");
     }
  
@@ -61,10 +61,10 @@ select count(*) from booking_system.users where email = @{nameof(findByEmailPara
         using var conn = _dataSource.OpenConnection();
         return conn.QueryFirstOrDefault<EndUser>($@"
         SELECT 
-            user_id as {nameof(EndUser.Id)},
-            email as {nameof(EndUser.Email)},
-            hash as {nameof(EndUser.Hash)},
-            salt as {nameof(EndUser.Salt)}
+            user_id as {nameof(EndUser.id)},
+            email as {nameof(EndUser.email)},
+            hash as {nameof(EndUser.hash)},
+            salt as {nameof(EndUser.salt)}
         FROM 
             booking_system.users 
         WHERE 

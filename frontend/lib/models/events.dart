@@ -65,6 +65,8 @@ class ServerEvent extends BaseEvent {
         return ServerSendsCourtAvailabilityToClient.fromJson(json);
       case ServerSendsBookingConfirmation.name:
         return ServerSendsBookingConfirmation.fromJson(json);
+      case ServerSendsUserBookingsToClient.name:
+        return ServerSendsUserBookingsToClient.fromJson(json);
       default:
         throw "Unknown event type: $type in $json";
     }
@@ -166,3 +168,35 @@ class ServerSendsBookingConfirmation extends ServerEvent
       Map<String, Object?> json) =>
       _$ServerSendsBookingConfirmationFromJson(json);
 }
+
+@freezed
+class ClientWantsToFetchUserBookings extends ClientEvent
+    with _$ClientWantsToFetchUserBookings {
+  static const String name = "ClientWantsToFetchUserBookings";
+  const factory ClientWantsToFetchUserBookings({
+    required String eventType,
+    required int userId,
+  }) = _ClientWantsToFetchUserBookings;
+
+  factory ClientWantsToFetchUserBookings.fromJson(
+      Map<String, Object?> json) =>
+      _$ClientWantsToFetchUserBookingsFromJson(json);
+}
+
+
+@freezed
+class ServerSendsUserBookingsToClient extends ServerEvent with _$ServerSendsUserBookingsToClient {
+  static const String name = "ServerSendsUserBookingsToClient";
+  const factory ServerSendsUserBookingsToClient({
+    required String eventType,
+    required List<CourtBookingWithCourtNumber> userBookings,
+    String? message,
+  }) = _ServerSendsUserBookingsToClient;
+
+  factory ServerSendsUserBookingsToClient.fromJson(Map<String, dynamic> json) =>
+      _$ServerSendsUserBookingsToClientFromJson(json);
+}
+
+
+
+

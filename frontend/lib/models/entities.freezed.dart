@@ -401,6 +401,7 @@ CourtBooking _$CourtBookingFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourtBooking {
+  int get bookingId => throw _privateConstructorUsedError;
   int get courtId => throw _privateConstructorUsedError;
   int get userId => throw _privateConstructorUsedError;
   DateTime get selectedDate => throw _privateConstructorUsedError;
@@ -421,7 +422,8 @@ abstract class $CourtBookingCopyWith<$Res> {
       _$CourtBookingCopyWithImpl<$Res, CourtBooking>;
   @useResult
   $Res call(
-      {int courtId,
+      {int bookingId,
+      int courtId,
       int userId,
       DateTime selectedDate,
       String startTime,
@@ -442,6 +444,7 @@ class _$CourtBookingCopyWithImpl<$Res, $Val extends CourtBooking>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? bookingId = null,
     Object? courtId = null,
     Object? userId = null,
     Object? selectedDate = null,
@@ -450,6 +453,10 @@ class _$CourtBookingCopyWithImpl<$Res, $Val extends CourtBooking>
     Object? creationTime = null,
   }) {
     return _then(_value.copyWith(
+      bookingId: null == bookingId
+          ? _value.bookingId
+          : bookingId // ignore: cast_nullable_to_non_nullable
+              as int,
       courtId: null == courtId
           ? _value.courtId
           : courtId // ignore: cast_nullable_to_non_nullable
@@ -487,7 +494,8 @@ abstract class _$$CourtBookingImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int courtId,
+      {int bookingId,
+      int courtId,
       int userId,
       DateTime selectedDate,
       String startTime,
@@ -506,6 +514,7 @@ class __$$CourtBookingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? bookingId = null,
     Object? courtId = null,
     Object? userId = null,
     Object? selectedDate = null,
@@ -514,6 +523,10 @@ class __$$CourtBookingImplCopyWithImpl<$Res>
     Object? creationTime = null,
   }) {
     return _then(_$CourtBookingImpl(
+      bookingId: null == bookingId
+          ? _value.bookingId
+          : bookingId // ignore: cast_nullable_to_non_nullable
+              as int,
       courtId: null == courtId
           ? _value.courtId
           : courtId // ignore: cast_nullable_to_non_nullable
@@ -546,7 +559,8 @@ class __$$CourtBookingImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourtBookingImpl implements _CourtBooking {
   const _$CourtBookingImpl(
-      {required this.courtId,
+      {required this.bookingId,
+      required this.courtId,
       required this.userId,
       required this.selectedDate,
       required this.startTime,
@@ -556,6 +570,8 @@ class _$CourtBookingImpl implements _CourtBooking {
   factory _$CourtBookingImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourtBookingImplFromJson(json);
 
+  @override
+  final int bookingId;
   @override
   final int courtId;
   @override
@@ -571,7 +587,7 @@ class _$CourtBookingImpl implements _CourtBooking {
 
   @override
   String toString() {
-    return 'CourtBooking(courtId: $courtId, userId: $userId, selectedDate: $selectedDate, startTime: $startTime, endTime: $endTime, creationTime: $creationTime)';
+    return 'CourtBooking(bookingId: $bookingId, courtId: $courtId, userId: $userId, selectedDate: $selectedDate, startTime: $startTime, endTime: $endTime, creationTime: $creationTime)';
   }
 
   @override
@@ -579,6 +595,8 @@ class _$CourtBookingImpl implements _CourtBooking {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CourtBookingImpl &&
+            (identical(other.bookingId, bookingId) ||
+                other.bookingId == bookingId) &&
             (identical(other.courtId, courtId) || other.courtId == courtId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.selectedDate, selectedDate) ||
@@ -592,8 +610,8 @@ class _$CourtBookingImpl implements _CourtBooking {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, courtId, userId, selectedDate,
-      startTime, endTime, creationTime);
+  int get hashCode => Object.hash(runtimeType, bookingId, courtId, userId,
+      selectedDate, startTime, endTime, creationTime);
 
   @JsonKey(ignore: true)
   @override
@@ -611,7 +629,8 @@ class _$CourtBookingImpl implements _CourtBooking {
 
 abstract class _CourtBooking implements CourtBooking {
   const factory _CourtBooking(
-      {required final int courtId,
+      {required final int bookingId,
+      required final int courtId,
       required final int userId,
       required final DateTime selectedDate,
       required final String startTime,
@@ -621,6 +640,8 @@ abstract class _CourtBooking implements CourtBooking {
   factory _CourtBooking.fromJson(Map<String, dynamic> json) =
       _$CourtBookingImpl.fromJson;
 
+  @override
+  int get bookingId;
   @override
   int get courtId;
   @override
@@ -637,4 +658,301 @@ abstract class _CourtBooking implements CourtBooking {
   @JsonKey(ignore: true)
   _$$CourtBookingImplCopyWith<_$CourtBookingImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+CourtBookingWithCourtNumber _$CourtBookingWithCourtNumberFromJson(
+    Map<String, dynamic> json) {
+  return _CourtBookingWithCourtNumber.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CourtBookingWithCourtNumber {
+  int get bookingId => throw _privateConstructorUsedError;
+  int get courtId => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
+  DateTime get selectedDate => throw _privateConstructorUsedError;
+  String get startTime => throw _privateConstructorUsedError;
+  String get endTime => throw _privateConstructorUsedError;
+  DateTime get creationTime => throw _privateConstructorUsedError;
+  int get courtNumber => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CourtBookingWithCourtNumberCopyWith<CourtBookingWithCourtNumber>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CourtBookingWithCourtNumberCopyWith<$Res> {
+  factory $CourtBookingWithCourtNumberCopyWith(
+          CourtBookingWithCourtNumber value,
+          $Res Function(CourtBookingWithCourtNumber) then) =
+      _$CourtBookingWithCourtNumberCopyWithImpl<$Res,
+          CourtBookingWithCourtNumber>;
+  @useResult
+  $Res call(
+      {int bookingId,
+      int courtId,
+      int userId,
+      DateTime selectedDate,
+      String startTime,
+      String endTime,
+      DateTime creationTime,
+      int courtNumber});
+}
+
+/// @nodoc
+class _$CourtBookingWithCourtNumberCopyWithImpl<$Res,
+        $Val extends CourtBookingWithCourtNumber>
+    implements $CourtBookingWithCourtNumberCopyWith<$Res> {
+  _$CourtBookingWithCourtNumberCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bookingId = null,
+    Object? courtId = null,
+    Object? userId = null,
+    Object? selectedDate = null,
+    Object? startTime = null,
+    Object? endTime = null,
+    Object? creationTime = null,
+    Object? courtNumber = null,
+  }) {
+    return _then(_value.copyWith(
+      bookingId: null == bookingId
+          ? _value.bookingId
+          : bookingId // ignore: cast_nullable_to_non_nullable
+              as int,
+      courtId: null == courtId
+          ? _value.courtId
+          : courtId // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startTime: null == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      endTime: null == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      creationTime: null == creationTime
+          ? _value.creationTime
+          : creationTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      courtNumber: null == courtNumber
+          ? _value.courtNumber
+          : courtNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CourtBookingWithCourtNumberImplCopyWith<$Res>
+    implements $CourtBookingWithCourtNumberCopyWith<$Res> {
+  factory _$$CourtBookingWithCourtNumberImplCopyWith(
+          _$CourtBookingWithCourtNumberImpl value,
+          $Res Function(_$CourtBookingWithCourtNumberImpl) then) =
+      __$$CourtBookingWithCourtNumberImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int bookingId,
+      int courtId,
+      int userId,
+      DateTime selectedDate,
+      String startTime,
+      String endTime,
+      DateTime creationTime,
+      int courtNumber});
+}
+
+/// @nodoc
+class __$$CourtBookingWithCourtNumberImplCopyWithImpl<$Res>
+    extends _$CourtBookingWithCourtNumberCopyWithImpl<$Res,
+        _$CourtBookingWithCourtNumberImpl>
+    implements _$$CourtBookingWithCourtNumberImplCopyWith<$Res> {
+  __$$CourtBookingWithCourtNumberImplCopyWithImpl(
+      _$CourtBookingWithCourtNumberImpl _value,
+      $Res Function(_$CourtBookingWithCourtNumberImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bookingId = null,
+    Object? courtId = null,
+    Object? userId = null,
+    Object? selectedDate = null,
+    Object? startTime = null,
+    Object? endTime = null,
+    Object? creationTime = null,
+    Object? courtNumber = null,
+  }) {
+    return _then(_$CourtBookingWithCourtNumberImpl(
+      bookingId: null == bookingId
+          ? _value.bookingId
+          : bookingId // ignore: cast_nullable_to_non_nullable
+              as int,
+      courtId: null == courtId
+          ? _value.courtId
+          : courtId // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startTime: null == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      endTime: null == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      creationTime: null == creationTime
+          ? _value.creationTime
+          : creationTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      courtNumber: null == courtNumber
+          ? _value.courtNumber
+          : courtNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CourtBookingWithCourtNumberImpl
+    implements _CourtBookingWithCourtNumber {
+  const _$CourtBookingWithCourtNumberImpl(
+      {required this.bookingId,
+      required this.courtId,
+      required this.userId,
+      required this.selectedDate,
+      required this.startTime,
+      required this.endTime,
+      required this.creationTime,
+      required this.courtNumber});
+
+  factory _$CourtBookingWithCourtNumberImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$CourtBookingWithCourtNumberImplFromJson(json);
+
+  @override
+  final int bookingId;
+  @override
+  final int courtId;
+  @override
+  final int userId;
+  @override
+  final DateTime selectedDate;
+  @override
+  final String startTime;
+  @override
+  final String endTime;
+  @override
+  final DateTime creationTime;
+  @override
+  final int courtNumber;
+
+  @override
+  String toString() {
+    return 'CourtBookingWithCourtNumber(bookingId: $bookingId, courtId: $courtId, userId: $userId, selectedDate: $selectedDate, startTime: $startTime, endTime: $endTime, creationTime: $creationTime, courtNumber: $courtNumber)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CourtBookingWithCourtNumberImpl &&
+            (identical(other.bookingId, bookingId) ||
+                other.bookingId == bookingId) &&
+            (identical(other.courtId, courtId) || other.courtId == courtId) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.selectedDate, selectedDate) ||
+                other.selectedDate == selectedDate) &&
+            (identical(other.startTime, startTime) ||
+                other.startTime == startTime) &&
+            (identical(other.endTime, endTime) || other.endTime == endTime) &&
+            (identical(other.creationTime, creationTime) ||
+                other.creationTime == creationTime) &&
+            (identical(other.courtNumber, courtNumber) ||
+                other.courtNumber == courtNumber));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, bookingId, courtId, userId,
+      selectedDate, startTime, endTime, creationTime, courtNumber);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CourtBookingWithCourtNumberImplCopyWith<_$CourtBookingWithCourtNumberImpl>
+      get copyWith => __$$CourtBookingWithCourtNumberImplCopyWithImpl<
+          _$CourtBookingWithCourtNumberImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CourtBookingWithCourtNumberImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CourtBookingWithCourtNumber
+    implements CourtBookingWithCourtNumber {
+  const factory _CourtBookingWithCourtNumber(
+      {required final int bookingId,
+      required final int courtId,
+      required final int userId,
+      required final DateTime selectedDate,
+      required final String startTime,
+      required final String endTime,
+      required final DateTime creationTime,
+      required final int courtNumber}) = _$CourtBookingWithCourtNumberImpl;
+
+  factory _CourtBookingWithCourtNumber.fromJson(Map<String, dynamic> json) =
+      _$CourtBookingWithCourtNumberImpl.fromJson;
+
+  @override
+  int get bookingId;
+  @override
+  int get courtId;
+  @override
+  int get userId;
+  @override
+  DateTime get selectedDate;
+  @override
+  String get startTime;
+  @override
+  String get endTime;
+  @override
+  DateTime get creationTime;
+  @override
+  int get courtNumber;
+  @override
+  @JsonKey(ignore: true)
+  _$$CourtBookingWithCourtNumberImplCopyWith<_$CourtBookingWithCourtNumberImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

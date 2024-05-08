@@ -48,6 +48,7 @@ class _HomeState extends State<Home> {
               BlocBuilder<CourtBookingBloc, CourtBookingState>(
                 builder: (context, bookingState) {
                   if (bookingState.confirmationMessage =="Booking successful") {
+                    context.read<CourtAvailabilityBloc>().fetchCourtAvailability(selectedDate);
                     return Text(bookingState.confirmationMessage!);
                   } else {
                     return Container();
@@ -111,7 +112,7 @@ class _HomeState extends State<Home> {
                     margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
                     padding: const EdgeInsets.all(8),
                     child: Text(
-                      '${(courtData.startTime)} - ${(courtData.endTime)}',
+                      '${(courtData.startTime.substring(0,5))} - ${(courtData.endTime.substring(0,5))}',
                       style: const TextStyle(fontSize: 14),
                     ),
                   ),
@@ -147,7 +148,6 @@ class _HomeState extends State<Home> {
     if (pickedDate != null && pickedDate != selectedDate) {
       setState(() {
         selectedDate = pickedDate;
-        print('Selected date: $selectedDate');
         context.read<CourtAvailabilityBloc>().fetchCourtAvailability(selectedDate);
       });
     }
@@ -166,23 +166,14 @@ class _HomeState extends State<Home> {
     final courtBookingBloc = context.read<CourtBookingBloc>();
     final authState = context.read<AuthBloc>().state;
 
-    final booking = CourtBooking(
+    final event = ClientWantsToBookCourt(
+      eventType: ClientWantsToBookCourt.name,
       courtId: courtData.courtId,
       userId: authState.userId,
       selectedDate: selectedDate,
       startTime: courtData.startTime,
-      endTime: courtData.endTime,
-      creationTime: DateTime.now(),
-    );
-
-    final event = ClientWantsToBookCourt(
-      eventType: ClientWantsToBookCourt.name,
-      courtId: booking.courtId,
-      userId: booking.userId,
-      selectedDate: booking.selectedDate,
-      startTime: booking.startTime,
-      endTime: booking.endTime,
-      creationTime: booking.creationTime,
+      endTime:courtData.endTime,
+      creationTime:DateTime.now()
     );
     courtBookingBloc.add(event);
   }

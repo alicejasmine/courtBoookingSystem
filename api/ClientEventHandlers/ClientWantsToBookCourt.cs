@@ -17,7 +17,7 @@ public class ClientWantsToBookCourtDto : BaseDto
     [Required] public DateTime SelectedDate { get; set; }
     [Required] public TimeSpan StartTime { get; set; }
     [Required] public TimeSpan EndTime { get; set; }
-    [Required] public DateTimeOffset CreationTime { get; set; }
+    [Required] public DateTime CreationTime { get; set; }
 }
 
 [RequireAuthentication]
@@ -40,12 +40,12 @@ public class ClientWantsToBookCourt(CourtAvailabilityRepository courtAvailabilit
 
         var courtBooking = new CourtBooking
         {
-            CourtId = dto.CourtId,
-            UserId = dto.UserId,
-            SelectedDate = dto.SelectedDate,
-            StartTime = dto.StartTime,
-            EndTime = dto.EndTime,
-            CreationTime = DateTimeOffset.UtcNow
+            courtId = dto.CourtId,
+            userId = dto.UserId,
+            selectedDate = dto.SelectedDate,
+            startTime = dto.StartTime,
+            endTime = dto.EndTime,
+            creationTime = dto.CreationTime
         };
         bookingRepository.CreateCourtBooking(courtBooking);
 
