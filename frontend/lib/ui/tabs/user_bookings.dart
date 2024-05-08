@@ -9,13 +9,11 @@ import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/court_booking/court_booking_bloc.dart';
 import '../../bloc/court_booking/court_booking_state.dart';
 
-
 class UserBookings extends StatelessWidget {
   const UserBookings({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final courtBookingBloc = BlocProvider.of<CourtBookingBloc>(context);
 
     courtBookingBloc.fetchUserBookings(context.read<AuthBloc>().state.userId);
@@ -35,8 +33,16 @@ class UserBookings extends StatelessWidget {
                 final booking = state.userBookings[index];
                 return Card(
                   child: ListTile(
-                    title: Text('Court ${booking.courtNumber} - ${DateFormat('dd/MM/yy').format(booking.selectedDate)}'),
-                    subtitle: Text('${booking.startTime} - ${booking.endTime}'),
+                    title: Text(
+                        '${DateFormat('dd/MM/yy').format(booking.selectedDate)} - Court ${booking.courtNumber}'),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('${booking.startTime.substring(0,5)} - ${booking.endTime.substring(0,5)}'),
+                        Text(
+                            'Created: ${DateFormat('dd/MM/yy hh:mm a').format(booking.creationTime)}'),
+                      ],
+                    ),
                   ),
                 );
               },

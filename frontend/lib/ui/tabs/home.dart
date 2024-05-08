@@ -112,7 +112,7 @@ class _HomeState extends State<Home> {
                     margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
                     padding: const EdgeInsets.all(8),
                     child: Text(
-                      '${(courtData.startTime)} - ${(courtData.endTime)}',
+                      '${(courtData.startTime.substring(0,5))} - ${(courtData.endTime.substring(0,5))}',
                       style: const TextStyle(fontSize: 14),
                     ),
                   ),
