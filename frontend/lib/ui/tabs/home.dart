@@ -173,7 +173,7 @@ class _HomeState extends State<Home> {
       selectedDate: selectedDate,
       startTime: courtData.startTime,
       endTime:courtData.endTime,
-      creationTime:DateTime.now(),
+      creationTime:DateTime.now()
     );
     courtBookingBloc.add(event);
   }

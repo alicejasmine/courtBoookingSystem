@@ -17,7 +17,7 @@ public class ClientWantsToBookCourtDto : BaseDto
     [Required] public DateTime SelectedDate { get; set; }
     [Required] public TimeSpan StartTime { get; set; }
     [Required] public TimeSpan EndTime { get; set; }
-    [Required] public DateTimeOffset CreationTime { get; set; }
+    [Required] public DateTime CreationTime { get; set; }
 }
 
 [RequireAuthentication]
@@ -45,7 +45,7 @@ public class ClientWantsToBookCourt(CourtAvailabilityRepository courtAvailabilit
             selectedDate = dto.SelectedDate,
             startTime = dto.StartTime,
             endTime = dto.EndTime,
-            creationTime = DateTimeOffset.UtcNow
+            creationTime = dto.CreationTime
         };
         bookingRepository.CreateCourtBooking(courtBooking);
 

@@ -8,6 +8,6 @@ public class CourtBookingWithCourtNumber
     public DateTime selectedDate { get; set; }
     public TimeSpan startTime { get; set; }
     public TimeSpan endTime { get; set; }
-    public DateTimeOffset creationTime { get; set; }
+    public DateTime creationTime { get; set; }
     public int courtNumber { get; set; }
 }
