@@ -19,6 +19,9 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
     on<ClientEvent>(_onClientEvent);
 
     on<ServerSendsBookingConfirmation>(_onServerSendsBookingConfirmation);
+    on<ServerSendsUserBookingsToClient>(_onServerSendsUserBookingsToClient);
+
+
     // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
         .map((event) => jsonDecode(event))
@@ -63,6 +66,34 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
       startTime: booking.startTime,
       endTime: booking.endTime,
       creationTime: booking.creationTime,
+    ));
+  }
+
+
+
+
+  FutureOr<void> _onServerSendsUserBookingsToClient(
+      ServerSendsUserBookingsToClient event,
+      Emitter<CourtBookingState> emit) {
+    if (event.userBookings.isEmpty) {
+      // No bookings
+      emit(state.copyWith(
+        userBookings: [],
+        message: 'No bookings registered',
+      ));
+    } else {
+      emit(state.copyWith(
+        userBookings: event.userBookings,
+        message: null,
+      ));
+    }
+  }
+
+
+  void fetchUserBookings(int userId) {
+    add(ClientWantsToFetchUserBookings(
+      eventType: ClientWantsToFetchUserBookings.name,
+      userId: userId,
     ));
   }
 }

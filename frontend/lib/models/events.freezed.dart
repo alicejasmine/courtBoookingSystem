@@ -1834,3 +1834,392 @@ abstract class _ServerSendsBookingConfirmation
           _$ServerSendsBookingConfirmationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+ClientWantsToFetchUserBookings _$ClientWantsToFetchUserBookingsFromJson(
+    Map<String, dynamic> json) {
+  return _ClientWantsToFetchUserBookings.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ClientWantsToFetchUserBookings {
+  String get eventType => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ClientWantsToFetchUserBookingsCopyWith<ClientWantsToFetchUserBookings>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ClientWantsToFetchUserBookingsCopyWith<$Res> {
+  factory $ClientWantsToFetchUserBookingsCopyWith(
+          ClientWantsToFetchUserBookings value,
+          $Res Function(ClientWantsToFetchUserBookings) then) =
+      _$ClientWantsToFetchUserBookingsCopyWithImpl<$Res,
+          ClientWantsToFetchUserBookings>;
+  @useResult
+  $Res call({String eventType, int userId});
+}
+
+/// @nodoc
+class _$ClientWantsToFetchUserBookingsCopyWithImpl<$Res,
+        $Val extends ClientWantsToFetchUserBookings>
+    implements $ClientWantsToFetchUserBookingsCopyWith<$Res> {
+  _$ClientWantsToFetchUserBookingsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? userId = null,
+  }) {
+    return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ClientWantsToFetchUserBookingsImplCopyWith<$Res>
+    implements $ClientWantsToFetchUserBookingsCopyWith<$Res> {
+  factory _$$ClientWantsToFetchUserBookingsImplCopyWith(
+          _$ClientWantsToFetchUserBookingsImpl value,
+          $Res Function(_$ClientWantsToFetchUserBookingsImpl) then) =
+      __$$ClientWantsToFetchUserBookingsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String eventType, int userId});
+}
+
+/// @nodoc
+class __$$ClientWantsToFetchUserBookingsImplCopyWithImpl<$Res>
+    extends _$ClientWantsToFetchUserBookingsCopyWithImpl<$Res,
+        _$ClientWantsToFetchUserBookingsImpl>
+    implements _$$ClientWantsToFetchUserBookingsImplCopyWith<$Res> {
+  __$$ClientWantsToFetchUserBookingsImplCopyWithImpl(
+      _$ClientWantsToFetchUserBookingsImpl _value,
+      $Res Function(_$ClientWantsToFetchUserBookingsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? userId = null,
+  }) {
+    return _then(_$ClientWantsToFetchUserBookingsImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ClientWantsToFetchUserBookingsImpl
+    with DiagnosticableTreeMixin
+    implements _ClientWantsToFetchUserBookings {
+  const _$ClientWantsToFetchUserBookingsImpl(
+      {required this.eventType, required this.userId});
+
+  factory _$ClientWantsToFetchUserBookingsImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ClientWantsToFetchUserBookingsImplFromJson(json);
+
+  @override
+  final String eventType;
+  @override
+  final int userId;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ClientWantsToFetchUserBookings(eventType: $eventType, userId: $userId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ClientWantsToFetchUserBookings'))
+      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('userId', userId));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClientWantsToFetchUserBookingsImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, eventType, userId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ClientWantsToFetchUserBookingsImplCopyWith<
+          _$ClientWantsToFetchUserBookingsImpl>
+      get copyWith => __$$ClientWantsToFetchUserBookingsImplCopyWithImpl<
+          _$ClientWantsToFetchUserBookingsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ClientWantsToFetchUserBookingsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ClientWantsToFetchUserBookings
+    implements ClientWantsToFetchUserBookings {
+  const factory _ClientWantsToFetchUserBookings(
+      {required final String eventType,
+      required final int userId}) = _$ClientWantsToFetchUserBookingsImpl;
+
+  factory _ClientWantsToFetchUserBookings.fromJson(Map<String, dynamic> json) =
+      _$ClientWantsToFetchUserBookingsImpl.fromJson;
+
+  @override
+  String get eventType;
+  @override
+  int get userId;
+  @override
+  @JsonKey(ignore: true)
+  _$$ClientWantsToFetchUserBookingsImplCopyWith<
+          _$ClientWantsToFetchUserBookingsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ServerSendsUserBookingsToClient _$ServerSendsUserBookingsToClientFromJson(
+    Map<String, dynamic> json) {
+  return _ServerSendsUserBookingsToClient.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ServerSendsUserBookingsToClient {
+  String get eventType => throw _privateConstructorUsedError;
+  List<CourtBooking> get userBookings => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ServerSendsUserBookingsToClientCopyWith<ServerSendsUserBookingsToClient>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ServerSendsUserBookingsToClientCopyWith<$Res> {
+  factory $ServerSendsUserBookingsToClientCopyWith(
+          ServerSendsUserBookingsToClient value,
+          $Res Function(ServerSendsUserBookingsToClient) then) =
+      _$ServerSendsUserBookingsToClientCopyWithImpl<$Res,
+          ServerSendsUserBookingsToClient>;
+  @useResult
+  $Res call(
+      {String eventType, List<CourtBooking> userBookings, String? message});
+}
+
+/// @nodoc
+class _$ServerSendsUserBookingsToClientCopyWithImpl<$Res,
+        $Val extends ServerSendsUserBookingsToClient>
+    implements $ServerSendsUserBookingsToClientCopyWith<$Res> {
+  _$ServerSendsUserBookingsToClientCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? userBookings = null,
+    Object? message = freezed,
+  }) {
+    return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      userBookings: null == userBookings
+          ? _value.userBookings
+          : userBookings // ignore: cast_nullable_to_non_nullable
+              as List<CourtBooking>,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ServerSendsUserBookingsToClientImplCopyWith<$Res>
+    implements $ServerSendsUserBookingsToClientCopyWith<$Res> {
+  factory _$$ServerSendsUserBookingsToClientImplCopyWith(
+          _$ServerSendsUserBookingsToClientImpl value,
+          $Res Function(_$ServerSendsUserBookingsToClientImpl) then) =
+      __$$ServerSendsUserBookingsToClientImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String eventType, List<CourtBooking> userBookings, String? message});
+}
+
+/// @nodoc
+class __$$ServerSendsUserBookingsToClientImplCopyWithImpl<$Res>
+    extends _$ServerSendsUserBookingsToClientCopyWithImpl<$Res,
+        _$ServerSendsUserBookingsToClientImpl>
+    implements _$$ServerSendsUserBookingsToClientImplCopyWith<$Res> {
+  __$$ServerSendsUserBookingsToClientImplCopyWithImpl(
+      _$ServerSendsUserBookingsToClientImpl _value,
+      $Res Function(_$ServerSendsUserBookingsToClientImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? userBookings = null,
+    Object? message = freezed,
+  }) {
+    return _then(_$ServerSendsUserBookingsToClientImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      userBookings: null == userBookings
+          ? _value._userBookings
+          : userBookings // ignore: cast_nullable_to_non_nullable
+              as List<CourtBooking>,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ServerSendsUserBookingsToClientImpl
+    with DiagnosticableTreeMixin
+    implements _ServerSendsUserBookingsToClient {
+  const _$ServerSendsUserBookingsToClientImpl(
+      {required this.eventType,
+      required final List<CourtBooking> userBookings,
+      this.message})
+      : _userBookings = userBookings;
+
+  factory _$ServerSendsUserBookingsToClientImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ServerSendsUserBookingsToClientImplFromJson(json);
+
+  @override
+  final String eventType;
+  final List<CourtBooking> _userBookings;
+  @override
+  List<CourtBooking> get userBookings {
+    if (_userBookings is EqualUnmodifiableListView) return _userBookings;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_userBookings);
+  }
+
+  @override
+  final String? message;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ServerSendsUserBookingsToClient(eventType: $eventType, userBookings: $userBookings, message: $message)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ServerSendsUserBookingsToClient'))
+      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('userBookings', userBookings))
+      ..add(DiagnosticsProperty('message', message));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ServerSendsUserBookingsToClientImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
+            const DeepCollectionEquality()
+                .equals(other._userBookings, _userBookings) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, eventType,
+      const DeepCollectionEquality().hash(_userBookings), message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ServerSendsUserBookingsToClientImplCopyWith<
+          _$ServerSendsUserBookingsToClientImpl>
+      get copyWith => __$$ServerSendsUserBookingsToClientImplCopyWithImpl<
+          _$ServerSendsUserBookingsToClientImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ServerSendsUserBookingsToClientImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ServerSendsUserBookingsToClient
+    implements ServerSendsUserBookingsToClient {
+  const factory _ServerSendsUserBookingsToClient(
+      {required final String eventType,
+      required final List<CourtBooking> userBookings,
+      final String? message}) = _$ServerSendsUserBookingsToClientImpl;
+
+  factory _ServerSendsUserBookingsToClient.fromJson(Map<String, dynamic> json) =
+      _$ServerSendsUserBookingsToClientImpl.fromJson;
+
+  @override
+  String get eventType;
+  @override
+  List<CourtBooking> get userBookings;
+  @override
+  String? get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$ServerSendsUserBookingsToClientImplCopyWith<
+          _$ServerSendsUserBookingsToClientImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

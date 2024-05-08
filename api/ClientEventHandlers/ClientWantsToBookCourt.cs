@@ -40,12 +40,12 @@ public class ClientWantsToBookCourt(CourtAvailabilityRepository courtAvailabilit
 
         var courtBooking = new CourtBooking
         {
-            CourtId = dto.CourtId,
-            UserId = dto.UserId,
-            SelectedDate = dto.SelectedDate,
-            StartTime = dto.StartTime,
-            EndTime = dto.EndTime,
-            CreationTime = DateTimeOffset.UtcNow
+            courtId = dto.CourtId,
+            userId = dto.UserId,
+            selectedDate = dto.SelectedDate,
+            startTime = dto.StartTime,
+            endTime = dto.EndTime,
+            creationTime = DateTimeOffset.UtcNow
         };
         bookingRepository.CreateCourtBooking(courtBooking);
 

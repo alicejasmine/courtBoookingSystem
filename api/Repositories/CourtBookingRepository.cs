@@ -24,11 +24,11 @@ public class CourtBookingRepository
         {
             var result =  conn.QueryFirst<CourtBooking>($@"
         INSERT INTO booking_system.bookings (court_id, user_id, date, start_time, end_time, creation_time) 
-        VALUES (@{nameof(booking.CourtId)}, @{nameof(booking.UserId)}, @{nameof(booking.SelectedDate)}, @{nameof(booking.StartTime)}, @{nameof(booking.EndTime)}, @{nameof(booking.CreationTime)})
-        RETURNING court_id AS {nameof(CourtBooking.CourtId)}, user_id AS {nameof(CourtBooking.UserId)}, date AS {nameof(CourtBooking.SelectedDate)}, start_time AS {nameof(CourtBooking.StartTime)}, end_time AS {nameof(CourtBooking.EndTime)}, creation_time AS {nameof(CourtBooking.CreationTime)}",
+        VALUES (@{nameof(booking.courtId)}, @{nameof(booking.userId)}, @{nameof(booking.selectedDate)}, @{nameof(booking.startTime)}, @{nameof(booking.endTime)}, @{nameof(booking.creationTime)})
+        RETURNING court_id AS {nameof(CourtBooking.courtId)}, user_id AS {nameof(CourtBooking.userId)}, date AS {nameof(CourtBooking.selectedDate)}, start_time AS {nameof(CourtBooking.startTime)}, end_time AS {nameof(CourtBooking.endTime)}, creation_time AS {nameof(CourtBooking.creationTime)}",
                 booking);
             
-            UpdateCourtAvailability(booking.CourtId, booking.SelectedDate, booking.StartTime, booking.EndTime);
+            UpdateCourtAvailability(booking.courtId, booking.selectedDate, booking.startTime, booking.endTime);
 
             transaction.Commit();
             return result;
@@ -56,19 +56,19 @@ public class CourtBookingRepository
             new { CourtId = courtId, SelectedDate = selectedDate, StartTime = startTime, EndTime = endTime });
     }
 
-    public List<CourtBooking> getBookingsByUserId(int userId)
+    public IEnumerable<CourtBooking> getBookingsByUserId(int userId)
     {
         using var conn = _dataSource.OpenConnection();
         
         string sql = $@"
         SELECT 
-            booking_id AS {nameof(CourtBooking.BookingId)},
-            court_id AS {nameof(CourtBooking.CourtId)},
-            user_id AS {nameof(CourtBooking.UserId)},
-            date AS {nameof(CourtBooking.SelectedDate)},
-            start_time AS {nameof(CourtBooking.StartTime)},
-            end_time AS {nameof(CourtBooking.EndTime)},
-            creation_time AS {nameof(CourtBooking.CreationTime)}
+            booking_id AS {nameof(CourtBooking.bookingId)},
+            court_id AS {nameof(CourtBooking.courtId)},
+            user_id AS {nameof(CourtBooking.userId)},
+            date AS {nameof(CourtBooking.selectedDate)},
+            start_time AS {nameof(CourtBooking.startTime)},
+            end_time AS {nameof(CourtBooking.endTime)},
+            creation_time AS {nameof(CourtBooking.creationTime)}
         FROM 
             booking_system.bookings 
         WHERE 

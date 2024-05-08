@@ -1,24 +1,49 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
-class UserBookings extends StatefulWidget {
+import '../../bloc/auth/auth_bloc.dart';
+
+import '../../bloc/court_booking/court_booking_bloc.dart';
+import '../../bloc/court_booking/court_booking_state.dart';
+
+
+class UserBookings extends StatelessWidget {
   const UserBookings({Key? key}) : super(key: key);
 
   @override
-  State<UserBookings> createState() => _UserBookingsState();
-}
-
-class _UserBookingsState extends State<UserBookings> {
-  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'My bookings',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ],
+
+    final courtBookingBloc = BlocProvider.of<CourtBookingBloc>(context);
+
+    courtBookingBloc.fetchUserBookings(context.read<AuthBloc>().state.userId);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Bookings'),
+      ),
+      body: BlocBuilder<CourtBookingBloc, CourtBookingState>(
+        builder: (context, state) {
+          if (state.userBookings.isEmpty) {
+            return const Center(child: Text('No user bookings found.'));
+          } else {
+            return ListView.builder(
+              itemCount: state.userBookings.length,
+              itemBuilder: (context, index) {
+                final booking = state.userBookings[index];
+                return Card(
+                  child: ListTile(
+                    title: Text('Court ${booking.courtId} - ${DateFormat('dd/MM/yy').format(booking.selectedDate)}'),
+                    subtitle: Text('${booking.startTime} - ${booking.endTime}'),
+                  ),
+                );
+              },
+            );
+          }
+        },
+      ),
     );
   }
 }

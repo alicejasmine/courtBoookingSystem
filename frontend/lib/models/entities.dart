@@ -25,6 +25,7 @@ class EndUser with _$EndUser {
 class CourtAvailability with _$CourtAvailability {
   const factory CourtAvailability({
 
+
     required int courtId,
     required int courtNumber,
     required String startTime,
@@ -40,7 +41,7 @@ class CourtAvailability with _$CourtAvailability {
 @freezed
 class CourtBooking with _$CourtBooking {
   const factory CourtBooking({
-
+    required int bookingId,
     required int courtId,
     required int userId,
     required DateTime selectedDate,

@@ -147,7 +147,6 @@ class _HomeState extends State<Home> {
     if (pickedDate != null && pickedDate != selectedDate) {
       setState(() {
         selectedDate = pickedDate;
-        print('Selected date: $selectedDate');
         context.read<CourtAvailabilityBloc>().fetchCourtAvailability(selectedDate);
       });
     }
@@ -167,6 +166,7 @@ class _HomeState extends State<Home> {
     final authState = context.read<AuthBloc>().state;
 
     final booking = CourtBooking(
+      bookingId: 3,
       courtId: courtData.courtId,
       userId: authState.userId,
       selectedDate: selectedDate,
