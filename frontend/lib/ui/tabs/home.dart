@@ -48,6 +48,7 @@ class _HomeState extends State<Home> {
               BlocBuilder<CourtBookingBloc, CourtBookingState>(
                 builder: (context, bookingState) {
                   if (bookingState.confirmationMessage =="Booking successful") {
+                    context.read<CourtAvailabilityBloc>().fetchCourtAvailability(selectedDate);
                     return Text(bookingState.confirmationMessage!);
                   } else {
                     return Container();
@@ -165,24 +166,14 @@ class _HomeState extends State<Home> {
     final courtBookingBloc = context.read<CourtBookingBloc>();
     final authState = context.read<AuthBloc>().state;
 
-    final booking = CourtBooking(
-      bookingId: 3,
+    final event = ClientWantsToBookCourt(
+      eventType: ClientWantsToBookCourt.name,
       courtId: courtData.courtId,
       userId: authState.userId,
       selectedDate: selectedDate,
       startTime: courtData.startTime,
-      endTime: courtData.endTime,
-      creationTime: DateTime.now(),
-    );
-
-    final event = ClientWantsToBookCourt(
-      eventType: ClientWantsToBookCourt.name,
-      courtId: booking.courtId,
-      userId: booking.userId,
-      selectedDate: booking.selectedDate,
-      startTime: booking.startTime,
-      endTime: booking.endTime,
-      creationTime: booking.creationTime,
+      endTime:courtData.endTime,
+      creationTime:DateTime.now(),
     );
     courtBookingBloc.add(event);
   }
