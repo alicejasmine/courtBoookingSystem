@@ -2228,3 +2228,180 @@ abstract class _ServerSendsUserBookingsToClient
           _$ServerSendsUserBookingsToClientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+ClientWantsToDeleteBooking _$ClientWantsToDeleteBookingFromJson(
+    Map<String, dynamic> json) {
+  return _ClientWantsToDeleteBooking.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ClientWantsToDeleteBooking {
+  String get eventType => throw _privateConstructorUsedError;
+  int get bookingId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ClientWantsToDeleteBookingCopyWith<ClientWantsToDeleteBooking>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ClientWantsToDeleteBookingCopyWith<$Res> {
+  factory $ClientWantsToDeleteBookingCopyWith(ClientWantsToDeleteBooking value,
+          $Res Function(ClientWantsToDeleteBooking) then) =
+      _$ClientWantsToDeleteBookingCopyWithImpl<$Res,
+          ClientWantsToDeleteBooking>;
+  @useResult
+  $Res call({String eventType, int bookingId});
+}
+
+/// @nodoc
+class _$ClientWantsToDeleteBookingCopyWithImpl<$Res,
+        $Val extends ClientWantsToDeleteBooking>
+    implements $ClientWantsToDeleteBookingCopyWith<$Res> {
+  _$ClientWantsToDeleteBookingCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? bookingId = null,
+  }) {
+    return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      bookingId: null == bookingId
+          ? _value.bookingId
+          : bookingId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ClientWantsToDeleteBookingImplCopyWith<$Res>
+    implements $ClientWantsToDeleteBookingCopyWith<$Res> {
+  factory _$$ClientWantsToDeleteBookingImplCopyWith(
+          _$ClientWantsToDeleteBookingImpl value,
+          $Res Function(_$ClientWantsToDeleteBookingImpl) then) =
+      __$$ClientWantsToDeleteBookingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String eventType, int bookingId});
+}
+
+/// @nodoc
+class __$$ClientWantsToDeleteBookingImplCopyWithImpl<$Res>
+    extends _$ClientWantsToDeleteBookingCopyWithImpl<$Res,
+        _$ClientWantsToDeleteBookingImpl>
+    implements _$$ClientWantsToDeleteBookingImplCopyWith<$Res> {
+  __$$ClientWantsToDeleteBookingImplCopyWithImpl(
+      _$ClientWantsToDeleteBookingImpl _value,
+      $Res Function(_$ClientWantsToDeleteBookingImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? bookingId = null,
+  }) {
+    return _then(_$ClientWantsToDeleteBookingImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      bookingId: null == bookingId
+          ? _value.bookingId
+          : bookingId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ClientWantsToDeleteBookingImpl
+    with DiagnosticableTreeMixin
+    implements _ClientWantsToDeleteBooking {
+  const _$ClientWantsToDeleteBookingImpl(
+      {required this.eventType, required this.bookingId});
+
+  factory _$ClientWantsToDeleteBookingImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ClientWantsToDeleteBookingImplFromJson(json);
+
+  @override
+  final String eventType;
+  @override
+  final int bookingId;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ClientWantsToDeleteBooking(eventType: $eventType, bookingId: $bookingId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ClientWantsToDeleteBooking'))
+      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('bookingId', bookingId));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClientWantsToDeleteBookingImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
+            (identical(other.bookingId, bookingId) ||
+                other.bookingId == bookingId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, eventType, bookingId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ClientWantsToDeleteBookingImplCopyWith<_$ClientWantsToDeleteBookingImpl>
+      get copyWith => __$$ClientWantsToDeleteBookingImplCopyWithImpl<
+          _$ClientWantsToDeleteBookingImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ClientWantsToDeleteBookingImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ClientWantsToDeleteBooking
+    implements ClientWantsToDeleteBooking {
+  const factory _ClientWantsToDeleteBooking(
+      {required final String eventType,
+      required final int bookingId}) = _$ClientWantsToDeleteBookingImpl;
+
+  factory _ClientWantsToDeleteBooking.fromJson(Map<String, dynamic> json) =
+      _$ClientWantsToDeleteBookingImpl.fromJson;
+
+  @override
+  String get eventType;
+  @override
+  int get bookingId;
+  @override
+  @JsonKey(ignore: true)
+  _$$ClientWantsToDeleteBookingImplCopyWith<_$ClientWantsToDeleteBookingImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

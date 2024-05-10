@@ -96,4 +96,14 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
       userId: userId,
     ));
   }
+
+
+  void deleteBooking(int bookingId) {
+    add(ClientWantsToDeleteBooking(
+      eventType: ClientWantsToDeleteBooking.name,
+      bookingId: bookingId,
+    ));
+  }
+
+
 }
