@@ -43,6 +43,12 @@ class UserBookings extends StatelessWidget {
                             'Created: ${DateFormat('dd/MM/yy hh:mm a').format(booking.creationTime)}'),
                       ],
                     ),
+                trailing: IconButton(
+                icon: Icon(Icons.delete),
+                onPressed: () {
+                _deleteBooking(context, booking.bookingId);
+                },
+                ),
                   ),
                 );
               },
@@ -52,4 +58,10 @@ class UserBookings extends StatelessWidget {
       ),
     );
   }
+}
+
+
+
+void _deleteBooking(BuildContext context, int bookingId) {
+
 }
