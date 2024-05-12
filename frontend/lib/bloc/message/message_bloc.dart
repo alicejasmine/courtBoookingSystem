@@ -5,14 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/broadcast_ws_channel.dart';
 import 'package:frontend/models/events.dart';
 
-import 'error_state.dart';
+import 'message_state.dart';
 
 
-class ErrorBloc extends Bloc<ServerEvent, BaseErrorState> {
+class MessageBloc extends Bloc<ServerEvent, BaseMessageState> {
   final BroadcastWsChannel channel;
   late StreamSubscription<ServerEvent> _channelSubscription;
 
-  ErrorBloc({required this.channel}) : super(NoErrorState()) {
+  MessageBloc({required this.channel}) : super(NoMessageState()) {
     on<ServerEvent>(_onServerEvent);
 
     _channelSubscription = channel.stream
@@ -28,13 +28,17 @@ class ErrorBloc extends Bloc<ServerEvent, BaseErrorState> {
   }
 
   FutureOr<void> _onServerEvent(
-      ServerEvent event, Emitter<BaseErrorState> emit) {
+      ServerEvent event, Emitter<BaseMessageState> emit) {
     if (event is ServerSendsErrorMessageToClient) {
-      emit(ErrorState(message: event.errorMessage));
+      emit(MessageState(message: event.errorMessage));
+    }
+
+    else if (event is ServerSendsConfirmationMessageToClient){
+      emit(MessageState(message: event.confirmationMessage));
     }
 
     else {
-      emit(NoErrorState());
+      emit(NoMessageState());
     }
   }
 }

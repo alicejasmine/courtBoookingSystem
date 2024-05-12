@@ -7,11 +7,11 @@ import 'package:frontend/bloc/court_booking/court_booking_bloc.dart';
 
 import 'package:frontend/logger_bloc_observer.dart';
 import 'package:logging_appenders/logging_appenders.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'package:logging/logging.dart';
 
-import 'bloc/error/error_bloc.dart';
+import 'bloc/message/message_bloc.dart';
+
 import 'broadcast_ws_channel.dart';
 import 'bloc/auth/auth_bloc.dart';
 import 'bloc/court_availability/court_availability_bloc.dart';
@@ -47,8 +47,8 @@ void main() {
           create: (context) => CourtBookingBloc(channel: broadcastWsChannel),
         ),
 
-        BlocProvider<ErrorBloc>(
-          create: (context) => ErrorBloc(channel: broadcastWsChannel),
+        BlocProvider<MessageBloc>(
+          create: (context) => MessageBloc(channel: broadcastWsChannel),
         ),
       ],
       child:  CourtBookingApp(),
