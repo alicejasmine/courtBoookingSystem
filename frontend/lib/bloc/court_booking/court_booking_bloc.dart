@@ -18,9 +18,9 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
     // Handler for client events
     on<ClientEvent>(_onClientEvent);
 
-    on<ServerSendsBookingConfirmation>(_onServerSendsBookingConfirmation);
+    //on<ServerSendsBookingConfirmation>(_onServerSendsBookingConfirmation);
     on<ServerSendsUserBookingsToClient>(_onServerSendsUserBookingsToClient);
-
+    on<ServerEvent>((event, _) => print(event));
 
     // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
@@ -45,15 +45,6 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
   FutureOr<void> _onClientEvent(ClientEvent event,
       Emitter<CourtBookingState> emit) {
     _channel.sink.add(jsonEncode(event.toJson()));
-  }
-
-
-  FutureOr<void> _onServerSendsBookingConfirmation(
-      ServerSendsBookingConfirmation event, Emitter<CourtBookingState> emit) {
-
-    emit(state.copyWith(
-      confirmationMessage: event.confirmationMessage,
-    ));
   }
 
 
