@@ -1,5 +1,7 @@
 ﻿using api.ClientEventFilters;
+using api.Helpers;
 using api.Repositories;
+using api.ServerEvents;
 using Fleck;
 using lib;
 
@@ -18,8 +20,9 @@ public class ClientWantsToDeleteBooking
     public override Task Handle(ClientWantsToDeleteBookingDto dto, IWebSocketConnection socket)
     {
         bookingRepository.DeleteCourtBooking(dto.BookingId);
-       
-    return Task.CompletedTask;
-}
 
+        socket.SendDto(new ServerSendsConfirmationMessageToClient { confirmationMessage = "Booking successfully deleted" });
+
+        return Task.CompletedTask;
+    }
 }
