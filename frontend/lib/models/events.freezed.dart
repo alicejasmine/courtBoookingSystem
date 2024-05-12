@@ -772,7 +772,7 @@ ServerSendsErrorMessageToClient _$ServerSendsErrorMessageToClientFromJson(
 mixin _$ServerSendsErrorMessageToClient {
   String get eventType => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
-  String get receivedMessage => throw _privateConstructorUsedError;
+  String? get receivedMessage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -788,7 +788,7 @@ abstract class $ServerSendsErrorMessageToClientCopyWith<$Res> {
       _$ServerSendsErrorMessageToClientCopyWithImpl<$Res,
           ServerSendsErrorMessageToClient>;
   @useResult
-  $Res call({String eventType, String errorMessage, String receivedMessage});
+  $Res call({String eventType, String errorMessage, String? receivedMessage});
 }
 
 /// @nodoc
@@ -807,7 +807,7 @@ class _$ServerSendsErrorMessageToClientCopyWithImpl<$Res,
   $Res call({
     Object? eventType = null,
     Object? errorMessage = null,
-    Object? receivedMessage = null,
+    Object? receivedMessage = freezed,
   }) {
     return _then(_value.copyWith(
       eventType: null == eventType
@@ -818,10 +818,10 @@ class _$ServerSendsErrorMessageToClientCopyWithImpl<$Res,
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      receivedMessage: null == receivedMessage
+      receivedMessage: freezed == receivedMessage
           ? _value.receivedMessage
           : receivedMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -835,7 +835,7 @@ abstract class _$$ServerSendsErrorMessageToClientImplCopyWith<$Res>
       __$$ServerSendsErrorMessageToClientImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String eventType, String errorMessage, String receivedMessage});
+  $Res call({String eventType, String errorMessage, String? receivedMessage});
 }
 
 /// @nodoc
@@ -853,7 +853,7 @@ class __$$ServerSendsErrorMessageToClientImplCopyWithImpl<$Res>
   $Res call({
     Object? eventType = null,
     Object? errorMessage = null,
-    Object? receivedMessage = null,
+    Object? receivedMessage = freezed,
   }) {
     return _then(_$ServerSendsErrorMessageToClientImpl(
       eventType: null == eventType
@@ -864,10 +864,10 @@ class __$$ServerSendsErrorMessageToClientImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      receivedMessage: null == receivedMessage
+      receivedMessage: freezed == receivedMessage
           ? _value.receivedMessage
           : receivedMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -880,7 +880,7 @@ class _$ServerSendsErrorMessageToClientImpl
   const _$ServerSendsErrorMessageToClientImpl(
       {required this.eventType,
       required this.errorMessage,
-      required this.receivedMessage});
+      this.receivedMessage});
 
   factory _$ServerSendsErrorMessageToClientImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -891,7 +891,7 @@ class _$ServerSendsErrorMessageToClientImpl
   @override
   final String errorMessage;
   @override
-  final String receivedMessage;
+  final String? receivedMessage;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -945,10 +945,9 @@ class _$ServerSendsErrorMessageToClientImpl
 abstract class _ServerSendsErrorMessageToClient
     implements ServerSendsErrorMessageToClient {
   const factory _ServerSendsErrorMessageToClient(
-          {required final String eventType,
-          required final String errorMessage,
-          required final String receivedMessage}) =
-      _$ServerSendsErrorMessageToClientImpl;
+      {required final String eventType,
+      required final String errorMessage,
+      final String? receivedMessage}) = _$ServerSendsErrorMessageToClientImpl;
 
   factory _ServerSendsErrorMessageToClient.fromJson(Map<String, dynamic> json) =
       _$ServerSendsErrorMessageToClientImpl.fromJson;
@@ -958,11 +957,197 @@ abstract class _ServerSendsErrorMessageToClient
   @override
   String get errorMessage;
   @override
-  String get receivedMessage;
+  String? get receivedMessage;
   @override
   @JsonKey(ignore: true)
   _$$ServerSendsErrorMessageToClientImplCopyWith<
           _$ServerSendsErrorMessageToClientImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ServerSendsConfirmationMessageToClient
+    _$ServerSendsConfirmationMessageToClientFromJson(
+        Map<String, dynamic> json) {
+  return _ServerSendsConfirmationMessageToClient.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ServerSendsConfirmationMessageToClient {
+  String get eventType => throw _privateConstructorUsedError;
+  String get confirmationMessage => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ServerSendsConfirmationMessageToClientCopyWith<
+          ServerSendsConfirmationMessageToClient>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ServerSendsConfirmationMessageToClientCopyWith<$Res> {
+  factory $ServerSendsConfirmationMessageToClientCopyWith(
+          ServerSendsConfirmationMessageToClient value,
+          $Res Function(ServerSendsConfirmationMessageToClient) then) =
+      _$ServerSendsConfirmationMessageToClientCopyWithImpl<$Res,
+          ServerSendsConfirmationMessageToClient>;
+  @useResult
+  $Res call({String eventType, String confirmationMessage});
+}
+
+/// @nodoc
+class _$ServerSendsConfirmationMessageToClientCopyWithImpl<$Res,
+        $Val extends ServerSendsConfirmationMessageToClient>
+    implements $ServerSendsConfirmationMessageToClientCopyWith<$Res> {
+  _$ServerSendsConfirmationMessageToClientCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? confirmationMessage = null,
+  }) {
+    return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmationMessage: null == confirmationMessage
+          ? _value.confirmationMessage
+          : confirmationMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ServerSendsConfirmationMessageToClientImplCopyWith<$Res>
+    implements $ServerSendsConfirmationMessageToClientCopyWith<$Res> {
+  factory _$$ServerSendsConfirmationMessageToClientImplCopyWith(
+          _$ServerSendsConfirmationMessageToClientImpl value,
+          $Res Function(_$ServerSendsConfirmationMessageToClientImpl) then) =
+      __$$ServerSendsConfirmationMessageToClientImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String eventType, String confirmationMessage});
+}
+
+/// @nodoc
+class __$$ServerSendsConfirmationMessageToClientImplCopyWithImpl<$Res>
+    extends _$ServerSendsConfirmationMessageToClientCopyWithImpl<$Res,
+        _$ServerSendsConfirmationMessageToClientImpl>
+    implements _$$ServerSendsConfirmationMessageToClientImplCopyWith<$Res> {
+  __$$ServerSendsConfirmationMessageToClientImplCopyWithImpl(
+      _$ServerSendsConfirmationMessageToClientImpl _value,
+      $Res Function(_$ServerSendsConfirmationMessageToClientImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+    Object? confirmationMessage = null,
+  }) {
+    return _then(_$ServerSendsConfirmationMessageToClientImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmationMessage: null == confirmationMessage
+          ? _value.confirmationMessage
+          : confirmationMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ServerSendsConfirmationMessageToClientImpl
+    with DiagnosticableTreeMixin
+    implements _ServerSendsConfirmationMessageToClient {
+  const _$ServerSendsConfirmationMessageToClientImpl(
+      {required this.eventType, required this.confirmationMessage});
+
+  factory _$ServerSendsConfirmationMessageToClientImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ServerSendsConfirmationMessageToClientImplFromJson(json);
+
+  @override
+  final String eventType;
+  @override
+  final String confirmationMessage;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ServerSendsConfirmationMessageToClient(eventType: $eventType, confirmationMessage: $confirmationMessage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'ServerSendsConfirmationMessageToClient'))
+      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('confirmationMessage', confirmationMessage));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ServerSendsConfirmationMessageToClientImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
+            (identical(other.confirmationMessage, confirmationMessage) ||
+                other.confirmationMessage == confirmationMessage));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, eventType, confirmationMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ServerSendsConfirmationMessageToClientImplCopyWith<
+          _$ServerSendsConfirmationMessageToClientImpl>
+      get copyWith =>
+          __$$ServerSendsConfirmationMessageToClientImplCopyWithImpl<
+              _$ServerSendsConfirmationMessageToClientImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ServerSendsConfirmationMessageToClientImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ServerSendsConfirmationMessageToClient
+    implements ServerSendsConfirmationMessageToClient {
+  const factory _ServerSendsConfirmationMessageToClient(
+          {required final String eventType,
+          required final String confirmationMessage}) =
+      _$ServerSendsConfirmationMessageToClientImpl;
+
+  factory _ServerSendsConfirmationMessageToClient.fromJson(
+          Map<String, dynamic> json) =
+      _$ServerSendsConfirmationMessageToClientImpl.fromJson;
+
+  @override
+  String get eventType;
+  @override
+  String get confirmationMessage;
+  @override
+  @JsonKey(ignore: true)
+  _$$ServerSendsConfirmationMessageToClientImplCopyWith<
+          _$ServerSendsConfirmationMessageToClientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1651,187 +1836,6 @@ abstract class _ClientWantsToBookCourt implements ClientWantsToBookCourt {
   @override
   @JsonKey(ignore: true)
   _$$ClientWantsToBookCourtImplCopyWith<_$ClientWantsToBookCourtImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-ServerSendsBookingConfirmation _$ServerSendsBookingConfirmationFromJson(
-    Map<String, dynamic> json) {
-  return _ServerSendsBookingConfirmation.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ServerSendsBookingConfirmation {
-  String get eventType => throw _privateConstructorUsedError;
-  String get confirmationMessage => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ServerSendsBookingConfirmationCopyWith<ServerSendsBookingConfirmation>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ServerSendsBookingConfirmationCopyWith<$Res> {
-  factory $ServerSendsBookingConfirmationCopyWith(
-          ServerSendsBookingConfirmation value,
-          $Res Function(ServerSendsBookingConfirmation) then) =
-      _$ServerSendsBookingConfirmationCopyWithImpl<$Res,
-          ServerSendsBookingConfirmation>;
-  @useResult
-  $Res call({String eventType, String confirmationMessage});
-}
-
-/// @nodoc
-class _$ServerSendsBookingConfirmationCopyWithImpl<$Res,
-        $Val extends ServerSendsBookingConfirmation>
-    implements $ServerSendsBookingConfirmationCopyWith<$Res> {
-  _$ServerSendsBookingConfirmationCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? confirmationMessage = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      confirmationMessage: null == confirmationMessage
-          ? _value.confirmationMessage
-          : confirmationMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ServerSendsBookingConfirmationImplCopyWith<$Res>
-    implements $ServerSendsBookingConfirmationCopyWith<$Res> {
-  factory _$$ServerSendsBookingConfirmationImplCopyWith(
-          _$ServerSendsBookingConfirmationImpl value,
-          $Res Function(_$ServerSendsBookingConfirmationImpl) then) =
-      __$$ServerSendsBookingConfirmationImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String eventType, String confirmationMessage});
-}
-
-/// @nodoc
-class __$$ServerSendsBookingConfirmationImplCopyWithImpl<$Res>
-    extends _$ServerSendsBookingConfirmationCopyWithImpl<$Res,
-        _$ServerSendsBookingConfirmationImpl>
-    implements _$$ServerSendsBookingConfirmationImplCopyWith<$Res> {
-  __$$ServerSendsBookingConfirmationImplCopyWithImpl(
-      _$ServerSendsBookingConfirmationImpl _value,
-      $Res Function(_$ServerSendsBookingConfirmationImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? confirmationMessage = null,
-  }) {
-    return _then(_$ServerSendsBookingConfirmationImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      confirmationMessage: null == confirmationMessage
-          ? _value.confirmationMessage
-          : confirmationMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ServerSendsBookingConfirmationImpl
-    with DiagnosticableTreeMixin
-    implements _ServerSendsBookingConfirmation {
-  const _$ServerSendsBookingConfirmationImpl(
-      {required this.eventType, required this.confirmationMessage});
-
-  factory _$ServerSendsBookingConfirmationImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$ServerSendsBookingConfirmationImplFromJson(json);
-
-  @override
-  final String eventType;
-  @override
-  final String confirmationMessage;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerSendsBookingConfirmation(eventType: $eventType, confirmationMessage: $confirmationMessage)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ServerSendsBookingConfirmation'))
-      ..add(DiagnosticsProperty('eventType', eventType))
-      ..add(DiagnosticsProperty('confirmationMessage', confirmationMessage));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ServerSendsBookingConfirmationImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
-            (identical(other.confirmationMessage, confirmationMessage) ||
-                other.confirmationMessage == confirmationMessage));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, eventType, confirmationMessage);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ServerSendsBookingConfirmationImplCopyWith<
-          _$ServerSendsBookingConfirmationImpl>
-      get copyWith => __$$ServerSendsBookingConfirmationImplCopyWithImpl<
-          _$ServerSendsBookingConfirmationImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ServerSendsBookingConfirmationImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _ServerSendsBookingConfirmation
-    implements ServerSendsBookingConfirmation {
-  const factory _ServerSendsBookingConfirmation(
-          {required final String eventType,
-          required final String confirmationMessage}) =
-      _$ServerSendsBookingConfirmationImpl;
-
-  factory _ServerSendsBookingConfirmation.fromJson(Map<String, dynamic> json) =
-      _$ServerSendsBookingConfirmationImpl.fromJson;
-
-  @override
-  String get eventType;
-  @override
-  String get confirmationMessage;
-  @override
-  @JsonKey(ignore: true)
-  _$$ServerSendsBookingConfirmationImplCopyWith<
-          _$ServerSendsBookingConfirmationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 

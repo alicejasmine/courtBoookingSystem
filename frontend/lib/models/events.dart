@@ -63,12 +63,12 @@ class ServerEvent extends BaseEvent {
         return ServerAuthenticatesUser.fromJson(json);
       case ServerSendsCourtAvailabilityToClient.name:
         return ServerSendsCourtAvailabilityToClient.fromJson(json);
-      case ServerSendsBookingConfirmation.name:
-        return ServerSendsBookingConfirmation.fromJson(json);
       case ServerSendsUserBookingsToClient.name:
         return ServerSendsUserBookingsToClient.fromJson(json);
       case ServerSendsErrorMessageToClient.name:
         return ServerSendsErrorMessageToClient.fromJson(json);
+      case ServerSendsConfirmationMessageToClient.name:
+        return ServerSendsConfirmationMessageToClient.fromJson(json);
       default:
         throw "Unknown event type: $type in $json";
     }
@@ -98,12 +98,30 @@ class ServerSendsErrorMessageToClient extends ServerEvent
   const factory ServerSendsErrorMessageToClient({
     required String eventType,
     required String errorMessage,
-    required String receivedMessage,
+    String? receivedMessage,
   }) = _ServerSendsErrorMessageToClient;
 
   factory ServerSendsErrorMessageToClient.fromJson(Map<String, Object?> json) =>
       _$ServerSendsErrorMessageToClientFromJson(json);
 }
+
+
+
+
+@freezed
+class ServerSendsConfirmationMessageToClient extends ServerEvent
+    with _$ServerSendsConfirmationMessageToClient {
+  static const String name = "ServerSendsConfirmationMessageToClient";
+  const factory ServerSendsConfirmationMessageToClient({
+    required String eventType,
+    required String confirmationMessage,
+  }) = _ServerSendsConfirmationMessageToClient;
+
+  factory ServerSendsConfirmationMessageToClient.fromJson(Map<String, Object?> json) =>
+      _$ServerSendsConfirmationMessageToClientFromJson(json);
+}
+
+
 
 // court availability events
 
@@ -157,19 +175,6 @@ class ClientWantsToBookCourt extends ClientEvent
 }
 
 
-@freezed
-class ServerSendsBookingConfirmation extends ServerEvent
-    with _$ServerSendsBookingConfirmation {
-  static const String name = "ServerSendsBookingConfirmation";
-  const factory ServerSendsBookingConfirmation({
-    required String eventType,
-    required String confirmationMessage,
-  }) = _ServerSendsBookingConfirmation;
-
-  factory ServerSendsBookingConfirmation.fromJson(
-      Map<String, Object?> json) =>
-      _$ServerSendsBookingConfirmationFromJson(json);
-}
 
 @freezed
 class ClientWantsToFetchUserBookings extends ClientEvent

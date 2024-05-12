@@ -74,7 +74,7 @@ _$ServerSendsErrorMessageToClientImpl
         _$ServerSendsErrorMessageToClientImpl(
           eventType: json['eventType'] as String,
           errorMessage: json['errorMessage'] as String,
-          receivedMessage: json['receivedMessage'] as String,
+          receivedMessage: json['receivedMessage'] as String?,
         );
 
 Map<String, dynamic> _$$ServerSendsErrorMessageToClientImplToJson(
@@ -83,6 +83,21 @@ Map<String, dynamic> _$$ServerSendsErrorMessageToClientImplToJson(
       'eventType': instance.eventType,
       'errorMessage': instance.errorMessage,
       'receivedMessage': instance.receivedMessage,
+    };
+
+_$ServerSendsConfirmationMessageToClientImpl
+    _$$ServerSendsConfirmationMessageToClientImplFromJson(
+            Map<String, dynamic> json) =>
+        _$ServerSendsConfirmationMessageToClientImpl(
+          eventType: json['eventType'] as String,
+          confirmationMessage: json['confirmationMessage'] as String,
+        );
+
+Map<String, dynamic> _$$ServerSendsConfirmationMessageToClientImplToJson(
+        _$ServerSendsConfirmationMessageToClientImpl instance) =>
+    <String, dynamic>{
+      'eventType': instance.eventType,
+      'confirmationMessage': instance.confirmationMessage,
     };
 
 _$ClientWantsToFetchCourtAvailabilityImpl
@@ -141,20 +156,6 @@ Map<String, dynamic> _$$ClientWantsToBookCourtImplToJson(
       'startTime': instance.startTime,
       'endTime': instance.endTime,
       'creationTime': instance.creationTime.toIso8601String(),
-    };
-
-_$ServerSendsBookingConfirmationImpl
-    _$$ServerSendsBookingConfirmationImplFromJson(Map<String, dynamic> json) =>
-        _$ServerSendsBookingConfirmationImpl(
-          eventType: json['eventType'] as String,
-          confirmationMessage: json['confirmationMessage'] as String,
-        );
-
-Map<String, dynamic> _$$ServerSendsBookingConfirmationImplToJson(
-        _$ServerSendsBookingConfirmationImpl instance) =>
-    <String, dynamic>{
-      'eventType': instance.eventType,
-      'confirmationMessage': instance.confirmationMessage,
     };
 
 _$ClientWantsToFetchUserBookingsImpl
