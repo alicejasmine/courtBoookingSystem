@@ -19,7 +19,9 @@ class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
     on<ClientEvent>(_onClientEvent);
 
     on<ServerSendsCourtAvailabilityToClient>(_onServerSendsCourtAvailabilityToClient);
-
+    on<ServerEvent>((event, _) => print(event));
+    
+    
     // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
         .map((event) => jsonDecode(event))

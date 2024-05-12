@@ -9,6 +9,7 @@ import '../../bloc/court_booking/court_booking_bloc.dart';
 import '../../bloc/court_booking/court_booking_state.dart';
 import '../../models/entities.dart';
 import '../../models/events.dart';
+import '../common.dart';
 
 
 
@@ -26,7 +27,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ErrorMessageWrapper(
+        child: Scaffold(
       appBar: AppBar(
         title: const Text('Book a Court'),
       ),
@@ -59,8 +61,10 @@ class _HomeState extends State<Home> {
           );
         },
       ),
+        ),
     );
   }
+
 
   Widget _buildCourtAvailabilityList(List<CourtAvailability> availability) {
     if (availability.isEmpty) {

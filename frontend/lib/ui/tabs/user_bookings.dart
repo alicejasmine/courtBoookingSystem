@@ -9,6 +9,7 @@ import '../../bloc/auth/auth_bloc.dart';
 
 import '../../bloc/court_booking/court_booking_bloc.dart';
 import '../../bloc/court_booking/court_booking_state.dart';
+import '../common.dart';
 
 class UserBookings extends StatelessWidget {
   const UserBookings({Key? key}) : super(key: key);
@@ -19,7 +20,8 @@ class UserBookings extends StatelessWidget {
 
     courtBookingBloc.fetchUserBookings(context.read<AuthBloc>().state.userId);
 
-    return Scaffold(
+    return ErrorMessageWrapper(
+        child: Scaffold(
       appBar: AppBar(
         title: const Text('My Bookings'),
       ),
@@ -58,7 +60,7 @@ class UserBookings extends StatelessWidget {
           }
         },
       ),
-    );
+    ),);
   }
 }
 
