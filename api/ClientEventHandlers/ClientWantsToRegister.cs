@@ -31,10 +31,7 @@ public class ClientWantsToRegister(
         var salt = credentialService.GenerateSalt();
         var hash = credentialService.Hash(dto.password, salt);
         var user = userRepository.InsertUser(new InsertUserParams(dto.email, hash, salt));
-        //var token = tokenService.IssueJwt(user);
-        //WebSocketStateService.GetClient(socket.ConnectionInfo.Id).IsAuthenticated = true;
         WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
-        //socket.SendDto(new ServerAuthenticatesUser { jwt = token });
         return Task.CompletedTask;
     }
 }
