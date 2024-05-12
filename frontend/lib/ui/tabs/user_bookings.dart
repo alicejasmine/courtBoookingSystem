@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend/models/events.dart';
 import 'package:intl/intl.dart';
 
 import '../../bloc/auth/auth_bloc.dart';
@@ -38,10 +39,17 @@ class UserBookings extends StatelessWidget {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('${booking.startTime.substring(0,5)} - ${booking.endTime.substring(0,5)}'),
+                        Text(
+                            '${booking.startTime.substring(0, 5)} - ${booking.endTime.substring(0, 5)}'),
                         Text(
                             'Created: ${DateFormat('dd/MM/yy hh:mm a').format(booking.creationTime)}'),
                       ],
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        _deleteBooking(context, booking.bookingId);
+                      },
                     ),
                   ),
                 );
@@ -52,4 +60,11 @@ class UserBookings extends StatelessWidget {
       ),
     );
   }
+}
+
+void _deleteBooking(BuildContext context, int bookingId) {
+  final courtBookingBloc = BlocProvider.of<CourtBookingBloc>(context);
+  courtBookingBloc.deleteBooking(bookingId);
+  //courtBookingBloc.fetchUserBookings(context.read<AuthBloc>().state.userId);
+
 }

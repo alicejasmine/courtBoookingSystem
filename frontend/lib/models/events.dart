@@ -199,6 +199,18 @@ class ServerSendsUserBookingsToClient extends ServerEvent with _$ServerSendsUser
       _$ServerSendsUserBookingsToClientFromJson(json);
 }
 
+//delete booking
 
+@freezed
+class ClientWantsToDeleteBooking extends ClientEvent
+    with _$ClientWantsToDeleteBooking {
+  static const String name = "ClientWantsToDeleteBooking";
+  const factory ClientWantsToDeleteBooking({
+    required String eventType,
+    required int bookingId,
+  }) = _ClientWantsToDeleteBooking;
 
+  factory ClientWantsToDeleteBooking.fromJson(Map<String, Object?> json) =>
+      _$ClientWantsToDeleteBookingFromJson(json);
+}
 

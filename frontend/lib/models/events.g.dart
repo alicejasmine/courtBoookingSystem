@@ -189,3 +189,17 @@ Map<String, dynamic> _$$ServerSendsUserBookingsToClientImplToJson(
       'userBookings': instance.userBookings,
       'message': instance.message,
     };
+
+_$ClientWantsToDeleteBookingImpl _$$ClientWantsToDeleteBookingImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ClientWantsToDeleteBookingImpl(
+      eventType: json['eventType'] as String,
+      bookingId: json['bookingId'] as int,
+    );
+
+Map<String, dynamic> _$$ClientWantsToDeleteBookingImplToJson(
+        _$ClientWantsToDeleteBookingImpl instance) =>
+    <String, dynamic>{
+      'eventType': instance.eventType,
+      'bookingId': instance.bookingId,
+    };
