@@ -25,7 +25,7 @@ public class ClientWantsToBookCourtDto : BaseDto
 public class ClientWantsToBookCourt(CourtAvailabilityRepository courtAvailabilityRepository,
     CourtBookingRepository bookingRepository) : BaseEventHandler<ClientWantsToBookCourtDto>
 {
-    public override async Task Handle(ClientWantsToBookCourtDto dto, IWebSocketConnection socket)
+    public override Task Handle(ClientWantsToBookCourtDto dto, IWebSocketConnection socket)
     {
         bool isCourtAvailable =
             courtAvailabilityRepository.IsCourtAvailable(dto.CourtId, dto.SelectedDate, dto.StartTime, dto.EndTime);
@@ -33,8 +33,10 @@ public class ClientWantsToBookCourt(CourtAvailabilityRepository courtAvailabilit
         if (!isCourtAvailable)
         {
             socket.SendDto(new ServerSendsErrorMessageToClient
-                { errorMessage = "Court is not available for the selected date and time." });
-            return;
+            {
+                errorMessage = "Court is not available for the selected date and time.",
+            });
+            return Task.CompletedTask;
         }
 
 
@@ -49,6 +51,9 @@ public class ClientWantsToBookCourt(CourtAvailabilityRepository courtAvailabilit
         };
         bookingRepository.CreateCourtBooking(courtBooking);
 
-        socket.SendDto(new ServerSendsBookingConfirmation { confirmationMessage = "Booking successful" });
+        socket.SendDto(new ServerSendsConfirmationMessageToClient { confirmationMessage = "Booking successful" });
+       
+        return Task.CompletedTask;
     }
+    
 }
