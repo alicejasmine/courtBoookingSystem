@@ -32,9 +32,20 @@ class _NavigationState extends State<Navigation> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Squash Club',
-          style: TextStyle(color: Colors.white),
+        title: Row(
+          children: [
+
+            Image.asset(
+              'assets/images/squash.png',
+              height: 40,
+            ),
+            const SizedBox(width: 8),
+        
+            Text(
+              'Squash Club',
+              style: const TextStyle(color: Colors.white),
+            ),
+          ],
         ),
         backgroundColor: Colors.amber,
       ),
