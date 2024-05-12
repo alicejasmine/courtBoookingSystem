@@ -50,7 +50,7 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
 
   FutureOr<void> _onServerSendsBookingConfirmation(
       ServerSendsBookingConfirmation event, Emitter<CourtBookingState> emit) {
-    print("Received confirmation event: ${event.confirmationMessage}");
+
     emit(state.copyWith(
       confirmationMessage: event.confirmationMessage,
     ));
