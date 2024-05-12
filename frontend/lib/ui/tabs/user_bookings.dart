@@ -65,5 +65,6 @@ class UserBookings extends StatelessWidget {
 void _deleteBooking(BuildContext context, int bookingId) {
   final courtBookingBloc = BlocProvider.of<CourtBookingBloc>(context);
   courtBookingBloc.deleteBooking(bookingId);
+  //courtBookingBloc.fetchUserBookings(context.read<AuthBloc>().state.userId);
 
 }
