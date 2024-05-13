@@ -40,7 +40,7 @@ class _NavigationState extends State<Navigation> {
               height: 40,
             ),
             const SizedBox(width: 8),
-        
+
             Text(
               'Squash Club',
               style: const TextStyle(color: Colors.white),
