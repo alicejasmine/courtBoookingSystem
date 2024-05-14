@@ -18,4 +18,5 @@ jobs:
       - name: Run dotnet test
         run: cd tests && dotnet test
         env:
+          JWT_KEY: ${{secrets.JWT_KEY_}}
           PG_CONN: ${{ secrets.PG_CONN }}
