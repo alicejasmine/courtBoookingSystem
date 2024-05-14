@@ -109,4 +109,50 @@ public class ApiTests
     }
 
 
+    [Test]
+    public async Task ClientCanDeleteBooking()
+    {
+        //arrange
+        var ws = await new WebSocketTestClient().ConnectAsync();
+
+        var courtBookingDto = new ClientWantsToBookCourtDto
+        {
+            CourtId = 4,
+            UserId = 10,
+            SelectedDate = new DateTime(2024, 5, 15),
+            StartTime = TimeSpan.Parse("09:00:00"),
+            EndTime = TimeSpan.Parse("10:00:00"),
+            CreationTime = DateTime.Now
+        };
+
+        //sign in is required to access delete
+        await ws.DoAndAssert(new ClientWantsToSignInDto() { email = "bla@gmail.com", password = "blabla" },
+            receivedMessages =>
+            {
+                return receivedMessages.Count(e => e.eventType == nameof(ServerAuthenticatesUser)) == 1;
+            });
+
+        await ws.DoAndAssert(courtBookingDto, receivedMessages =>
+        {
+            var confirmationMessageCount =
+                receivedMessages.Count(e => e.eventType == nameof(ServerSendsConfirmationMessageToClient));
+            return confirmationMessageCount == 1;
+        });
+
+        //get the booking id of the inserted court booking
+        var bookingId = Helper.GetBookingIdFromDatabase(courtBookingDto);
+
+        //act
+        var deleteDto = new ClientWantsToDeleteBookingDto { BookingId = bookingId };
+        await ws.DoAndAssert(deleteDto, receivedMessages =>
+        {
+            //assert
+            var confirmationMessageCount =
+                receivedMessages.Count(e => e.eventType == nameof(ServerSendsConfirmationMessageToClient));
+            return confirmationMessageCount == 1;
+        });
+        
+        
+        ws.Client.Dispose();
+    }
 }
