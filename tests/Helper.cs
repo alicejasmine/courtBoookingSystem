@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using api.ClientEventHandlers;
+using Dapper;
 using Npgsql;
 
 namespace tests;
@@ -105,5 +106,23 @@ public class Helper
             VALUES
                 (1,1),(2,2),(3,3),(4,4)");
         }
+    }
+    
+    public static int GetBookingIdFromDatabase(ClientWantsToBookCourtDto courtBookingDto)
+    {
+        
+    using (var conn = DataSource.OpenConnection())
+    {
+        var sql = @"
+            SELECT booking_id
+            FROM booking_system.court_bookings
+            WHERE court_id = @CourtId
+            AND user_id = @UserId
+            AND date = @SelectedDate
+            AND start_time = @StartTime
+            AND end_time = @EndTime";
+
+        return conn.Query<int>(sql, courtBookingDto).FirstOrDefault();
+    }
     }
 }
