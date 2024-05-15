@@ -6,7 +6,7 @@ import 'entities.dart';
 part 'events.freezed.dart';
 part 'events.g.dart';
 
-sealed class BaseEvent {}
+class BaseEvent {}
 
 abstract class ClientEvent extends BaseEvent {
   Map<String, dynamic> toJson();

@@ -19,6 +19,7 @@ mixin _$CourtAvailabilityState {
   List<CourtAvailability> get courtAvailability =>
       throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
+  DateTime get selectedDate => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CourtAvailabilityStateCopyWith<CourtAvailabilityState> get copyWith =>
@@ -31,7 +32,10 @@ abstract class $CourtAvailabilityStateCopyWith<$Res> {
           $Res Function(CourtAvailabilityState) then) =
       _$CourtAvailabilityStateCopyWithImpl<$Res, CourtAvailabilityState>;
   @useResult
-  $Res call({List<CourtAvailability> courtAvailability, String? message});
+  $Res call(
+      {List<CourtAvailability> courtAvailability,
+      String? message,
+      DateTime selectedDate});
 }
 
 /// @nodoc
@@ -50,6 +54,7 @@ class _$CourtAvailabilityStateCopyWithImpl<$Res,
   $Res call({
     Object? courtAvailability = null,
     Object? message = freezed,
+    Object? selectedDate = null,
   }) {
     return _then(_value.copyWith(
       courtAvailability: null == courtAvailability
@@ -60,6 +65,10 @@ class _$CourtAvailabilityStateCopyWithImpl<$Res,
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -73,7 +82,10 @@ abstract class _$$CourtAvailabilityStateImplCopyWith<$Res>
       __$$CourtAvailabilityStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CourtAvailability> courtAvailability, String? message});
+  $Res call(
+      {List<CourtAvailability> courtAvailability,
+      String? message,
+      DateTime selectedDate});
 }
 
 /// @nodoc
@@ -91,6 +103,7 @@ class __$$CourtAvailabilityStateImplCopyWithImpl<$Res>
   $Res call({
     Object? courtAvailability = null,
     Object? message = freezed,
+    Object? selectedDate = null,
   }) {
     return _then(_$CourtAvailabilityStateImpl(
       courtAvailability: null == courtAvailability
@@ -101,6 +114,10 @@ class __$$CourtAvailabilityStateImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -109,7 +126,9 @@ class __$$CourtAvailabilityStateImplCopyWithImpl<$Res>
 
 class _$CourtAvailabilityStateImpl implements _CourtAvailabilityState {
   const _$CourtAvailabilityStateImpl(
-      {required final List<CourtAvailability> courtAvailability, this.message})
+      {required final List<CourtAvailability> courtAvailability,
+      this.message,
+      required this.selectedDate})
       : _courtAvailability = courtAvailability;
 
   final List<CourtAvailability> _courtAvailability;
@@ -123,10 +142,12 @@ class _$CourtAvailabilityStateImpl implements _CourtAvailabilityState {
 
   @override
   final String? message;
+  @override
+  final DateTime selectedDate;
 
   @override
   String toString() {
-    return 'CourtAvailabilityState(courtAvailability: $courtAvailability, message: $message)';
+    return 'CourtAvailabilityState(courtAvailability: $courtAvailability, message: $message, selectedDate: $selectedDate)';
   }
 
   @override
@@ -136,12 +157,17 @@ class _$CourtAvailabilityStateImpl implements _CourtAvailabilityState {
             other is _$CourtAvailabilityStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._courtAvailability, _courtAvailability) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.selectedDate, selectedDate) ||
+                other.selectedDate == selectedDate));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_courtAvailability), message);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_courtAvailability),
+      message,
+      selectedDate);
 
   @JsonKey(ignore: true)
   @override
@@ -154,12 +180,15 @@ class _$CourtAvailabilityStateImpl implements _CourtAvailabilityState {
 abstract class _CourtAvailabilityState implements CourtAvailabilityState {
   const factory _CourtAvailabilityState(
       {required final List<CourtAvailability> courtAvailability,
-      final String? message}) = _$CourtAvailabilityStateImpl;
+      final String? message,
+      required final DateTime selectedDate}) = _$CourtAvailabilityStateImpl;
 
   @override
   List<CourtAvailability> get courtAvailability;
   @override
   String? get message;
+  @override
+  DateTime get selectedDate;
   @override
   @JsonKey(ignore: true)
   _$$CourtAvailabilityStateImplCopyWith<_$CourtAvailabilityStateImpl>

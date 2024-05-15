@@ -22,8 +22,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  DateTime selectedDate = DateTime.now();
   CourtAvailability? selectedSlot;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<CourtAvailabilityBloc>().fetchCourtAvailability();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +45,7 @@ class _HomeState extends State<Home> {
               TextButton.icon(
                 onPressed: () => _selectDate(context),
                 icon: const Icon(Icons.calendar_today),
-                label: Text('Select Date: ${DateFormat('dd/MM/yy').format(selectedDate)}'),
+                label: Text('Select Date: ${DateFormat('dd/MM/yy').format(state.selectedDate)}'),
               ),
               Expanded(
                 child: state.courtAvailability.isNotEmpty
@@ -50,7 +55,7 @@ class _HomeState extends State<Home> {
               BlocBuilder<CourtBookingBloc, CourtBookingState>(
                 builder: (context, bookingState) {
                   if (bookingState.confirmationMessage =="Booking successful") {
-                    context.read<CourtAvailabilityBloc>().fetchCourtAvailability(selectedDate);
+                    context.read<CourtAvailabilityBloc>().fetchCourtAvailability();
                     return Text(bookingState.confirmationMessage!);
                   } else {
                     return Container();
@@ -143,17 +148,16 @@ class _HomeState extends State<Home> {
     );
   }
   Future<void> _selectDate(BuildContext context) async {
+    final selectedDate = context.read<CourtAvailabilityBloc>().state.selectedDate;
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 7)),
     );
+    if (!context.mounted) return;
     if (pickedDate != null && pickedDate != selectedDate) {
-      setState(() {
-        selectedDate = pickedDate;
-        context.read<CourtAvailabilityBloc>().fetchCourtAvailability(selectedDate);
-      });
+      context.read<CourtAvailabilityBloc>().add(ChangeSelectedDataEvent(pickedDate));
     }
   }
 
@@ -169,6 +173,8 @@ class _HomeState extends State<Home> {
   void _bookCourt(BuildContext context, CourtAvailability courtData) {
     final courtBookingBloc = context.read<CourtBookingBloc>();
     final authState = context.read<AuthBloc>().state;
+    final selectedDate = context.read<CourtAvailabilityBloc>().state.selectedDate;
+
 
     final event = ClientWantsToBookCourt(
       eventType: ClientWantsToBookCourt.name,
