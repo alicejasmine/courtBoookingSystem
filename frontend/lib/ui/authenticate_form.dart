@@ -18,8 +18,8 @@ class AuthenticateForm extends StatefulWidget {
 
 class _AuthenticateFormState extends State<AuthenticateForm> {
   final _authFormKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _usernameController = TextEditingController(text: "alice@gmail.com");
+  final _passwordController = TextEditingController(text: "blabla");
 
   @override
   dispose() {

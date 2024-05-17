@@ -20,6 +20,7 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
 
     //on<ServerSendsBookingConfirmation>(_onServerSendsBookingConfirmation);
     on<ServerSendsUserBookingsToClient>(_onServerSendsUserBookingsToClient);
+    on<ServerSendsConfirmationMessageToClient>((event, _) => fetchUserBookings(state.userBookings.first.userId));
     on<ServerEvent>((event, _) => print(event));
 
     // Feed deserialized events from server into this bloc

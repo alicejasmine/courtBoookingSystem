@@ -2,11 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../../broadcast_ws_channel.dart';
 import '../../models/events.dart';
 import 'court_availability_state.dart';
+
+class ChangeSelectedDataEvent extends BaseEvent {
+  ChangeSelectedDataEvent(this.value);
+  final DateTime value;
+}
 
 class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
   late StreamSubscription _channelSubscription;
@@ -17,11 +21,14 @@ class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
         super(CourtAvailabilityState.empty()) {
     // Handler for client events
     on<ClientEvent>(_onClientEvent);
+    on<ChangeSelectedDataEvent>(_onChangeSelectedDate);
 
-    on<ServerSendsCourtAvailabilityToClient>(_onServerSendsCourtAvailabilityToClient);
+    on<ServerSendsCourtAvailabilityToClient>(
+        _onServerSendsCourtAvailabilityToClient);
+    on<ServerSendsConfirmationMessageToClient>((event, _) => fetchCourtAvailability());
     on<ServerEvent>((event, _) => print(event));
-    
-    
+
+
     // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
         .map((event) => jsonDecode(event))
@@ -34,6 +41,7 @@ class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
       addError(error);
     });
   }
+
   @override
   Future<void> close() async {
     // Remember to cancel the subscription when no longer needed.
@@ -43,11 +51,19 @@ class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
     super.close();
   }
 
-  void fetchCourtAvailability(DateTime selectedDate) {
-    print('Fetching court availability for date: $selectedDate');
+  void _onChangeSelectedDate(ChangeSelectedDataEvent event, Emitter<CourtAvailabilityState> emit) {
+    emit(state.copyWith(selectedDate: event.value));
     add(ClientWantsToFetchCourtAvailability(
       eventType: ClientWantsToFetchCourtAvailability.name,
-      selectedDate: selectedDate,
+      selectedDate: state.selectedDate,
+    ));
+  }
+
+  void fetchCourtAvailability() {
+    print('Fetching court availability for date: ${state.selectedDate}');
+    add(ClientWantsToFetchCourtAvailability(
+      eventType: ClientWantsToFetchCourtAvailability.name,
+      selectedDate: state.selectedDate,
     ));
   }
 
