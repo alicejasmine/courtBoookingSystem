@@ -32,6 +32,7 @@ public class ClientWantsToRegister(
         var hash = credentialService.Hash(dto.password, salt);
         var user = userRepository.InsertUser(new InsertUserParams(dto.email, hash, salt));
         WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
+        socket.SendDto(new ServerSendsConfirmationMessageToClient { confirmationMessage = "Registration successful" });
         return Task.CompletedTask;
     }
 }
