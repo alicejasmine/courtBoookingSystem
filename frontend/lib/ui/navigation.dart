@@ -1,7 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend/bloc/auth/auth_bloc.dart';
+import 'package:frontend/ui/authenticate_form.dart';
 
+import 'court_booking_app.dart';
 import 'tabs/club_info.dart';
 import 'tabs/home.dart';
 import 'tabs/user_bookings.dart';
@@ -46,6 +50,9 @@ class _NavigationState extends State<Navigation> {
               style: const TextStyle(color: Colors.white),
             ),
             const Spacer(),
+            IconButton(
+                icon: Icon(Icons.logout),
+                onPressed: ()  => _logOut()),
           ],
         ),
         backgroundColor:  Theme.of(context).colorScheme.primary,
@@ -72,4 +79,16 @@ class _NavigationState extends State<Navigation> {
       ),
     );
   }
+
+  void _logOut() {
+
+    context.read<AuthBloc>().logout();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => CourtBookingApp(),
+      ),
+    );
+  }
 }
+
+
