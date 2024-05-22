@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_state.dart';
@@ -7,8 +8,32 @@ import 'authenticate_form.dart';
 import 'common.dart';
 import 'navigation.dart';
 
-class CourtBookingApp extends StatelessWidget {
+
+class CourtBookingApp extends StatefulWidget {
   const CourtBookingApp({Key? key}) : super(key: key);
+
+  @override
+  _CourtBookingAppState createState() => _CourtBookingAppState();
+}
+
+class _CourtBookingAppState extends State<CourtBookingApp> {
+  final _secureStorage = FlutterSecureStorage();
+
+
+  @override
+  void initState() {
+    super.initState();
+    _checkAuthentication();
+  }
+
+  Future<void> _checkAuthentication() async {
+    final jwtToken = await _secureStorage.read(key: 'jwt_token');
+    if (jwtToken != null) {
+
+      context.read<AuthBloc>().authenticateWithJwt( eventType: 'ClientWantsToAuthenticateWithJwt',
+        jwt: jwtToken,);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

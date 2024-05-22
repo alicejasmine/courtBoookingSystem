@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:frontend/bloc/court_booking/court_booking_bloc.dart';
 
 import 'package:frontend/logger_bloc_observer.dart';
@@ -32,13 +33,14 @@ void main() {
 
   }
   final broadcastWsChannel = BroadcastWsChannel(wsUri);
-
+ final  storage = FlutterSecureStorage();
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(
-          create: (context) => AuthBloc(channel: broadcastWsChannel),
+          create: (context) => AuthBloc(channel: broadcastWsChannel, secureStorage: storage),
         ),
+
         BlocProvider<CourtAvailabilityBloc>(
         create: (context) => CourtAvailabilityBloc(channel: broadcastWsChannel),
   ),

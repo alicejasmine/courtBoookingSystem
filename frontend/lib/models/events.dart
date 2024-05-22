@@ -71,6 +71,9 @@ class ServerEvent extends BaseEvent {
         return ServerSendsConfirmationMessageToClient.fromJson(json);
       case ServerLogsOutUser.name:
         return ServerLogsOutUser.fromJson(json);
+      case ServerAuthenticatesUserWithJwt.name:
+        return ServerAuthenticatesUserWithJwt.fromJson(json);
+
       default:
         throw "Unknown event type: $type in $json";
     }
@@ -89,6 +92,20 @@ class ServerAuthenticatesUser extends ServerEvent
 
   factory ServerAuthenticatesUser.fromJson(Map<String, Object?> json) =>
       _$ServerAuthenticatesUserFromJson(json);
+}
+
+@freezed
+class ServerAuthenticatesUserWithJwt extends ServerEvent
+    with _$ServerAuthenticatesUserWithJwt {
+  static const String name = "ServerAuthenticatesUserWithJwt";
+  const factory ServerAuthenticatesUserWithJwt({
+    required String eventType,
+    required String jwt,
+    required int userId,
+  }) = _ServerAuthenticatesUserWithJwt;
+
+  factory ServerAuthenticatesUserWithJwt.fromJson(Map<String, Object?> json) =>
+      _$ServerAuthenticatesUserWithJwtFromJson(json);
 }
 
 

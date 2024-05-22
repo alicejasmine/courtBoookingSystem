@@ -31,6 +31,10 @@ public class ClientWantsToAuthenticateWithJwt(
 
         WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
         WebSocketStateService.GetClient(socket.ConnectionInfo.Id).IsAuthenticated = true;
-        socket.SendDto(new ServerAuthenticatesUserFromJwt());
+        socket.SendDto(new ServerAuthenticatesUserWithJwt
+        {
+            jwt = dto.jwt,
+            userId = user.id
+        });
     }
 }

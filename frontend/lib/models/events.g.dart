@@ -69,6 +69,22 @@ Map<String, dynamic> _$$ServerAuthenticatesUserImplToJson(
       'userId': instance.userId,
     };
 
+_$ServerAuthenticatesUserWithJwtImpl
+    _$$ServerAuthenticatesUserWithJwtImplFromJson(Map<String, dynamic> json) =>
+        _$ServerAuthenticatesUserWithJwtImpl(
+          eventType: json['eventType'] as String,
+          jwt: json['jwt'] as String,
+          userId: json['userId'] as int,
+        );
+
+Map<String, dynamic> _$$ServerAuthenticatesUserWithJwtImplToJson(
+        _$ServerAuthenticatesUserWithJwtImpl instance) =>
+    <String, dynamic>{
+      'eventType': instance.eventType,
+      'jwt': instance.jwt,
+      'userId': instance.userId,
+    };
+
 _$ServerSendsErrorMessageToClientImpl
     _$$ServerSendsErrorMessageToClientImplFromJson(Map<String, dynamic> json) =>
         _$ServerSendsErrorMessageToClientImpl(

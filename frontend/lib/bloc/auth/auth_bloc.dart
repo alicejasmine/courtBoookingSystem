@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../../broadcast_ws_channel.dart';
 import '../../models/events.dart';
@@ -12,9 +13,13 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
   late StreamSubscription _channelSubscription;
   String? _jwt;
   final BroadcastWsChannel _channel;
+  final FlutterSecureStorage _secureStorage;
 
-  AuthBloc({required BroadcastWsChannel channel})
+  AuthBloc(
+      {required BroadcastWsChannel channel,
+      required FlutterSecureStorage secureStorage})
       : _channel = channel,
+        _secureStorage = secureStorage,
         super(AuthState.empty()) {
     // Handler for client events
     on<ClientEvent>(_onClientEvent);
@@ -24,7 +29,9 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
     on<ServerAuthenticatesUser>(_onServerAuthenticatesUser);
     on<ServerEvent>((event, _) => print(event));
     on<ServerLogsOutUser>(_onServerLogsOutUser);
+    on<ServerAuthenticatesUserWithJwt>(_onServerAuthenticatesUserWithJwt);
 
+    _retrieveJwtToken();
 
     // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
@@ -72,6 +79,8 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
       headsUp: 'Authentication successful!',
       userId: event.userId,
     ));
+
+    _secureStorage.write(key: 'jwt_token', value: _jwt!);
   }
 
   FutureOr<void> _onServerLogsOutUser(
@@ -80,13 +89,38 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
       authenticated: false,
       headsUp: 'Logged out successfully!',
     ));
+
+    _secureStorage.delete(key: 'jwt_token');
   }
 
   void logout() {
-    add(ClientWantsToLogOut(
-      eventType: ClientWantsToLogOut.name
-    ));
+    add(ClientWantsToLogOut(eventType: ClientWantsToLogOut.name));
   }
 
+  FutureOr<void> _onServerAuthenticatesUserWithJwt(
+      ServerAuthenticatesUserWithJwt event, Emitter<AuthState> emit) {
+    if (event.jwt != null) {
+      _jwt = event.jwt;
+      _secureStorage.write(key: 'jwt_token', value: _jwt!);
+      emit(state.copyWith(
+        authenticated: true,
+        headsUp: 'Authentication successful with JWT!',
+        userId: event.userId,
+      ));
+    }
+  }
 
+  /// Retrieves JWT token from secure storage
+  Future<void> _retrieveJwtToken() async {
+    _jwt = await _secureStorage.read(key: 'jwt_token');
+    if (_jwt != null) {
+      // If JWT token exists, set the authentication state to authenticated
+      emit(state.copyWith(authenticated: true));
+    }
+  }
+
+  void authenticateWithJwt({required String eventType, required String jwt}) {
+    add(ClientWantsToAuthenticateWithJwt(
+        eventType: ClientWantsToAuthenticateWithJwt.name, jwt: jwt));
+  }
 }
