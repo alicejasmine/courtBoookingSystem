@@ -69,6 +69,8 @@ class ServerEvent extends BaseEvent {
         return ServerSendsErrorMessageToClient.fromJson(json);
       case ServerSendsConfirmationMessageToClient.name:
         return ServerSendsConfirmationMessageToClient.fromJson(json);
+      case ServerLogsOutUser.name:
+        return ServerLogsOutUser.fromJson(json);
       default:
         throw "Unknown event type: $type in $json";
     }
@@ -219,3 +221,27 @@ class ClientWantsToDeleteBooking extends ClientEvent
       _$ClientWantsToDeleteBookingFromJson(json);
 }
 
+
+//log out
+
+@freezed
+class ClientWantsToLogOut extends ClientEvent with _$ClientWantsToLogOut {
+  static const String name = "ClientWantsToLogOut";
+  const factory ClientWantsToLogOut({required String eventType}) = _ClientWantsToLogOut;
+
+  factory ClientWantsToLogOut.fromJson(Map<String, Object?> json) =>
+      _$ClientWantsToLogOutFromJson(json);
+}
+
+
+@freezed
+class ServerLogsOutUser extends ServerEvent
+    with _$ServerLogsOutUser {
+  static const String name = "ServerLogsOutUser";
+  const factory ServerLogsOutUser({
+    required String eventType,
+  }) = _ServerLogsOutUser;
+
+  factory ServerLogsOutUser.fromJson(Map<String, Object?> json) =>
+      _$ServerLogsOutUserFromJson(json);
+}

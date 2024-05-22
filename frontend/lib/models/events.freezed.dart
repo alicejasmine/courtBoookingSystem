@@ -2409,3 +2409,301 @@ abstract class _ClientWantsToDeleteBooking
   _$$ClientWantsToDeleteBookingImplCopyWith<_$ClientWantsToDeleteBookingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+ClientWantsToLogOut _$ClientWantsToLogOutFromJson(Map<String, dynamic> json) {
+  return _ClientWantsToLogOut.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ClientWantsToLogOut {
+  String get eventType => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ClientWantsToLogOutCopyWith<ClientWantsToLogOut> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ClientWantsToLogOutCopyWith<$Res> {
+  factory $ClientWantsToLogOutCopyWith(
+          ClientWantsToLogOut value, $Res Function(ClientWantsToLogOut) then) =
+      _$ClientWantsToLogOutCopyWithImpl<$Res, ClientWantsToLogOut>;
+  @useResult
+  $Res call({String eventType});
+}
+
+/// @nodoc
+class _$ClientWantsToLogOutCopyWithImpl<$Res, $Val extends ClientWantsToLogOut>
+    implements $ClientWantsToLogOutCopyWith<$Res> {
+  _$ClientWantsToLogOutCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+  }) {
+    return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ClientWantsToLogOutImplCopyWith<$Res>
+    implements $ClientWantsToLogOutCopyWith<$Res> {
+  factory _$$ClientWantsToLogOutImplCopyWith(_$ClientWantsToLogOutImpl value,
+          $Res Function(_$ClientWantsToLogOutImpl) then) =
+      __$$ClientWantsToLogOutImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String eventType});
+}
+
+/// @nodoc
+class __$$ClientWantsToLogOutImplCopyWithImpl<$Res>
+    extends _$ClientWantsToLogOutCopyWithImpl<$Res, _$ClientWantsToLogOutImpl>
+    implements _$$ClientWantsToLogOutImplCopyWith<$Res> {
+  __$$ClientWantsToLogOutImplCopyWithImpl(_$ClientWantsToLogOutImpl _value,
+      $Res Function(_$ClientWantsToLogOutImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+  }) {
+    return _then(_$ClientWantsToLogOutImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ClientWantsToLogOutImpl
+    with DiagnosticableTreeMixin
+    implements _ClientWantsToLogOut {
+  const _$ClientWantsToLogOutImpl({required this.eventType});
+
+  factory _$ClientWantsToLogOutImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ClientWantsToLogOutImplFromJson(json);
+
+  @override
+  final String eventType;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ClientWantsToLogOut(eventType: $eventType)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ClientWantsToLogOut'))
+      ..add(DiagnosticsProperty('eventType', eventType));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClientWantsToLogOutImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, eventType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ClientWantsToLogOutImplCopyWith<_$ClientWantsToLogOutImpl> get copyWith =>
+      __$$ClientWantsToLogOutImplCopyWithImpl<_$ClientWantsToLogOutImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ClientWantsToLogOutImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ClientWantsToLogOut implements ClientWantsToLogOut {
+  const factory _ClientWantsToLogOut({required final String eventType}) =
+      _$ClientWantsToLogOutImpl;
+
+  factory _ClientWantsToLogOut.fromJson(Map<String, dynamic> json) =
+      _$ClientWantsToLogOutImpl.fromJson;
+
+  @override
+  String get eventType;
+  @override
+  @JsonKey(ignore: true)
+  _$$ClientWantsToLogOutImplCopyWith<_$ClientWantsToLogOutImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ServerLogsOutUser _$ServerLogsOutUserFromJson(Map<String, dynamic> json) {
+  return _ServerLogsOutUser.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ServerLogsOutUser {
+  String get eventType => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ServerLogsOutUserCopyWith<ServerLogsOutUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ServerLogsOutUserCopyWith<$Res> {
+  factory $ServerLogsOutUserCopyWith(
+          ServerLogsOutUser value, $Res Function(ServerLogsOutUser) then) =
+      _$ServerLogsOutUserCopyWithImpl<$Res, ServerLogsOutUser>;
+  @useResult
+  $Res call({String eventType});
+}
+
+/// @nodoc
+class _$ServerLogsOutUserCopyWithImpl<$Res, $Val extends ServerLogsOutUser>
+    implements $ServerLogsOutUserCopyWith<$Res> {
+  _$ServerLogsOutUserCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+  }) {
+    return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ServerLogsOutUserImplCopyWith<$Res>
+    implements $ServerLogsOutUserCopyWith<$Res> {
+  factory _$$ServerLogsOutUserImplCopyWith(_$ServerLogsOutUserImpl value,
+          $Res Function(_$ServerLogsOutUserImpl) then) =
+      __$$ServerLogsOutUserImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String eventType});
+}
+
+/// @nodoc
+class __$$ServerLogsOutUserImplCopyWithImpl<$Res>
+    extends _$ServerLogsOutUserCopyWithImpl<$Res, _$ServerLogsOutUserImpl>
+    implements _$$ServerLogsOutUserImplCopyWith<$Res> {
+  __$$ServerLogsOutUserImplCopyWithImpl(_$ServerLogsOutUserImpl _value,
+      $Res Function(_$ServerLogsOutUserImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventType = null,
+  }) {
+    return _then(_$ServerLogsOutUserImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ServerLogsOutUserImpl
+    with DiagnosticableTreeMixin
+    implements _ServerLogsOutUser {
+  const _$ServerLogsOutUserImpl({required this.eventType});
+
+  factory _$ServerLogsOutUserImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ServerLogsOutUserImplFromJson(json);
+
+  @override
+  final String eventType;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ServerLogsOutUser(eventType: $eventType)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ServerLogsOutUser'))
+      ..add(DiagnosticsProperty('eventType', eventType));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ServerLogsOutUserImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, eventType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ServerLogsOutUserImplCopyWith<_$ServerLogsOutUserImpl> get copyWith =>
+      __$$ServerLogsOutUserImplCopyWithImpl<_$ServerLogsOutUserImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ServerLogsOutUserImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ServerLogsOutUser implements ServerLogsOutUser {
+  const factory _ServerLogsOutUser({required final String eventType}) =
+      _$ServerLogsOutUserImpl;
+
+  factory _ServerLogsOutUser.fromJson(Map<String, dynamic> json) =
+      _$ServerLogsOutUserImpl.fromJson;
+
+  @override
+  String get eventType;
+  @override
+  @JsonKey(ignore: true)
+  _$$ServerLogsOutUserImplCopyWith<_$ServerLogsOutUserImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
