@@ -89,12 +89,11 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
       authenticated: false,
       headsUp: 'Logged out successfully!',
     ));
-
-    _secureStorage.delete(key: 'jwt_token');
   }
 
   void logout() {
     add(ClientWantsToLogOut(eventType: ClientWantsToLogOut.name));
+    _secureStorage.delete(key: 'jwt_token');
   }
 
   FutureOr<void> _onServerAuthenticatesUserWithJwt(
