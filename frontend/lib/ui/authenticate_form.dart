@@ -16,8 +16,8 @@ class AuthenticateForm extends StatefulWidget {
 
 class _AuthenticateFormState extends State<AuthenticateForm> {
   final _authFormKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController(text: "alice@gmail.com");
-  final _passwordController = TextEditingController(text: "blabla");
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   dispose() {
@@ -47,6 +47,7 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
       child: Column(
         children: [
           TextFormField(
+            key: const Key('email_field'),
             decoration: const InputDecoration(border: OutlineInputBorder()),
             controller: _usernameController,
             validator: (value) =>
@@ -55,6 +56,7 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
           ),
           const SizedBox(height: 8),
           TextFormField(
+            key: const Key('password_field'),
             decoration: const InputDecoration(border: OutlineInputBorder()),
             controller: _passwordController,
             obscureText: true,
@@ -67,8 +69,10 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
           Row(
             children: [
               OutlinedButton(
+
                   onPressed: _onRegister, child: const Text("Register")),
               const SizedBox(width: 8),OutlinedButton(
+                  key: const Key ('signIn_button'),
                   onPressed: _onSignIn, child: const Text("Sign in")),
             ],
           )
