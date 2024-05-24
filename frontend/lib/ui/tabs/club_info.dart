@@ -10,10 +10,14 @@ class ClubInfo extends StatefulWidget {
 }
 
 class _ClubInfoState extends State<ClubInfo> {
-  @override
+
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    final theme = Theme.of(context);
+    return Scaffold(
+    backgroundColor: theme.colorScheme.primaryContainer,
+      body:SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -81,15 +85,16 @@ class _ClubInfoState extends State<ClubInfo> {
           ],
         ),
       ),
-    );
+    ),);
   }
 
   Widget _buildExpansionPanel(
       {required String title, required List<Widget> content}) {
+    final theme = Theme.of(context);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Colors.grey[200],
+        color: theme.colorScheme.background,
       ),
       margin: EdgeInsets.only(bottom: 10),
       child: Theme(
@@ -101,7 +106,8 @@ class _ClubInfoState extends State<ClubInfo> {
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: Text(
               title,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: theme.colorScheme.primary),
+
             ),
           ),
           children: [
@@ -121,6 +127,7 @@ class _ClubInfoState extends State<ClubInfo> {
   }
 
   Widget _buildFaqExpansionTile({required String question, required String answer}) {
+    final theme = Theme.of(context);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8),
       child: Theme(
@@ -130,7 +137,7 @@ class _ClubInfoState extends State<ClubInfo> {
         child: ExpansionTile(
           title: Text(
             question,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: theme.colorScheme.primary),
           ),
           children: [
             Padding(

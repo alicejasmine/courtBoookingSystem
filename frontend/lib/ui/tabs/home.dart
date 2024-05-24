@@ -34,19 +34,18 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return ErrorMessageWrapper(
         child: Scaffold(
-      appBar: AppBar(
-        title: const Text('Book a Court'),
-      ),
       body: BlocBuilder<CourtAvailabilityBloc, CourtAvailabilityState>(
         builder: (context, state) {
 
           return Column(
             children: [
+              const SizedBox(height: 16), //space above the datepicker
               TextButton.icon(
                 onPressed: () => _selectDate(context),
                 icon: const Icon(Icons.calendar_today),
                 label: Text('Select Date: ${DateFormat('dd/MM/yy').format(state.selectedDate)}'),
               ),
+              const SizedBox(height: 16),
               Expanded(
                 child: state.courtAvailability.isNotEmpty
                     ? _buildCourtAvailabilityList(state.courtAvailability)
@@ -72,6 +71,7 @@ class _HomeState extends State<Home> {
 
 
   Widget _buildCourtAvailabilityList(List<CourtAvailability> availability) {
+    final theme = Theme.of(context);
     if (availability.isEmpty) {
       return const Center(child: Text('No court availability.'));
     }
@@ -114,8 +114,8 @@ class _HomeState extends State<Home> {
                   onTap: () => _selectSlot(courtData),
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.deepOrange),
-                  color: isSelected ? Colors.amber : Colors.transparent,
+                      border: Border.all(color: Theme.of(context).colorScheme.secondary),
+                  color: isSelected ? Theme.of(context).colorScheme.secondary : Colors.transparent,
                     ),
                     alignment: Alignment.center,
                     margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -130,6 +130,10 @@ class _HomeState extends State<Home> {
                   Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: theme.colorScheme.background,
+                      backgroundColor: theme.colorScheme.primary,
+                    ),
                   onPressed: () {
 
                   _bookCourt(context,courtData);

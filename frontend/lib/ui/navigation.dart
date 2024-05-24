@@ -36,18 +36,19 @@ class _NavigationState extends State<Navigation> {
           children: [
 
             Image.asset(
-              'assets/images/squash.png',
+              'assets/images/logo_white.png',
               height: 40,
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 15),
 
             Text(
               'Squash Club',
               style: const TextStyle(color: Colors.white),
             ),
+            const Spacer(),
           ],
         ),
-        backgroundColor: Colors.amber,
+        backgroundColor:  Theme.of(context).colorScheme.primary,
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -66,7 +67,7 @@ class _NavigationState extends State<Navigation> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         onTap: _onItemTapped,
       ),
     );
