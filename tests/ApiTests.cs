@@ -106,6 +106,7 @@ public class ApiTests
 
         ws1.Client.Dispose();
         ws2.Client.Dispose();
+        Helper.RebuildDatabase();
     }
 
 
