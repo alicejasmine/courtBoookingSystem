@@ -7,8 +7,8 @@ import 'package:frontend/bloc/court_booking/court_booking_bloc.dart';
 import 'package:frontend/bloc/message/message_bloc.dart';
 import 'package:frontend/broadcast_ws_channel.dart';
 import 'package:frontend/ui/court_booking_app.dart';
-import 'package:frontend/ui/tabs/home.dart';
 import 'package:integration_test/integration_test.dart';
+
 
 
 
@@ -20,6 +20,7 @@ void main() {
 
 
   //create booking
+
   testWidgets('Book a court test', (tester) async {
     final wsUri = Uri.parse('ws://10.0.2.2:8181');
     final broadcastWsChannel = BroadcastWsChannel(wsUri);
@@ -49,24 +50,29 @@ void main() {
     );
 
     //Login
-    await tester.enterText(find.byKey(const Key('email_field')), 'alice@gmail.com');
-    await tester.enterText(find.byKey(const Key('password_field')), 'blabla');
-    await tester.tap(find.byKey(const Key('signIn_button')));
+    await tester.enterText(find.byKey(Key('email_field')), 'alice@gmail.com');
+    await tester.enterText(find.byKey(Key('password_field')), 'blabla');
+    await tester.tap(find.byKey(Key('signIn_button')));
     await tester.pumpAndSettle();
 
+    await tester.pump(Duration(seconds: 5));
 
     //Tap on a court slot to select it
-    await tester.tap(find.text('10:00 - 11:00'));
+    await tester.tap(find.text('16:00 - 17:00'));
     await tester.pumpAndSettle();
 
     //Tap on the 'Book' button
     await tester.tap(find.text('Book'));
     await tester.pumpAndSettle();
 
-    //add navigation to user bookings and check there or fix this below
-    expect(find.text('Booking successful'), findsOneWidget);
+
+    await tester.pump(Duration(seconds: 3));
+    //booked court is no longer visible
+    expect(find.text('16:00 - 17:00'), findsNothing);
+
   });
 }
+
 
 
 

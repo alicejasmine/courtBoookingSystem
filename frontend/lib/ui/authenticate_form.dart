@@ -44,8 +44,8 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
         child: Column(
           children: [
             TextFormField(
-    key: const Key('email_field'),
-              decoration:  InputDecoration(border: OutlineInputBorder()),
+              key: Key('email_field'),
+              decoration: InputDecoration(border: OutlineInputBorder()),
               controller: _usernameController,
               validator: (value) =>
                   (value ?? "").contains("@") ? null : "Must be a valid email",
@@ -53,7 +53,7 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
             ),
             const SizedBox(height: 16),
             TextFormField(
-    key: const Key('password_field'),
+              key: Key('password_field'),
               decoration: const InputDecoration(border: OutlineInputBorder()),
               controller: _passwordController,
               obscureText: true,
@@ -75,7 +75,7 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
                 ),
                 const SizedBox(width: 16),
                 OutlinedButton(
-    key: const Key ('signIn_button'),
+                    key: Key('signIn_button'),
                     onPressed: _onSignIn,
                     child: const Text("Sign in"),
                     style: OutlinedButton.styleFrom(
