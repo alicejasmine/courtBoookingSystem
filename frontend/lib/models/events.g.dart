@@ -204,3 +204,27 @@ Map<String, dynamic> _$$ClientWantsToDeleteBookingImplToJson(
       'eventType': instance.eventType,
       'bookingId': instance.bookingId,
     };
+
+_$ClientWantsToLogOutImpl _$$ClientWantsToLogOutImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ClientWantsToLogOutImpl(
+      eventType: json['eventType'] as String,
+    );
+
+Map<String, dynamic> _$$ClientWantsToLogOutImplToJson(
+        _$ClientWantsToLogOutImpl instance) =>
+    <String, dynamic>{
+      'eventType': instance.eventType,
+    };
+
+_$ServerLogsOutUserImpl _$$ServerLogsOutUserImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ServerLogsOutUserImpl(
+      eventType: json['eventType'] as String,
+    );
+
+Map<String, dynamic> _$$ServerLogsOutUserImplToJson(
+        _$ServerLogsOutUserImpl instance) =>
+    <String, dynamic>{
+      'eventType': instance.eventType,
+    };

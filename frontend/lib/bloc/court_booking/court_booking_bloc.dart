@@ -18,8 +18,13 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
     // Handler for client events
     on<ClientEvent>(_onClientEvent);
 
-    //on<ServerSendsBookingConfirmation>(_onServerSendsBookingConfirmation);
+
     on<ServerSendsUserBookingsToClient>(_onServerSendsUserBookingsToClient);
+    on<ServerSendsConfirmationMessageToClient>((event, _) {
+      if (state.userBookings.isNotEmpty) {
+        fetchUserBookings(state.userBookings.first.userId);
+      }
+    });
     on<ServerEvent>((event, _) => print(event));
 
     // Feed deserialized events from server into this bloc

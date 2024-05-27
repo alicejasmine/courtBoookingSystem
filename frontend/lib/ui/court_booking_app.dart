@@ -1,32 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_state.dart';
 import 'authenticate_form.dart';
 import 'common.dart';
 import 'navigation.dart';
 
-
-
 class CourtBookingApp extends StatelessWidget {
   const CourtBookingApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Color(0xFF41437F);
+    final Color primaryVariant = Color(0xFF7573B4);
+    final Color backgroundColor = Color(0xFFF1EDFF);
+    final Color accentColor = Color(0xFF00C894);
+
+    final theme = ThemeData(
+      colorScheme: ColorScheme.light(
+        primary: primaryColor,
+        primaryContainer: primaryVariant,
+        background: backgroundColor,
+        secondary: accentColor,
+      ),
+      scaffoldBackgroundColor: backgroundColor,
+      appBarTheme: AppBarTheme(
+        backgroundColor: primaryColor,
+      ),
+      buttonTheme: ButtonThemeData(
+        buttonColor: primaryColor,
+        textTheme: ButtonTextTheme.primary,
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: primaryColor,
+          side: BorderSide(color: primaryColor),
+        ),
+      ),
+    );
+
     return MaterialApp(
       title: 'Court Booking System',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple, brightness: Brightness.light),
-      ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple, brightness: Brightness.dark),
-      ),
-      themeMode: ThemeMode.system,
+      theme: theme,
+      themeMode: ThemeMode.light,
       home: Scaffold(
+        backgroundColor: backgroundColor,
         body: BlocConsumer<AuthBloc, AuthState>(
           listenWhen: (previous, current) => current.headsUp != null,
           listener: (context, state) {
@@ -40,22 +59,27 @@ class CourtBookingApp extends StatelessWidget {
               );
             }
           },
-          builder: (context, state) =>
-              SingleChildScrollView(
-                child: Center(
-                  child: Container(
-                    constraints: const BoxConstraints(maxWidth: 400),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Header("Authenticate"),
-                        const AuthenticateForm(),
-
-                      ],
+          builder: (context, state) => SingleChildScrollView(
+            child: Center(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 400),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 80),
+                    Center(
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        height: 50,
+                      ),
                     ),
-                  ),
+                    const SizedBox(height: 50),
+                    const AuthenticateForm(),
+                  ],
                 ),
               ),
+            ),
+          ),
         ),
       ),
     );

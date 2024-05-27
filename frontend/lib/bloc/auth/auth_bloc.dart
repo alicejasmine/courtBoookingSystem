@@ -23,6 +23,8 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
 
     on<ServerAuthenticatesUser>(_onServerAuthenticatesUser);
     on<ServerEvent>((event, _) => print(event));
+    on<ServerLogsOutUser>(_onServerLogsOutUser);
+
 
     // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
@@ -69,6 +71,20 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
       authenticated: true,
       headsUp: 'Authentication successful!',
       userId: event.userId,
+    ));
+  }
+
+  FutureOr<void> _onServerLogsOutUser(
+      ServerLogsOutUser event, Emitter<AuthState> emit) {
+    emit(state.copyWith(
+      authenticated: false,
+      headsUp: 'Logged out successfully!',
+    ));
+  }
+
+  void logout() {
+    add(ClientWantsToLogOut(
+      eventType: ClientWantsToLogOut.name
     ));
   }
 

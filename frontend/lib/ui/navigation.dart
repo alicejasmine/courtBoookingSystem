@@ -1,7 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend/bloc/auth/auth_bloc.dart';
+import 'package:frontend/ui/authenticate_form.dart';
 
+import 'court_booking_app.dart';
 import 'tabs/club_info.dart';
 import 'tabs/home.dart';
 import 'tabs/user_bookings.dart';
@@ -36,18 +40,22 @@ class _NavigationState extends State<Navigation> {
           children: [
 
             Image.asset(
-              'assets/images/squash.png',
+              'assets/images/logo_white.png',
               height: 40,
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 15),
 
             Text(
               'Squash Club',
               style: const TextStyle(color: Colors.white),
             ),
+            const Spacer(),
+            IconButton(
+                icon: Icon(Icons.logout),
+                onPressed: ()  => _logOut()),
           ],
         ),
-        backgroundColor: Colors.amber,
+        backgroundColor:  Theme.of(context).colorScheme.primary,
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -57,6 +65,7 @@ class _NavigationState extends State<Navigation> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
+            key: const Key('user_bookings'),
             icon: Icon(Icons.event),
             label: 'My Bookings',
           ),
@@ -66,9 +75,21 @@ class _NavigationState extends State<Navigation> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         onTap: _onItemTapped,
       ),
     );
   }
+
+  void _logOut() {
+
+    context.read<AuthBloc>().logout();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => CourtBookingApp(),
+      ),
+    );
+  }
 }
+
+
