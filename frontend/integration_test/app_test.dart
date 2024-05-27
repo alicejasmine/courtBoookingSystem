@@ -43,7 +43,7 @@ void main() {
     );
 
     //Login
-    await tester.enterText(find.byKey(Key('email_field')), 'alice@gmail.com');
+    await tester.enterText(find.byKey(Key('email_field')), 'test@gmail.com');
     await tester.enterText(find.byKey(Key('password_field')), 'blabla');
     await tester.tap(find.byKey(Key('signIn_button')));
     await tester.pumpAndSettle();
@@ -92,7 +92,7 @@ void main() {
     );
 
 //Login
-    await tester.enterText(find.byKey(Key('email_field')), 'alice@gmail.com');
+    await tester.enterText(find.byKey(Key('email_field')), 'test@gmail.com');
     await tester.enterText(find.byKey(Key('password_field')), 'blabla');
     await tester.tap(find.byKey(Key('signIn_button')));
     await tester.pumpAndSettle();
