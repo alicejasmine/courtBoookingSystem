@@ -71,7 +71,7 @@ public class ApiTests
         var courtBookingDto2 = new ClientWantsToBookCourtDto
         {
             CourtId = 4,
-            UserId = 10,
+            UserId = 16,
             SelectedDate = new DateTime(2024, 5, 15),
             StartTime = TimeSpan.Parse("09:00:00"),
             EndTime = TimeSpan.Parse("10:00:00"),
@@ -106,6 +106,7 @@ public class ApiTests
 
         ws1.Client.Dispose();
         ws2.Client.Dispose();
+       
     }
 
 
@@ -118,7 +119,7 @@ public class ApiTests
         var courtBookingDto = new ClientWantsToBookCourtDto
         {
             CourtId = 4,
-            UserId = 10,
+            UserId = 16,
             SelectedDate = new DateTime(2024, 5, 15),
             StartTime = TimeSpan.Parse("09:00:00"),
             EndTime = TimeSpan.Parse("10:00:00"),

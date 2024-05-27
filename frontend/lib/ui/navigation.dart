@@ -65,6 +65,7 @@ class _NavigationState extends State<Navigation> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
+            key: const Key('user_bookings'),
             icon: Icon(Icons.event),
             label: 'My Bookings',
           ),
