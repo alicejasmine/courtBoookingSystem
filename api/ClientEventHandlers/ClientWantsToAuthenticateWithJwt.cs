@@ -12,7 +12,6 @@ using lib;
 
 namespace api.ClientEventHandlers;
 
-
 public class ClientWantsToAuthenticateWithJwtDto : BaseDto
 {
     [Required] public string? jwt { get; set; }
@@ -26,11 +25,21 @@ public class ClientWantsToAuthenticateWithJwt(
 {
     public override async Task Handle(ClientWantsToAuthenticateWithJwtDto dto, IWebSocketConnection socket)
     {
-        var claims = tokenService.ValidateJwtAndReturnClaims(dto.jwt!);
-        var user = userRepository.GetUser(new FindByEmailParams(claims["email"]));
+        try
+        {
+            var claims = tokenService.ValidateJwtAndReturnClaims(dto.jwt!);
+            var user = userRepository.GetUser(new FindByEmailParams(claims["email"]));
 
-        WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
-        WebSocketStateService.GetClient(socket.ConnectionInfo.Id).IsAuthenticated = true;
-        socket.SendDto(new ServerAuthenticatesUserFromJwt());
+            WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
+            WebSocketStateService.GetClient(socket.ConnectionInfo.Id).IsAuthenticated = true;
+            socket.SendDto(new ServerAuthenticatesUserFromJwt());
+        }
+        catch (Exception e)
+        {
+            socket.SendDto(new ServerSendsErrorMessageToClient
+            {
+                errorMessage = "An error occurred with authentication."
+            });
+        }
     }
 }

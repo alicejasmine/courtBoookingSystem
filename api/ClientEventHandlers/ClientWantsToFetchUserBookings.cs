@@ -5,8 +5,9 @@ using api.ServerEvents;
 using Fleck;
  using lib;
  using Newtonsoft.Json;
+using Serilog;
 
- namespace api.ClientEventHandlers;
+namespace api.ClientEventHandlers;
 
  public class ClientWantsToFetchUserBookingsDto : BaseDto
  {
@@ -19,10 +20,22 @@ using Fleck;
  {
      public override Task Handle(ClientWantsToFetchUserBookingsDto dto, IWebSocketConnection socket)
      {
-         socket.SendDto(new ServerSendsUserBookingsToClient
+         try
          {
-             userBookings = bookingRepository.GetBookingsByUserId(dto.UserId),
-         });
+             socket.SendDto(new ServerSendsUserBookingsToClient
+             {
+                 userBookings = bookingRepository.GetBookingsByUserId(dto.UserId),
+             });
+         }
+         catch (Exception e)
+         {
+             Log.Error(e, "Error fetching user bookings.");
+             socket.SendDto(new ServerSendsErrorMessageToClient
+             {
+                 errorMessage = "An error occurred while fetching your bookings. Please try again later."
+             });
+         }
+
          return Task.CompletedTask;
      
      }

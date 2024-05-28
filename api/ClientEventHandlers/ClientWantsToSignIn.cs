@@ -7,6 +7,7 @@ using api.ServerEvents;
 using api.State;
 using Fleck;
 using lib;
+using Serilog;
 
 namespace api.ClientEventHandlers;
 
@@ -18,21 +19,32 @@ public class ClientWantsToSignInDto : BaseDto
 }
 
 public class ClientWantsToAuthenticate(
-    UserRepository userRepository,
-    TokenService tokenService,
-    CredentialService credentialService)
+        UserRepository userRepository,
+        TokenService tokenService,
+        CredentialService credentialService)
     : BaseEventHandler<ClientWantsToSignInDto>
 {
     public override Task Handle(ClientWantsToSignInDto request, IWebSocketConnection socket)
     {
+        try
+        {
+            var user = userRepository.GetUser(new FindByEmailParams(request.email!));
 
-        var user = userRepository.GetUser(new FindByEmailParams(request.email!));
+            var expectedHash = credentialService.Hash(request.password!, user.salt!);
+            if (!expectedHash.Equals(user.hash)) throw new AuthenticationException("Wrong credentials!");
+            WebSocketStateService.GetClient(socket.ConnectionInfo.Id).IsAuthenticated = true;
+            WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
+            socket.SendDto(new ServerAuthenticatesUser { jwt = tokenService.IssueJwt(user), userId = user.id });
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, "An error occurred while signing in.");
+            socket.SendDto(new ServerSendsErrorMessageToClient
+            {
+                errorMessage = "An error occurred with signing in."
+            });
+        }
 
-        var expectedHash = credentialService.Hash(request.password!, user.salt!);
-        if (!expectedHash.Equals(user.hash)) throw new AuthenticationException("Wrong credentials!");
-        WebSocketStateService.GetClient(socket.ConnectionInfo.Id).IsAuthenticated = true;
-        WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
-        socket.SendDto(new ServerAuthenticatesUser { jwt = tokenService.IssueJwt(user),userId = user.id });
         return Task.CompletedTask;
     }
 }

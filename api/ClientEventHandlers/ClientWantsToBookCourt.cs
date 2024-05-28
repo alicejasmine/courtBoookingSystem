@@ -27,33 +27,43 @@ public class ClientWantsToBookCourt(CourtAvailabilityRepository courtAvailabilit
 {
     public override Task Handle(ClientWantsToBookCourtDto dto, IWebSocketConnection socket)
     {
-        bool isCourtAvailable =
-            courtAvailabilityRepository.IsCourtAvailable(dto.CourtId, dto.SelectedDate, dto.StartTime, dto.EndTime);
-
-        if (!isCourtAvailable)
+        try
         {
+            bool isCourtAvailable =
+                courtAvailabilityRepository.IsCourtAvailable(dto.CourtId, dto.SelectedDate, dto.StartTime, dto.EndTime);
+
+            if (!isCourtAvailable)
+            {
+                socket.SendDto(new ServerSendsErrorMessageToClient
+                {
+                    errorMessage = "Court is not available for the selected date and time.",
+                });
+                return Task.CompletedTask;
+            }
+
+
+            var courtBooking = new CourtBooking
+            {
+                courtId = dto.CourtId,
+                userId = dto.UserId,
+                selectedDate = dto.SelectedDate,
+                startTime = dto.StartTime,
+                endTime = dto.EndTime,
+                creationTime = dto.CreationTime
+            };
+            bookingRepository.CreateCourtBooking(courtBooking);
+
+            socket.SendDto(new ServerSendsConfirmationMessageToClient { confirmationMessage = "Booking successful" });
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, "An error occurred while processing the court booking.");
             socket.SendDto(new ServerSendsErrorMessageToClient
             {
-                errorMessage = "Court is not available for the selected date and time.",
+                errorMessage = "An error occurred while processing the booking. Please try again later."
             });
-            return Task.CompletedTask;
         }
 
-
-        var courtBooking = new CourtBooking
-        {
-            courtId = dto.CourtId,
-            userId = dto.UserId,
-            selectedDate = dto.SelectedDate,
-            startTime = dto.StartTime,
-            endTime = dto.EndTime,
-            creationTime = dto.CreationTime
-        };
-        bookingRepository.CreateCourtBooking(courtBooking);
-
-        socket.SendDto(new ServerSendsConfirmationMessageToClient { confirmationMessage = "Booking successful" });
-       
         return Task.CompletedTask;
     }
-    
 }

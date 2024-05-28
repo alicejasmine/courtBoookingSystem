@@ -9,6 +9,7 @@ using api.ServerEvents;
 using api.State;
 using Fleck;
 using lib;
+using Serilog;
 
 public class ClientWantsToRegisterDto : BaseDto
 {
@@ -26,13 +27,26 @@ public class ClientWantsToRegister(
 {
     public override Task Handle(ClientWantsToRegisterDto dto, IWebSocketConnection socket)
     {
-        if (userRepository.DoesUserAlreadyExist(new FindByEmailParams(dto.email)))
-            throw new ValidationException("User with this email already exists");
-        var salt = credentialService.GenerateSalt();
-        var hash = credentialService.Hash(dto.password, salt);
-        var user = userRepository.InsertUser(new InsertUserParams(dto.email, hash, salt));
-        WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
-        socket.SendDto(new ServerSendsConfirmationMessageToClient { confirmationMessage = "Registration successful" });
+        try
+        {
+            if (userRepository.DoesUserAlreadyExist(new FindByEmailParams(dto.email)))
+                throw new ValidationException("User with this email already exists");
+            var salt = credentialService.GenerateSalt();
+            var hash = credentialService.Hash(dto.password, salt);
+            var user = userRepository.InsertUser(new InsertUserParams(dto.email, hash, salt));
+            WebSocketStateService.GetClient(socket.ConnectionInfo.Id).User = user;
+            socket.SendDto(new ServerSendsConfirmationMessageToClient
+                { confirmationMessage = "Registration successful" });
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, "An error occurred while registering.");
+            socket.SendDto(new ServerSendsErrorMessageToClient
+            {
+                errorMessage = "An error occurred with registration."
+            });
+        }
+
         return Task.CompletedTask;
     }
 }
