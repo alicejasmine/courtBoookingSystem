@@ -26,7 +26,7 @@ public class ApiTests
         {
             CourtId = 4,
             UserId = 1,
-            SelectedDate = new DateTime(2024, 5, 15),
+            SelectedDate = new DateTime(2024, 6, 06),
             StartTime = TimeSpan.Parse("09:00:00"),
             EndTime = TimeSpan.Parse("10:00:00"),
             CreationTime = DateTime.Now
@@ -62,7 +62,7 @@ public class ApiTests
         {
             CourtId = 4,
             UserId = 1,
-            SelectedDate = new DateTime(2024, 5, 15),
+            SelectedDate = new DateTime(2024, 6, 06),
             StartTime = TimeSpan.Parse("09:00:00"),
             EndTime = TimeSpan.Parse("10:00:00"),
             CreationTime = DateTime.Now
@@ -72,7 +72,7 @@ public class ApiTests
         {
             CourtId = 4,
             UserId = 16,
-            SelectedDate = new DateTime(2024, 5, 15),
+            SelectedDate = new DateTime(2024, 6, 06),
             StartTime = TimeSpan.Parse("09:00:00"),
             EndTime = TimeSpan.Parse("10:00:00"),
             CreationTime = DateTime.Now
@@ -120,7 +120,7 @@ public class ApiTests
         {
             CourtId = 4,
             UserId = 16,
-            SelectedDate = new DateTime(2024, 5, 15),
+            SelectedDate = new DateTime(2024, 6, 06),
             StartTime = TimeSpan.Parse("09:00:00"),
             EndTime = TimeSpan.Parse("10:00:00"),
             CreationTime = DateTime.Now
