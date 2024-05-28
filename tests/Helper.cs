@@ -82,7 +82,8 @@ public class Helper
                         start_time TIME NOT NULL,
                         end_time TIME NOT NULL,
                         creation_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                        FOREIGN KEY (court_id) REFERENCES booking_system.courts(court_id)
+                        FOREIGN KEY (court_id) REFERENCES booking_system.courts(court_id),
+                        CONSTRAINT unique_booking_constraint UNIQUE (court_id, date, start_time, end_time)
                     );");
 
            
