@@ -51,7 +51,7 @@ public static class Startup
 
         builder.WebHost.UseUrls("http://*:9999");
         var app = builder.Build();
-      //app.Services.GetService<UserRepository>()!.ExecuteRebuildFromSqlScript();
+      
         
         var server = new WebSocketServer("ws://0.0.0.0:8181");
         server.RestartAfterListenError = true;
