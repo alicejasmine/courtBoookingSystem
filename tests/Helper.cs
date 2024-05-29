@@ -157,11 +157,11 @@ public class Helper
                 (1,1),(2,2),(3,3),(4,4)");
 
             conn.Execute(@"
-           INSERT INTO booking_system.users (user_id, email, hash, salt)
+           INSERT INTO booking_system.users (email, hash, salt)
 VALUES
-    (1, 'alice@gmail.com', '47dqlmlgT46QfjQPyAVb2RfzLRtn8lznzeNS1hXixms=', 'deW59qV/HrFfRM3ui8U2Tw=='),
-    (16, 'bla@gmail.com', 'ux0ou2lf9CkfK1OZ4UUiRe+bJ1W/tJRinKKFcUKuUwc=', 'JmEtKjnCHFvO1P1jGmFbCw=='),
-    (17, 'test@gmail.com', 'U7sIL4rBZgjkRrWBWcc0QkOiFM89716rw9U9eIcq3Cc=', 'K/9g+E9oc2rEFI2MjS1LhQ==');");
+    ('alice@gmail.com', '47dqlmlgT46QfjQPyAVb2RfzLRtn8lznzeNS1hXixms=', 'deW59qV/HrFfRM3ui8U2Tw=='),
+    ('bla@gmail.com', 'ux0ou2lf9CkfK1OZ4UUiRe+bJ1W/tJRinKKFcUKuUwc=', 'JmEtKjnCHFvO1P1jGmFbCw=='),
+    ('test@gmail.com', 'U7sIL4rBZgjkRrWBWcc0QkOiFM89716rw9U9eIcq3Cc=', 'K/9g+E9oc2rEFI2MjS1LhQ==');");
         }
     }
 
