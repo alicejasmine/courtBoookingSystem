@@ -2,11 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/models/events.dart';
 import 'package:intl/intl.dart';
-
 import '../../bloc/auth/auth_bloc.dart';
-
 import '../../bloc/court_booking/court_booking_bloc.dart';
 import '../../bloc/court_booking/court_booking_state.dart';
 import '../common.dart';
@@ -71,6 +68,6 @@ class UserBookings extends StatelessWidget {
 void _deleteBooking(BuildContext context, int bookingId) {
   final courtBookingBloc = BlocProvider.of<CourtBookingBloc>(context);
   courtBookingBloc.deleteBooking(bookingId);
-  //courtBookingBloc.fetchUserBookings(context.read<AuthBloc>().state.userId);
+
 
 }

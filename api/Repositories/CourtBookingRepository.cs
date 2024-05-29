@@ -78,7 +78,8 @@ public class CourtBookingRepository
             booking_system.court_bookings 
     
 JOIN booking_system.courts c on c.court_id = court_bookings.court_id
-        WHERE user_id = @userId";
+        WHERE user_id = @userId
+        AND date >= CURRENT_DATE;"; //only show upcoming bookings
 
         return conn.Query<CourtBookingWithCourtNumber>(sql, new { userId }).AsList();
     }
