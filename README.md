@@ -27,10 +27,9 @@ The database schema is presented below
 
 ## Tests
 
-**Backend Unit Tests**: some unit tests were added to validate the functionality of the court booking system within the backend. These tests ensure the system behaves as expected in various scenarios, including successful booking, handling booking conflicts, and deleting bookings, focusing on websockets. 
-These tests are run automatically with a GithubAction workflow each time code is merged into main or dev branches.
+**Unit Tests**: some unit tests were added to validate the functionality of the court booking system within the backend. These tests ensure the system behaves as expected in various scenarios, including successful booking, handling booking conflicts, and deleting bookings, focusing on websockets. 
+These tests are run automatically with a Github Actions workflow each time code is merged into main or dev branches.
 More tests could be added focusing on database only. 
-
 
 **Integration Tests**: integration tests were created to ensure that the core functionalities of booking a court and deleting a booking are working correctly. 
 
