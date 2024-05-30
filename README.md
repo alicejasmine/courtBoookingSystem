@@ -1,6 +1,6 @@
 # Court Booking App
 
-This project serves as the exam project for the Mobile Development and Fullstack courses, in the 4th semester Computer Science course at EASV. The developed application has a .NET backend with PostgreSQL database and a Flutter frontend, which allows the app to work both as a web app and a mobile app.
+This project serves as the exam project for the Mobile Programming and Fullstack courses, in the 4th semester Computer Science course at EASV. The developed application has a .NET backend with PostgreSQL database and a Flutter frontend, which allows the app to work both as a web app and a mobile app.
 WebSockets (Fleck library) are used to facilitate real-time communication between the backend and the frontend.
 
 ## Project Overview
