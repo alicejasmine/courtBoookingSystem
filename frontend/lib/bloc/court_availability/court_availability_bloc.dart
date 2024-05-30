@@ -7,6 +7,9 @@ import '../../broadcast_ws_channel.dart';
 import '../../models/events.dart';
 import 'court_availability_state.dart';
 
+
+
+/// Event for changing the selected date in the court availability screen
 class ChangeSelectedDataEvent extends BaseEvent {
   ChangeSelectedDataEvent(this.value);
   final DateTime value;
@@ -51,6 +54,7 @@ class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
     super.close();
   }
 
+  /// Handler for the change in selected date event
   void _onChangeSelectedDate(ChangeSelectedDataEvent event, Emitter<CourtAvailabilityState> emit) {
     emit(state.copyWith(selectedDate: event.value));
     add(ClientWantsToFetchCourtAvailability(
@@ -59,19 +63,21 @@ class CourtAvailabilityBloc extends Bloc<BaseEvent, CourtAvailabilityState> {
     ));
   }
 
+  /// Sends a request to the server to fetch court availability.
   void fetchCourtAvailability() {
-    print('Fetching court availability for date: ${state.selectedDate}');
     add(ClientWantsToFetchCourtAvailability(
       eventType: ClientWantsToFetchCourtAvailability.name,
       selectedDate: state.selectedDate,
     ));
   }
 
+  /// Handler for client events
   FutureOr<void> _onClientEvent(
       ClientEvent event, Emitter<CourtAvailabilityState> emit) {
     _channel.sink.add(jsonEncode(event.toJson()));
   }
 
+  /// Handler for the server sending court availability to the client.
   FutureOr<void> _onServerSendsCourtAvailabilityToClient(
       ServerSendsCourtAvailabilityToClient event,
       Emitter<CourtAvailabilityState> emit) {

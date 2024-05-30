@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
-
 import '../../broadcast_ws_channel.dart';
 import '../../models/events.dart';
 import 'auth_state.dart';
@@ -19,8 +16,7 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
     // Handler for client events
     on<ClientEvent>(_onClientEvent);
 
-    // Handlers for server events
-
+    /// Handlers for server events
     on<ServerAuthenticatesUser>(_onServerAuthenticatesUser);
     on<ServerEvent>((event, _) => print(event));
     on<ServerLogsOutUser>(_onServerLogsOutUser);
@@ -60,10 +56,12 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
     ));
   }
 
+  /// Handler for client events
   FutureOr<void> _onClientEvent(ClientEvent event, Emitter<AuthState> emit) {
     _channel.sink.add(jsonEncode(event.toJson()));
   }
 
+  /// Handler for ServerAuthenticatesUser event.
   FutureOr<void> _onServerAuthenticatesUser(
       ServerAuthenticatesUser event, Emitter<AuthState> emit) {
     _jwt = event.jwt;
@@ -74,6 +72,7 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
     ));
   }
 
+  /// Handler for ServerLogsOutUser event.
   FutureOr<void> _onServerLogsOutUser(
       ServerLogsOutUser event, Emitter<AuthState> emit) {
     emit(state.copyWith(
@@ -82,6 +81,7 @@ class AuthBloc extends Bloc<BaseEvent, AuthState> {
     ));
   }
 
+  /// Sends ClientWantsToLogOut event to server
   void logout() {
     add(ClientWantsToLogOut(
       eventType: ClientWantsToLogOut.name

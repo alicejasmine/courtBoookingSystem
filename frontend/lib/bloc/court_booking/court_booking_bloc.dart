@@ -46,13 +46,13 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
     super.close();
   }
 
-
+  /// Handler for client events
   FutureOr<void> _onClientEvent(ClientEvent event,
       Emitter<CourtBookingState> emit) {
     _channel.sink.add(jsonEncode(event.toJson()));
   }
 
-
+  /// Sends ClientWantsToBookCourt event to the server to book a court
   void bookCourt(CourtBooking booking) {
     add(ClientWantsToBookCourt(
       eventType: ClientWantsToBookCourt.name,
@@ -67,7 +67,7 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
 
 
 
-
+  /// Handler for the server sending user bookings to the client
   FutureOr<void> _onServerSendsUserBookingsToClient(
       ServerSendsUserBookingsToClient event,
       Emitter<CourtBookingState> emit) {
@@ -85,7 +85,7 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
     }
   }
 
-
+  /// Sends a request to fetch user bookings from the server.
   void fetchUserBookings(int userId) {
     add(ClientWantsToFetchUserBookings(
       eventType: ClientWantsToFetchUserBookings.name,
@@ -93,7 +93,7 @@ class CourtBookingBloc extends Bloc<BaseEvent, CourtBookingState> {
     ));
   }
 
-
+  /// Sends a request to fetch user bookings from the server.
   void deleteBooking(int bookingId) {
     add(ClientWantsToDeleteBooking(
       eventType: ClientWantsToDeleteBooking.name,
