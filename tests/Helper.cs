@@ -89,7 +89,7 @@ public class Helper
            
 
 
-            //insert initial data about courts available
+            //insert initial data about courts available and users 
             InsertInitialData();
         }
     }

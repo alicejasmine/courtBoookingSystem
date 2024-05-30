@@ -59,6 +59,8 @@ public class CourtBookingRepository
                 IsAvailable = isAvailable
             });
     }
+    
+    //get user's upcoming bookings with court number 
 
     public IEnumerable<CourtBookingWithCourtNumber> GetBookingsByUserId(int userId)
     {
@@ -83,6 +85,7 @@ JOIN booking_system.courts c on c.court_id = court_bookings.court_id
 
         return conn.Query<CourtBookingWithCourtNumber>(sql, new { userId }).AsList();
     }
+    
 
     //delete booking from court_bookings table + update availability in one transaction
     public void DeleteCourtBooking(int bookingId)

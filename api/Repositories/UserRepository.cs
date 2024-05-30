@@ -56,22 +56,4 @@ select count(*) from booking_system.users where email = @{nameof(findByEmailPara
     
     
     
-    public EndUser GetUserById(int userId)
-    {
-        using var conn = _dataSource.OpenConnection();
-        return conn.QueryFirstOrDefault<EndUser>($@"
-        SELECT 
-            user_id as {nameof(EndUser.id)},
-            email as {nameof(EndUser.email)},
-            hash as {nameof(EndUser.hash)},
-            salt as {nameof(EndUser.salt)}
-        FROM 
-            booking_system.users 
-        WHERE 
-            user_id = @UserId", new { UserId = userId }) ??
-               throw new KeyNotFoundException("Could not find user with ID " + userId);
-    }
-
-
-    
 }
